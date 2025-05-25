@@ -1,0 +1,42 @@
+{
+    "header" : {
+        "homePage" : "Home Page",
+        "contact" : "Contact",
+        "logIn" : "Log In"
+
+    },
+   
+    "footer" : {
+        "dentacan" : "Dentacan",
+        "text" : "Our clinic, which operates with the motto \"Another Reason to Smile\", protects your oral and dental health with modern technologies.",
+        "subscribe" : "Subscribe",
+        "contactUs" : "Contact Us",
+        "privacyPolicy" : "Privacy Policy",
+        "termsOfUse" : "Terms of Use",
+        "aboutUs" : "About Us",
+        "help" : "Help",
+        "faq" : "FAQ",
+        "support" : "Support",
+        "contact" : "Contact",
+        "followUs" : "Follow Us",
+        "socialMedia" : "Social Media",
+        "newsletter" : "Newsletter",
+        "subscribeToNewsletter" : "Subscribe to our newsletter",
+        "subscribeToNewsletterDesc" : "Subscribe to our newsletter and get the latest news, updates and special offers."
+    },
+    "mainPage" : {
+        "oneMoreReasonToSmile" : "One More Reason to Smile",
+        "bookAnAppointment" : "Book an Appointment",
+        "ourServices": "Our Services",
+        "teethWhitening" : "Teeth Whitening",
+        "dentalImplants" : "Dental Implants",
+        "orthodontics" : "Orthodontics",
+        "cosmeticDentistry" : "Cosmetic Dentistry",
+        "emergencyDentalCare" : "Emergency Dental Care",
+        "professionalWhiteningTechniques" : "Professional whitening techniques for 3-4 shades lighter",
+        "moreInfo" : "More Info",
+        "story" : "The DENTACAN Story",
+        "aboutText" : "DENTACAN Dental Clinic was established in 2010 by Dr. Ahmet CAN with the aim of providing modern dental services at the highest standards. Starting as a small clinic, our center has quickly reached its current position thanks to our patient-centered approach."
+
+    }
+ }

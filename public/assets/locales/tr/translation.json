@@ -1,0 +1,38 @@
+{
+  "header": {
+    "homePage": "Ana Sayfa",
+    "contact": "İletişim",
+    "logIn": "Giriş Yap"
+  },
+  "footer": {
+    "dentacan": "Dentacan",
+    "text": "Dentacan Ağız ve Diş Sağlığı Kliniği",
+    "subscribe": "Abone Ol",
+    "contactUs": "Bize Ulaşın",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfUse": "Kullanım Şartları",
+    "aboutUs": "Hakkımızda",
+    "help": "Yardım",
+    "faq": "Sıkça Sorulan Sorular",
+    "support": "Destek",
+    "followUs": "Bizi Takip Edin",
+    "socialMedia": "Sosyal Medya",
+    "newsletter": "Bülten",
+    "subscribeToNewsletter": "Bültenimize abone olun",
+    "subscribeToNewsletterDesc": "Bültenimize abone olun ve en son haberleri, güncellemeleri ve özel teklifleri alın."
+  },
+  "mainPage": {
+    "oneMoreReasonToSmile": "Gülümsemek İçin Bir Neden Daha",
+    "bookAnAppointment": "Randevu Al",
+    "ourServices": "Hizmetlerimiz",
+    "teethWhitening": "Diş Beyazlatma",
+    "dentalImplants": "Diş İmplantları",
+    "orthodontics": "Ortodonti",
+    "cosmeticDentistry": "Estetik Diş Hekimliği",
+    "emergencyDentalCare": "Acil Diş Bakımı",
+    "professionalWhiteningTechniques": "3-4 ton daha açık profesyonel beyazlatma teknikleri",
+    "moreInfo": "Daha Fazla Bilgi",
+    "story": "Dentacan Hikayesi",
+    "aboutText": "DENTACAN Ağız ve Diş Sağlığı Kliniği, 2010 yılında Dr. Ahmet CAN tarafından modern diş hizmetlerini en yüksek standartlarda sunma amacıyla kurulmuştur. Küçük bir klinik olarak başlayan merkezimiz, hasta memnuniyetine odaklı yaklaşımımız sayesinde hızla mevcut konumuna gelmiştir."
+  }
+}
