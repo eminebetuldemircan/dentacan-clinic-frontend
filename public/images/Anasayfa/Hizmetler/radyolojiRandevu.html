@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Diagnoz ve Radyoloji Randevusu | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #1a5276;
+            --light-color: #ebf5fb;
+            --text-color: #333;
+            --text-light: #666;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/radyoloji-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Randevu Formu Stilleri */
+        .appointment-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .appointment-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .appointment-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .appointment-form {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .service-info {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .service-info h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .notice {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        /* KVKK Modal */
+        .kvkk-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .kvkk-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+        
+        .close-kvkk-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-kvkk-modal:hover {
+            color: black;
+        }
+        
+        .kvkk-content {
+            margin-bottom: 30px;
+        }
+        
+        .consent-form {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .service-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .service-header p {
+                font-size: 1rem;
+            }
+            
+            .kvkk-modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Oral Diagnoz ve Radyoloji Randevusu</h1>
+            <p>Dijital panoramik röntgen, 3D tomografi ve uzman muayene ile doğru teşhis için randevunuzu oluşturun.</p>
+        </div>
+    </header>
+
+    <!-- Randevu Formu -->
+    <div class="container">
+        <div class="appointment-container">
+            <div class="appointment-header">
+                <h2>Oral Diagnoz ve Radyoloji Randevu Formu</h2>
+            </div>
+            
+            <form class="appointment-form" id="radiologyAppointmentForm">
+                <input type="hidden" name="service" value="oral-diagnoz-radyoloji">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname">Adınız</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Soyadınız</label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Telefon Numaranız</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="5__ ___ __ __">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta Adresiniz</label>
+                        <input type="email" id="email" name="email" placeholder="opsiyonel">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-date">Tercih Ettiğiniz Tarih</label>
+                    <input type="date" id="preferred-date" name="preferred-date" required min="">
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-time">Tercih Ettiğiniz Saat</label>
+                    <select id="preferred-time" name="preferred-time" required>
+                        <option value="">Seçiniz</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="doctor">Tercih Ettiğiniz Doktor</label>
+                    <select id="doctor" name="doctor">
+                        <option value="">Fark etmez</option>
+                        <option value="ayse-demir">Prof. Dr. Dt. Ayşe DEMİR (Oral Diagnoz Uzmanı)</option>
+                        <option value="can-yilmaz">Doç. Dr. Dt. Can YILMAZ (Radyoloji Uzmanı)</option>
+                        <option value="emre-koc">Uzm. Dr. Dt. Emre KOÇ (Ağız Hastalıkları Uzmanı)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="examination-type">İstenen Tetkik Türü</label>
+                    <select id="examination-type" name="examination-type" class="form-control">
+                        <option value="">Muayene sonrası hekim karar versin</option>
+                        <option value="Panoramik Röntgen">Panoramik Röntgen</option>
+                        <option value="Periapikal Röntgen">Periapikal Röntgen</option>
+                        <option value="3D Tomografi">3D Tomografi (CBCT)</option>
+                        <option value="Sefalometrik Röntgen">Sefalometrik Röntgen</option>
+                        <option value="Tam Ağız Muayenesi">Tam Ağız Muayenesi</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="symptoms">Şikayetleriniz/Semptomlar</label>
+                    <textarea id="symptoms" name="symptoms" rows="3" placeholder="Ağrı, şişlik, hassasiyet vb. şikayetlerinizi detaylı belirtiniz"></textarea>
+                </div>
+                
+                <div class="notice">
+                    <i class="fas fa-info-circle"></i> <strong>Önemli Bilgi:</strong> Hamileyseniz veya hamilelik şüpheniz varsa lütfen mutlaka belirtiniz. Röntgen çekimi öncesi bilgilendirme yapılacaktır.
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="previous-radio" name="previous-radio">
+                    <label for="previous-radio">Daha önce diş röntgeni çektirdim</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="kvkk" name="kvkk" required>
+                    <label for="kvkk">
+                        <a href="#" id="showKvkkModal" style="color: var(--primary-color); text-decoration: underline;">
+                            Kişisel verilerin korunması hakkında bilgilendirmeyi okudum, onaylıyorum.
+                        </a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Randevu Oluştur</button>
+            </form>
+            
+            <div class="service-info">
+                <h3>Oral Diagnoz ve Radyoloji Hakkında</h3>
+                <p><strong>Muayene Süresi:</strong> 30-45 dakika sürebilir</p>
+                <p><strong>Röntgen Hazırlık:</strong> Metal eşyaları çıkarmanız gerekecektir</p>
+                <p><strong>Teknoloji:</strong> Dijital düşük doz radyasyon sistemleri</p>
+                <p><strong>Sonuçlar:</strong> Aynı gün değerlendirme raporu verilir</p>
+                <p><strong>Güvenlik:</strong> Kurşun önlük ile radyasyondan korunma</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- KVKK Modal Penceresi -->
+    <div id="kvkkModal" class="kvkk-modal">
+        <div class="kvkk-modal-content">
+            <span class="close-kvkk-modal">&times;</span>
+            
+            <h1 style="text-align: center; color: var(--secondary-color);">DENTACAN AĞIZ VE DİŞ SAĞLIĞI KLİNİĞİ</h1>
+            <h2 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Kişisel Verilerin İşlenmesi Hakkında Aydınlatma Metni</h2>
+            
+            <div class="kvkk-content">
+                <p><strong>Dentacan Ağız ve Diş Sağlığı Polikliniği ("Dentacan")</strong> olarak, kişisel verilerinizin güvenliği konusuna büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, kişisel verilerinizin işlenmesine ilişkin aydınlatma metnini aşağıda sunuyoruz:</p>
+                
+                <h3>1. Veri Sorumlusu</h3>
+                <p>Kişisel verileriniz, Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından veri sorumlusu sıfatıyla işlenecektir.</p>
+                
+                <h3>2. Kişisel Verilerin İşlenme Amaçları</h3>
+                <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                <ul>
+                    <li>Teşhis ve tedavi hizmetlerinin sunulması</li>
+                    <li>Radyolojik görüntüleme ve tanı süreçlerinin yürütülmesi</li>
+                    <li>Randevu yönetimi ve hasta iletişimi</li>
+                    <li>Yasal ve düzenleyici gerekliliklerin yerine getirilmesi</li>
+                    <li>Tıbbi kayıtların tutulması ve arşivlenmesi</li>
+                </ul>
+                
+                <h3>3. Toplanan Kişisel Veri Türleri</h3>
+                <p>Hizmetlerimizden yararlanabilmeniz için aşağıdaki verileri topluyoruz:</p>
+                <ul>
+                    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, TC kimlik numarası, doğum tarihi</li>
+                    <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, ikametgah adresi</li>
+                    <li><strong>Sağlık Verileri:</strong> Tıbbi öykü, teşhis bilgileri, radyolojik görüntüler</li>
+                    <li><strong>Özel Nitelikli Veriler:</strong> Radyolojik tetkik sonuçları, tıbbi görüntüler</li>
+                </ul>
+                
+                <h3>4. Verilerin Aktarımı</h3>
+                <p>Kişisel verileriniz, yasal zorunluluklar ve hizmetlerimizin sağlanması amacıyla aşağıdaki paydaşlarla paylaşılabilir:</p>
+                <ul>
+                    <li>Sağlık Bakanlığı ve bağlı kuruluşlar</li>
+                    <li>Sosyal Güvenlik Kurumu</li>
+                    <li>Özel sigorta şirketleri</li>
+                    <li>Laboratuvarlar ve tıbbi görüntüleme merkezleri</li>
+                    <li>Konsültasyon için diğer sağlık kuruluşları</li>
+                </ul>
+                
+                <h3>5. Veri Güvenliği</h3>
+                <p>Kişisel verileriniz, 6698 sayılı Kanun'un öngördüğü şekilde ve en az 10 yıl süreyle saklanacaktır. Radyolojik görüntüleriniz özel olarak korunmaktadır:</p>
+                <ul>
+                    <li>Dijital arşivleme sistemleri ile güvenli saklama</li>
+                    <li>Şifreli veri transferi</li>
+                    <li>Sınırlı erişim yetkilendirmeleri</li>
+                </ul>
+                
+                <h3>6. Haklarınız</h3>
+                <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul>
+                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                    <li>Verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+                    <li>Verilerinizin eksik/yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+                    <li>Verilerinizin silinmesini veya yok edilmesini isteme</li>
+                    <li>İşlenen verilerin aktarıldığı üçüncü kişilere yukarıdaki taleplerin iletilmesini isteme</li>
+                </ul>
+                
+                <h3>7. Başvuru Yöntemi</h3>
+                <p>Haklarınızı kullanmak için kliniğimize aşağıdaki kanallardan ulaşabilirsiniz:</p>
+                <ul>
+                    <li><strong>Adres:</strong> 1234. Sokak, No:5, Şişli/İstanbul</li>
+                    <li><strong>E-posta:</strong> kvkk@dentacan.com</li>
+                    <li><strong>Telefon:</strong> 0212 123 45 67</li>
+                    <li><strong>Web:</strong> <a href="https://www.dentacan.com/kvkk" target="_blank">www.dentacan.com/kvkk</a></li>
+                </ul>
+                
+                <p style="font-style: italic; margin-top: 20px;">Bu metin 01.01.2024 tarihinde güncellenmiştir. Değişiklikler web sitemizden duyurulacaktır.</p>
+            </div>
+            
+            <div class="consent-form">
+                <h2 style="color: var(--secondary-color);">Açık Rıza Formu</h2>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent1" required>
+                    <label for="modalConsent1">Kişisel verilerimin Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından yukarıda belirtilen amaçlarla işlenmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent2" required>
+                    <label for="modalConsent2">Radyolojik görüntülerimin ve tıbbi verilerimin yasal zorunluluklar çerçevesinde paylaşılmasını kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent3">
+                    <label for="modalConsent3">Randevu hatırlatma ve tetkik sonuçları hakkında elektronik ileti gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent4">
+                    <label for="modalConsent4">Ağız ve diş sağlığı ile ilgili bilgilendirme içerikleri gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <button id="confirmKvkkConsent" class="submit-btn" style="margin-top: 15px;">Onaylıyorum ve Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Minimum tarihi bugün olarak ayarla
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('preferred-date').min = today;
+            
+            // Telefon numarası formatlama
+            document.getElementById('phone').addEventListener('input', function(e) {
+                let phoneNumber = this.value.replace(/\D/g, '');
+                
+                // 11 haneyi geçmemesi için
+                if (phoneNumber.length > 10) {
+                    phoneNumber = phoneNumber.substring(0, 10);
+                }
+                
+                // Formatlama
+                if (phoneNumber.length > 0) {
+                    phoneNumber = phoneNumber.match(new RegExp('.{1,' + (phoneNumber.length > 7 ? 3 : (phoneNumber.length > 4 ? 3 : 4)) + '}', 'g')).join(' ');
+                }
+                
+                this.value = phoneNumber;
+            });
+            
+            // KVKK Modal İşlemleri
+            const kvkkModal = document.getElementById('kvkkModal');
+            const showKvkkModal = document.getElementById('showKvkkModal');
+            const closeKvkkModal = document.querySelector('.close-kvkk-modal');
+            const confirmKvkkConsent = document.getElementById('confirmKvkkConsent');
+            
+            // KVKK linkine tıklanınca modalı aç
+            showKvkkModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                kvkkModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı engelle
+            });
+            
+            // Kapatma butonuna tıklanınca modalı kapat
+            closeKvkkModal.addEventListener('click', function() {
+                kvkkModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+            });
+            
+            // Onay butonuna tıklanınca
+            confirmKvkkConsent.addEventListener('click', function() {
+                // Zorunlu onay kutularını kontrol et
+                const consent1 = document.getElementById('modalConsent1').checked;
+                const consent2 = document.getElementById('modalConsent2').checked;
+                
+                if (consent1 && consent2) {
+                    // Ana formdaki KVKK checkbox'ını işaretle
+                    document.getElementById('kvkk').checked = true;
+                    kvkkModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+                } else {
+                    alert('Lütfen zorunlu onay kutularını işaretleyiniz.');
+                }
+            });
+            
+            // Modal dışına tıklanınca kapat
+            window.addEventListener('click', function(e) {
+                if (e.target == kvkkModal) {
+                    kvkkModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+                }
+            });
+            
+            // Form gönderimi
+            document.getElementById('radiologyAppointmentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // KVKK onayını kontrol et
+                if (!document.getElementById('kvkk').checked) {
+                    alert('Lütfen KVKK aydınlatma metnini okuyup onaylayınız.');
+                    return;
+                }
+                
+                const formData = {
+                    service: 'Oral Diagnoz ve Radyoloji',
+                    fullname: document.getElementById('fullname').value + ' ' + document.getElementById('surname').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    date: document.getElementById('preferred-date').value,
+                    time: document.getElementById('preferred-time').value,
+                    doctor: document.getElementById('doctor').value || 'Fark etmez',
+                    examinationType: document.getElementById('examination-type').value,
+                    symptoms: document.getElementById('symptoms').value,
+                    previousRadio: document.getElementById('previous-radio').checked ? 'Evet' : 'Hayır',
+                    kvkkConsent: true,
+                    remindersConsent: document.getElementById('modalConsent3')?.checked || false,
+                    infoConsent: document.getElementById('modalConsent4')?.checked || false
+                };
+                
+                // Burada form verilerini sunucuya gönderebilirsiniz
+                console.log('Radyoloji Randevu Bilgileri:', formData);
+                
+                // Başarılı mesajı göster
+                alert('Oral diagnoz ve radyoloji randevunuz başarıyla oluşturuldu!\n\n' + 
+                      'Tarih: ' + formatDateDisplay(formData.date) + '\n' +
+                      'Saat: ' + formData.time + '\n\n' +
+                      'Randevu detayları e-posta adresinize gönderilmiştir.\n' +
+                      (formData.examinationType.includes('Tomografi') ? 
+                       '\nNOT: Tomografi randevunuz için 15 dakika önce gelmeniz gerekmektedir.' : ''));
+                
+                // Formu temizle
+                this.reset();
+                document.getElementById('preferred-date').min = new Date().toISOString().split('T')[0];
+                document.getElementById('kvkk').checked = false;
+            });
+            
+            function formatDateDisplay(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                return `${day}.${month}.${year}`;
+            }
+        });
+    </script>
+</body>
+</html>

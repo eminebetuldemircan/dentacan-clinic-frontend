@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentacan | Yönetici Girişi</title>
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --error-color: #e63946;
+            --success-color: #2a9d8f;
+            --light-gray: #f5f7fa;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .logo {
+            width: 180px;
+            margin: 0 auto 30px;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        .input-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+            background-color: #fff;
+        }
+        
+        .input-group .input-error {
+            border-color: var(--error-color);
+            background-color: rgba(230, 57, 70, 0.05);
+        }
+        
+        .input-error-message {
+            color: var(--error-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0 30px;
+            font-size: 0.9rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+            accent-color: var(--primary-color);
+        }
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .login-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .login-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .login-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .message {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
+            padding: 12px;
+            border-radius: 5px;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            background-color: rgba(230, 57, 70, 0.1);
+        }
+        
+        .success-message {
+            color: var(--success-color);
+            background-color: rgba(42, 157, 143, 0.1);
+        }
+        
+        .info-message {
+            color: var(--secondary-color);
+            background-color: rgba(38, 70, 83, 0.1);
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .language-selector select {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 0.8rem;
+        }
+        
+        /* Verification modal styles */
+        .verification-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .verification-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .verification-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .verification-header h2 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .verification-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .verification-method {
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .verification-method:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(42, 157, 143, 0.05);
+        }
+        
+        .verification-method.active {
+            border-color: var(--primary-color);
+            background-color: rgba(42, 157, 143, 0.1);
+        }
+        
+        .verification-method i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+        
+        .verification-code-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .verification-code-input input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .verification-code-input input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+        
+        .verification-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .verification-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .verify-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .verify-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .cancel-btn {
+            background-color: #f5f7fa;
+            color: var(--secondary-color);
+        }
+        
+        .cancel-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .resend-code {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .resend-code a {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .resend-code a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 40px 25px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .verification-methods {
+                flex-direction: column;
+            }
+            
+            .verification-code-input input {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="language-selector">
+            <select id="language">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+        
+        <img src="images/Anasayfa/Logo.jpg" alt="Dentacan Logo" class="logo">
+        <h1>Yönetici Girişi</h1>
+        <p class="subtitle">Lütfen kimlik bilgilerinizle giriş yapın</p>
+        
+        <form id="adminLoginForm">
+            <div class="input-group">
+                <label for="email">E-posta Adresi</label>
+                <input type="email" id="email" name="email" placeholder="yönetici@dentacan.com" required>
+                <div class="input-error-message" id="emailError">Lütfen geçerli bir e-posta adresi girin</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Parola</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required minlength="8">
+                <div class="input-error-message" id="passwordError">Parola en az 8 karakter olmalıdır</div>
+            </div>
+            
+            <div class="options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Beni Hatırla</label>
+                </div>
+                <a href="password-reset.html" class="forgot-password">Parolamı Unuttum</a>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                Giriş Yap
+            </button>
+            
+            <div class="message error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Hatalı e-posta veya parola. Lütfen tekrar deneyin.</span>
+            </div>
+            
+            <div class="message success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <span>Giriş başarılı! Yönlendiriliyorsunuz...</span>
+            </div>
+        </form>
+    </div>
+
+    <!-- Verification Modal -->
+    <div class="verification-modal" id="verificationModal">
+        <div class="verification-content">
+            <div class="verification-header">
+                <h2>Doğrulama Kodu</h2>
+                <p id="verificationMessage">Giriş işlemini tamamlamak için doğrulama kodunu girin</p>
+            </div>
+            
+            <div class="verification-methods">
+                <div class="verification-method active" id="emailMethod">
+                    <i class="fas fa-envelope"></i>
+                    <div>E-posta ile Doğrula</div>
+                </div>
+                <div class="verification-method" id="smsMethod">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>SMS ile Doğrula</div>
+                </div>
+            </div>
+            
+            <div class="verification-code-input">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" inputmode="numeric" autocomplete="off">
+            </div>
+            
+            <div class="verification-actions">
+                <button class="verification-btn cancel-btn" id="cancelVerification">İptal</button>
+                <button class="verification-btn verify-btn" id="verifyCode">Doğrula</button>
+            </div>
+            
+            <div class="resend-code">
+                Kod gelmedi mi? <a id="resendCode">Yeni Kod Gönder</a>
+                <div id="resendTimer" style="display: none;">Yeni kod göndermek için <span id="countdown">60</span> saniye bekleyin</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('adminLoginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const loginBtn = document.getElementById('loginBtn');
+        const verificationModal = document.getElementById('verificationModal');
+        const emailMethod = document.getElementById('emailMethod');
+        const smsMethod = document.getElementById('smsMethod');
+        const verifyBtn = document.getElementById('verifyCode');
+        const cancelBtn = document.getElementById('cancelVerification');
+        const resendLink = document.getElementById('resendCode');
+        const resendTimer = document.getElementById('resendTimer');
+        const countdownElement = document.getElementById('countdown');
+        const verificationMessage = document.getElementById('verificationMessage');
+        const codeInputs = document.querySelectorAll('.verification-code-input input');
+        
+        // Form validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+        
+        function showError(element, message) {
+            element.style.display = 'block';
+            element.textContent = message;
+            element.previousElementSibling.classList.add('input-error');
+        }
+        
+        function hideError(element) {
+            element.style.display = 'none';
+            element.previousElementSibling.classList.remove('input-error');
+        }
+        
+        // Input event listeners for real-time validation
+        emailInput.addEventListener('input', () => {
+            if (!validateEmail(emailInput.value)) {
+                showError(emailError, 'Lütfen geçerli bir e-posta adresi girin');
+            } else {
+                hideError(emailError);
+            }
+        });
+        
+        passwordInput.addEventListener('input', () => {
+            if (!validatePassword(passwordInput.value)) {
+                showError(passwordError, 'Parola en az 8 karakter olmalıdır');
+            } else {
+                hideError(passwordError);
+            }
+        });
+        
+        // Form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous errors
+            hideError(emailError);
+            hideError(passwordError);
+            errorMessage.style.display = 'none';
+            
+            // Validate inputs
+            let isValid = true;
+            
+            if (!validateEmail(emailInput.value)) {
+                showError(emailError, 'Lütfen geçerli bir e-posta adresi girin');
+                isValid = false;
+            }
+            
+            if (!validatePassword(passwordInput.value)) {
+                showError(passwordError, 'Parola en az 8 karakter olmalıdır');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Simulate login request
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Giriş Yapılıyor...';
+            loginBtn.disabled = true;
+            
+            // In a real app, this would be an AJAX call to your backend
+            setTimeout(() => {
+                // Simulated credentials - in real app, remove this and use proper authentication
+                if (emailInput.value === 'admin@dentacan.com' && passwordInput.value === 'dentacan2023') {
+                    // Show verification modal
+                    showVerificationModal();
+                } else {
+                    // Show error
+                    errorMessage.style.display = 'flex';
+                    document.getElementById('errorText').textContent = 'Hatalı e-posta veya parola. Lütfen tekrar deneyin.';
+                    
+                    // Reset button
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                    loginBtn.disabled = false;
+                }
+            }, 1000);
+        });
+        
+        // Verification modal functions
+        function showVerificationModal() {
+            verificationModal.style.display = 'flex';
+            verificationMessage.textContent = `Doğrulama kodu ${emailInput.value} e-posta adresine gönderildi.`;
+            
+            // Focus first code input
+            codeInputs[0].focus();
+            
+            // Start resend timer
+            startResendTimer();
+        }
+        
+        function hideVerificationModal() {
+            verificationModal.style.display = 'none';
+            
+            // Reset code inputs
+            codeInputs.forEach(input => input.value = '');
+        }
+        
+        // Verification method selection
+        emailMethod.addEventListener('click', () => {
+            emailMethod.classList.add('active');
+            smsMethod.classList.remove('active');
+            verificationMessage.textContent = `Doğrulama kodu ${emailInput.value} e-posta adresine gönderildi.`;
+        });
+        
+        smsMethod.addEventListener('click', () => {
+            smsMethod.classList.add('active');
+            emailMethod.classList.remove('active');
+            verificationMessage.textContent = 'Doğrulama kodu telefon numaranıza SMS olarak gönderildi.';
+        });
+        
+        // Code input handling
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1) {
+                    if (index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    } else {
+                        codeInputs[index].blur();
+                    }
+                }
+            });
+            
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+        });
+        
+        // Verify code
+        verifyBtn.addEventListener('click', () => {
+            let verificationCode = '';
+            codeInputs.forEach(input => {
+                verificationCode += input.value;
+            });
+            
+            if (verificationCode.length !== 6) {
+                alert('Lütfen 6 haneli doğrulama kodunu girin.');
+                return;
+            }
+            
+            // In a real app, verify the code with your backend
+            // Here we'll just simulate a successful verification
+            verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Doğrulanıyor...';
+            verifyBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Simulate successful verification
+                hideVerificationModal();
+                successMessage.style.display = 'flex';
+                
+                // Redirect to admin panel after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'admin-panel.html';
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Cancel verification
+        cancelBtn.addEventListener('click', () => {
+            hideVerificationModal();
+            loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+            loginBtn.disabled = false;
+        });
+        
+        // Resend code
+        resendLink.addEventListener('click', () => {
+            if (resendLink.style.display === 'none') return;
+            
+            // Simulate resend code
+            resendLink.style.display = 'none';
+            resendTimer.style.display = 'block';
+            startResendTimer();
+            
+            // Show message
+            const method = emailMethod.classList.contains('active') ? 'e-posta' : 'SMS';
+            verificationMessage.textContent = `Yeni doğrulama kodu ${method} ile gönderildi.`;
+        });
+        
+        function startResendTimer() {
+            let timeLeft = 60;
+            resendLink.style.display = 'none';
+            resendTimer.style.display = 'block';
+            
+            const timer = setInterval(() => {
+                timeLeft--;
+                countdownElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    resendLink.style.display = 'inline';
+                    resendTimer.style.display = 'none';
+                }
+            }, 1000);
+        }
+        
+        // Language switcher
+        document.getElementById('language').addEventListener('change', function() {
+            if(this.value === 'en') {
+                // Login form translations
+                document.querySelector('h1').textContent = 'Admin Login';
+                document.querySelector('.subtitle').textContent = 'Please enter your credentials';
+                document.querySelector('label[for="email"]').textContent = 'Email Address';
+                document.querySelector('label[for="password"]').textContent = 'Password';
+                document.querySelector('label[for="remember"]').textContent = 'Remember Me';
+                document.querySelector('.forgot-password').textContent = 'Forgot Password?';
+                document.querySelector('.login-btn').innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+                document.getElementById('email').placeholder = 'admin@dentacan.com';
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters';
+                document.getElementById('errorText').textContent = 'Incorrect email or password. Please try again.';
+                
+                // Verification modal translations
+                document.querySelector('.verification-header h2').textContent = 'Verification Code';
+                verificationMessage.textContent = 'Enter the verification code to complete login';
+                emailMethod.querySelector('div').textContent = 'Verify via Email';
+                smsMethod.querySelector('div').textContent = 'Verify via SMS';
+                verifyBtn.textContent = 'Verify';
+                cancelBtn.textContent = 'Cancel';
+                resendLink.textContent = 'Resend Code';
+                document.getElementById('resendTimer').innerHTML = 'Wait <span id="countdown">60</span> seconds to resend';
+            } else {
+                // Login form translations
+                document.querySelector('h1').textContent = 'Yönetici Girişi';
+                document.querySelector('.subtitle').textContent = 'Lütfen kimlik bilgilerinizle giriş yapın';
+                document.querySelector('label[for="email"]').textContent = 'E-posta Adresi';
+                document.querySelector('label[for="password"]').textContent = 'Parola';
+                document.querySelector('label[for="remember"]').textContent = 'Beni Hatırla';
+                document.querySelector('.forgot-password').textContent = 'Parolamı Unuttum';
+                document.querySelector('.login-btn').innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                document.getElementById('email').placeholder = 'yönetici@dentacan.com';
+                document.getElementById('emailError').textContent = 'Lütfen geçerli bir e-posta adresi girin';
+                document.getElementById('passwordError').textContent = 'Parola en az 8 karakter olmalıdır';
+                document.getElementById('errorText').textContent = 'Hatalı e-posta veya parola. Lütfen tekrar deneyin.';
+                
+                // Verification modal translations
+                document.querySelector('.verification-header h2').textContent = 'Doğrulama Kodu';
+                verificationMessage.textContent = 'Giriş işlemini tamamlamak için doğrulama kodunu girin';
+                emailMethod.querySelector('div').textContent = 'E-posta ile Doğrula';
+                smsMethod.querySelector('div').textContent = 'SMS ile Doğrula';
+                verifyBtn.textContent = 'Doğrula';
+                cancelBtn.textContent = 'İptal';
+                resendLink.textContent = 'Yeni Kod Gönder';
+                document.getElementById('resendTimer').innerHTML = 'Yeni kod göndermek için <span id="countdown">60</span> saniye bekleyin';
+            }
+        });
+    </script>
+</body>
+</html>

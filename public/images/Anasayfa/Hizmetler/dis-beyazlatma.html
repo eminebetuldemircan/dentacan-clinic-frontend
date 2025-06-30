@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diş Beyazlatma (Bleaching) | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/beyazlatma-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Profesyonel Diş Beyazlatma</h1>
+            <p>Güvenli ve etkili yöntemlerle 3-4 ton daha beyaz dişlere kavuşun. Kliniğimizde uygulanan profesyonel beyazlatma teknikleri ile doğal görünümlü, sağlıklı bir gülümseme.</p>
+            <a href="disBeyazlatmaRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Anasayfa/Beyazlatma.jpg" alt="Diş beyazlatma uygulaması">
+                <div class="service-intro-text">
+                    <h2>Neden Profesyonel Diş Beyazlatma?</h2>
+                    <p>Dişleriniz zamanla çay, kahve, sigara gibi etkenlerden dolayı renk değiştirebilir veya doğal olarak daha sarı/koyu renkli olabilir. Profesyonel diş beyazlatma işlemi ile dişlerinizin doğal rengini 3-4 ton açarak daha beyaz ve canlı bir görünüm kazandırabilirsiniz.</p>
+                    <p>Kliniğimizde uyguladığımız beyazlatma yöntemleri tamamen güvenlidir ve diş minesine zarar vermez. İşlem sonrası hassasiyet gibi yan etkiler minimum düzeydedir ve geçicidir.</p>
+           
+                </div>
+            </section>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Diş Beyazlatma Hakkında</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+             
+                    <h3>İşlem Süresi</h3>
+                    <p>Ofis tipi beyazlatma işlemi yaklaşık 45-60 dakika sürer. Ev tipi beyazlatmada ise 7-10 günlük bir uygulama periyodu önerilir.</p>
+                </div>
+                
+                <div class="info-box">
+         
+                    <h3>Etki Süresi</h3>
+                    <p>Profesyonel beyazlatmanın etkisi 1-3 yıl sürebilir. Bu süre kişinin ağız bakım alışkanlıklarına ve beslenme düzenine göre değişiklik gösterebilir.</p>
+                </div>
+                
+                <div class="info-box">
+        
+                    <h3>Güvenlik</h3>
+                    <p>Diş hekimi kontrolünde yapılan beyazlatma işlemleri tamamen güvenlidir. Diş minesine zarar vermez ve yan etkiler geçicidir.</p>
+                </div>
+            </div>
+
+            <!-- Beyazlatma Yöntemleri -->
+            <h2 class="section-title">Uyguladığımız Beyazlatma Yöntemleri</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+            
+                    <h3>Ofis Tipi Beyazlatma (Lazerle)</h3>
+                    <p>Klinik ortamında tek seansta uygulanır. Özel bir ışık veya lazer kaynağı ile aktive edilen beyazlatma jeli kullanılır. Hızlı ve etkili sonuç alınır.</p>
+                </div>
+                
+                <div class="info-box">
+           
+                    <h3>Ev Tipi Beyazlatma</h3>
+                    <p>Diş hekimi tarafından hazırlanan kişiye özel plaklar ve beyazlatma jelleri ile evde uygulanır. 7-10 gün süren bir tedavidir.</p>
+                </div>
+                
+                <div class="info-box">
+          
+                    <h3>Kombine Beyazlatma</h3>
+                    <p>Ofis tipi ve ev tipi beyazlatmanın kombinasyonudur. En etkili sonuçlar bu yöntemle alınır. Önce klinikte uygulama yapılır, sonra ev tedavisi ile desteklenir.</p>
+                </div>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Diş Beyazlatma Süreci</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Muayene ve Değerlendirme</h3>
+                        <p>Dişlerinizin beyazlatmaya uygun olup olmadığı kontrol edilir. Varsa çürükler ve diş eti problemleri tedavi edilir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Diş Temizliği</h3>
+                        <p>Dişlerinizdeki plak ve tartar temizlenir. Bu işlem beyazlatma etkinliğini artırır ve daha homojen sonuç alınmasını sağlar.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Beyazlatma İşlemi</h3>
+                        <p>Diş etleri koruyucu bir bariyer ile korunur. Beyazlatma jeli dişlere uygulanır ve gerekirse özel bir ışıkla aktive edilir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Sonuç Değerlendirme</h3>
+                        <p>İşlem sonrası dişlerinizin rengi değerlendirilir. Gerekirse ek seans planlanır veya ev tipi beyazlatma seti verilir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Diş beyazlatma işlemi ağrılı mıdır?</span>
+            
+                        </div>
+                        <div class="faq-answer">
+                            <p>Beyazlatma işlemi genellikle ağrısızdır. Bazı hassas bünyelerde işlem sonrası geçici bir hassasiyet oluşabilir. Bu durumda hekiminizin önereceği hassasiyet giderici ürünler kullanılabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Herkes diş beyazlatma yaptırabilir mi?</span>
+                 
+                        </div>
+                        <div class="faq-answer">
+                            <p>18 yaş altındaki bireylerde, hamilelerde ve emziren annelerde beyazlatma önerilmez. Ayrıca şiddetli diş eti problemi olanlar, çürük dişleri bulunanlar ve aşırı hassas diş yapısına sahip olanlar önce tedavi edilmelidir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Beyazlatma işleminin etkisi ne kadar sürer?</span>
+                      
+                        </div>
+                        <div class="faq-answer">
+                            <p>Etki süresi kişinin beslenme alışkanlıklarına ve ağız bakımına bağlı olarak 1-3 yıl arasında değişir. Çay, kahve, sigara gibi leke yapıcı maddelerden uzak durmak ve düzenli diş bakımı yapmak beyazlatmanın etkisini uzatır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Beyazlatma dişlere zarar verir mi?</span>
+                
+                        </div>
+                        <div class="faq-answer">
+                            <p>Diş hekimi kontrolünde yapılan profesyonel beyazlatma işlemleri diş minesine zarar vermez. Ancak eczane veya internetten alınan kontrolsüz ürünler diş sağlığını tehdit edebilir.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Daha Beyaz Bir Gülüş İçin Hemen Randevu Alın</h2>
+                <p>Uzman diş hekimlerimiz tarafından gerçekleştirilen profesyonel diş beyazlatma işlemi ile güvenle gülümseyin.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

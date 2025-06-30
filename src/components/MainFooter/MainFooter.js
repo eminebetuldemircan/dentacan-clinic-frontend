@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTooth } from '@fortawesome/free-solid-svg-icons';
-import { faFacebookF, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTooth,
+  faMapMarkerAlt,
+  faPhoneAlt,
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebookF,
+  faInstagram,
+  faTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 import styled from 'styled-components';
+import { Link as ScrollLink } from 'react-scroll';
 
 const FooterContainer = styled.footer`
   background-color: var(--dark);
@@ -80,6 +91,7 @@ const FooterLinks = styled.div`
 
   ul {
     list-style: none;
+    padding: 0;
   }
 
   li {
@@ -97,16 +109,6 @@ const FooterLinks = styled.div`
   }
 `;
 
-const ContactInfo = styled.div`
-  margin-bottom: 20px;
-  color: #aaa;
-
-  i {
-    margin-right: 10px;
-    color: var(--primary);
-  }
-`;
-
 const FooterLegal = styled.div`
   display: flex;
   justify-content: center;
@@ -114,8 +116,8 @@ const FooterLegal = styled.div`
   gap: 15px 30px;
   margin: 30px 0;
   padding: 20px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   a {
     color: #aaa;
@@ -130,7 +132,7 @@ const FooterLegal = styled.div`
     }
 
     &:not(:last-child):after {
-      content: "|";
+      content: '|';
       position: absolute;
       right: -18px;
       color: #555;
@@ -166,7 +168,11 @@ const MainFooter = () => {
               <FooterToothIcon icon={faTooth} />
               <FooterLogo>DENTACAN</FooterLogo>
             </FooterLogoContainer>
-            <p>"Gülümsemek İçin Bir Neden Daha" mottosuyla hizmet veren kliniğimiz, modern teknolojilerle ağız ve diş sağlığınızı korumayı amaçlar.</p>
+            <p>
+              "Gülümsemek İçin Bir Neden Daha" mottosuyla hizmet veren
+              kliniğimiz, modern teknolojilerle ağız ve diş sağlığınızı korumayı
+              amaçlar.
+            </p>
             <SocialLinks>
               <SocialLink href="#"><FontAwesomeIcon icon={faFacebookF} /></SocialLink>
               <SocialLink href="#"><FontAwesomeIcon icon={faInstagram} /></SocialLink>
@@ -178,12 +184,13 @@ const MainFooter = () => {
           <FooterLinks>
             <h3>Hızlı Linkler</h3>
             <ul>
-              <li><Link to="/">Anasayfa</Link></li>
-              <li><Link to="/#hizmetler">Hizmetlerimiz</Link></li>
-              <li><Link to="/#ekip">Ekibimiz</Link></li>
-              <li><Link to="/#galeri">Galeri</Link></li>
-              <li><Link to="/#hasta-yorumlari">Hasta Görüşleri</Link></li>
-              <li><Link to="/#hakkinda">Hakkında</Link></li>
+              <li><ScrollLink to="hero" smooth={true} duration={500} offset={-80}>Anasayfa</ScrollLink></li>
+              <li><ScrollLink to="hizmetler" smooth={true} duration={500} offset={-80}>Hizmetlerimiz</ScrollLink></li>
+              <li><ScrollLink to="ekip" smooth={true} duration={500} offset={-80}>Ekibimiz</ScrollLink></li>
+              <li><ScrollLink to="galeri" smooth={true} duration={500} offset={-80}>Galeri</ScrollLink></li>
+              <li><ScrollLink to="hasta-yorumlari" smooth={true} duration={500} offset={-80}>Hasta Görüşleri</ScrollLink></li>
+              <li><ScrollLink to="hakkinda" smooth={true} duration={500} offset={-80}>Hakkında</ScrollLink></li>
+              <li><ScrollLink to="iletisim" smooth={true} duration={500} offset={-80}>İletişim</ScrollLink></li>
             </ul>
           </FooterLinks>
 
@@ -207,18 +214,30 @@ const MainFooter = () => {
 
           <FooterLinks>
             <h3>İletişim</h3>
-            <ContactInfo>
-              <i className="fas fa-map-marker-alt"></i>
-              <span>1234. Sokak, No:5, Şişli/İstanbul</span>
-            </ContactInfo>
-            <ContactInfo>
-              <i className="fas fa-phone-alt"></i>
-              <span>0 (212) 123 45 67</span>
-            </ContactInfo>
-            <ContactInfo>
-              <i className="fas fa-envelope"></i>
-              <span>info@dentacan.com</span>
-            </ContactInfo>
+            <ul>
+              <li>
+                <a
+                  href="https://www.google.com/maps?q=1234.+Sokak,+No:5,+Şişli/İstanbul"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginRight: '10px', color: 'var(--primary)' }} />
+                  1234. Sokak, No:5, Şişli/İstanbul
+                </a>
+              </li>
+              <li>
+                <a href="tel:+902121234567">
+                  <FontAwesomeIcon icon={faPhoneAlt} style={{ marginRight: '10px', color: 'var(--primary)' }} />
+                  0 (212) 123 45 67
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@dentacan.com">
+                  <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px', color: 'var(--primary)' }} />
+                  info@dentacan.com
+                </a>
+              </li>
+            </ul>
           </FooterLinks>
         </FooterGrid>
 
@@ -230,11 +249,11 @@ const MainFooter = () => {
         </FooterLegal>
 
         <Copyright>
-          <p>&copy; 2023 DENTACAN Ağız ve Diş Sağlığı Kliniği. Tüm hakları saklıdır.</p>
+          <p>&copy; 2025 DENTACAN Ağız ve Diş Sağlığı Kliniği. Tüm hakları saklıdır.</p>
         </Copyright>
       </Container>
     </FooterContainer>
   );
 };
 
-export default MainFooter; 
+export default MainFooter;

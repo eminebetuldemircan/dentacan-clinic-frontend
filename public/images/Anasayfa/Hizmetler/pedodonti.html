@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedodonti (Çocuk Diş Hekimliği) | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/pedodonti-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Tedavi Türleri */
+        .treatment-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        .treatment-card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .treatment-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .treatment-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .treatment-card-content {
+            padding: 20px;
+        }
+        
+        .treatment-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Özel Pedodonti Stilleri */
+        .child-friendly {
+            background-color: #f9f9f9;
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .child-friendly-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .child-friendly-text {
+            flex: 1;
+        }
+        
+        .child-friendly-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .child-friendly-images img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .age-groups {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 60px;
+        }
+        
+        .age-group {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 30%;
+        }
+        
+        .age-group h3 {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .child-friendly-content {
+                flex-direction: column;
+            }
+            
+            .age-groups {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .age-group {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Pedodonti (Çocuk Diş Hekimliği)</h1>
+            <p>Çocuklarınızın diş sağlığı için özel olarak tasarlanmış, eğlenceli ve stressiz bir klinik ortamı. Çocuklarımızın sağlıklı gülüşleri bizim önceliğimiz.</p>
+            <a href="pedodontiRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Anasayfa/Pedodonti.jpg" alt="Pedodonti tedavisi">
+                <div class="service-intro-text">
+                    <h2>Çocuklar İçin Özel Diş Bakımı</h2>
+                    <p>Pedodonti (Çocuk Diş Hekimliği), 0-14 yaş grubu çocukların süt ve daimi dişlerinin sağlığını korumayı ve oluşan hastalıkları tedavi etmeyi amaçlayan diş hekimliği dalıdır. Çocuk diş hekimleri, çocuk psikolojisi konusunda özel eğitim almış uzmanlardır.</p>
+                    <p>Kliniğimizde çocuklarımızın diş tedavilerini oyun alanları, ödül sistemleri ve özel iletişim teknikleriyle stressiz ve eğlenceli bir ortamda gerçekleştiriyoruz. Amacımız çocuklarımızda ömür boyu sürecek pozitif bir diş hekimi deneyimi oluşturmak.</p>
+                 
+                </div>
+            </section>
+
+            <!-- Çocuk Dostu Klinik -->
+            <section class="child-friendly">
+                <div class="container">
+                    <div class="child-friendly-content">
+                        <div class="child-friendly-text">
+                            <h2 class="section-title">Çocuk Dostu Klinik Ortamımız</h2>
+                            <p>Çocuklarımız için özel tasarlanmış renkli ve eğlenceli klinik ortamımızda, diş hekimi korkusunu yenmeye yönelik özel teknikler uyguluyoruz. "Anlat-Göster-Yap" metodunu kullanarak çocuklarımızın tedavi sürecine aktif katılımını sağlıyoruz.</p>
+                            <p>Oyun alanları, ödül sistemleri ve çocuklara özel hazırlanmış muayene ünitelerimizle diş hekimi ziyaretini eğlenceli bir deneyime dönüştürüyoruz. Tedavi sonrası verdiğimiz "Cesaret Sertifikaları" ile çocuklarımızın özgüvenini destekliyoruz.</p>
+                        </div>
+                        <div class="child-friendly-images">
+                            <img src="images/Hizmetler/Çocukalan.jpg" alt="Çocuk oyun alanı">
+                            <img src="images/Anasayfa/ÇocukMuayene.jpg" alt="Çocuk muayenesi">
+                            <img src="images/Hizmetler/ÇocukKanalTedavi.jpg" alt="Ödül sistemi">
+                            <img src="images/Hizmetler/DişFırçalama.jpg" alt="Diş fırçalama eğitimi">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Pedodonti Hizmetlerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+                
+                    <h3>Bebek Ağız Sağlığı</h3>
+                    <p>Bebeklerde diş çürüğü (biberon çürüğü) önleme, emzik ve biberon kullanımı konusunda aile eğitimleri.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Koruyucu Uygulamalar</h3>
+                    <p>Fissür örtücüler, florür uygulamaları ve diş fırçalama eğitimleri ile çürükleri önleme.</p>
+                </div>
+                
+                <div class="info-box">
+              
+                    <h3>Çocuk Dolguları</h3>
+                    <p>Renkli kompozit dolgular (çikolata, çilek, mavi gibi seçenekler) ile eğlenceli tedaviler.</p>
+                </div>
+                
+                <div class="info-box">
+                 
+                    <h3>Çocuk Kanal Tedavisi</h3>
+                    <p>Süt dişlerinde derin çürükler için özel pedodontik kanal tedavileri.</p>
+                </div>
+                
+                <div class="info-box">
+           
+                    <h3>Yer Tutucular</h3>
+                    <p>Erken kaybedilen süt dişleri için yer tutucu apareylerle daimi dişlerin düzgün sürmesi sağlanır.</p>
+                </div>
+                
+                <div class="info-box">
+                   
+                    <h3>Çocuk Ortodontisi</h3>
+                    <p>Çene gelişim bozukluklarının erken teşhis ve tedavisi için koruyucu ortodonti uygulamaları.</p>
+                </div>
+            </div>
+
+            <!-- Yaş Grupları -->
+            <h2 class="section-title">Yaş Gruplarına Göre Pedodonti Hizmetleri</h2>
+            <div class="age-groups">
+                <div class="age-group">
+             
+                    <h3>0-3 Yaş</h3>
+                    <p>Bebeklerde ağız bakımı, diş çıkarma sorunları, biberon çürüğü önleme ve ilk diş hekimi ziyareti eğitimleri.</p>
+                </div>
+                
+                <div class="age-group">
+               
+                    <h3>3-6 Yaş</h3>
+                    <p>Süt dişlerinin korunması, çürük tedavileri, fissür örtücü uygulamaları ve diş fırçalama alışkanlığı kazandırma.</p>
+                </div>
+                
+                <div class="age-group">
+         
+                    <h3>6-14 Yaş</h3>
+                    <p>Karışık dişlenme dönemi takibi, daimi dişlerin korunması, erken ortodontik müdahaleler ve sporcu ağızlıkları.</p>
+                </div>
+            </div>
+
+            <!-- Tedavi Türleri -->
+            <h2 class="section-title">Pedodonti Tedavi Yöntemleri</h2>
+            <div class="treatment-types">
+                <div class="treatment-card">
+                    
+                    <div class="treatment-card-content">
+                        <h3>Fissür Örtücü</h3>
+                        <p>Azı dişlerindeki girinti ve çıkıntıların özel bir dolgu malzemesiyle kapatılarak çürük oluşumunun engellenmesi.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                    
+                    <div class="treatment-card-content">
+                        <h3>Florür Uygulaması</h3>
+                        <p>Diş minesini güçlendiren profesyonel florür uygulamalarıyla çürük riskinin azaltılması.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                
+                    <div class="treatment-card-content">
+                        <h3>Renkli Dolgular</h3>
+                        <p>Çocukların seçebileceği renkli kompozit dolgularla eğlenceli ve motive edici tedaviler.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                   
+                    <div class="treatment-card-content">
+                        <h3>Yer Tutucular</h3>
+                        <p>Erken kaybedilen süt dişlerinin yerini koruyarak daimi dişlerin düzgün sürmesini sağlayan apareyler.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                   
+                    <div class="treatment-card-content">
+                        <h3>Çocuk Kanal Tedavisi</h3>
+                        <p>Süt dişlerinde derin çürükler için uygulanan, daimi dişleri korumaya yönelik özel tedaviler.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                 
+                    <div class="treatment-card-content">
+                        <h3>Sedasyon ve Genel Anestezi</h3>
+                        <p>Özel gereksinimli çocuklarda veya yoğun dental kaygısı olan çocuklarda güvenli tedavi seçenekleri.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Çocuklarda İlk Diş Hekimi Deneyimi</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Tanışma ve Oryantasyon</h3>
+                        <p>Çocuğun kliniği ve ekipmanları tanıması için oyun şeklinde bir oryantasyon süreci. "Anlat-Göster-Yap" metodunun uygulanması.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Eğlenceli Muayene</h3>
+                        <p>Çocuklara özel tasarlanmış muayene ünitelerinde, korkutmayan bir dil ve eğlenceli bir yaklaşımla diş muayenesi.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Diş Fırçalama Eğitimi</h3>
+                        <p>Çocuklara yaşlarına uygun şekilde, oyunlarla ve modeller üzerinde doğru diş fırçalama tekniklerinin öğretilmesi.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Koruyucu Uygulamalar</h3>
+                        <p>Çürük risk değerlendirmesi sonrası fissür örtücü, florür uygulaması gibi koruyucu tedavilerin planlanması.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Ödül ve Motivasyon</h3>
+                        <p>Tedavi sonrası verilen küçük ödüller ve "Cesaret Sertifikası" ile çocuğun diş hekimi deneyiminin pozitif olarak pekiştirilmesi.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Düzenli Takip</h3>
+                        <p>3-6 aylık periyotlarla yapılacak kontrollerin planlanması ve aileye çocuğun ağız-diş sağlığı konusunda rehberlik.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuğumun ilk diş hekimi ziyareti ne zaman olmalı?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>İlk diş hekimi ziyareti ilk süt dişi çıktıktan sonra (genellikle 6-12 ay arası) yapılmalıdır. Bu erken ziyaretler, çocuğun diş hekimine alışmasını sağlarken, ebeveynlere de bebeklerinin ağız-diş sağlığı konusunda doğru bilgiler verir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Süt dişleri nasılsa düşecek, tedavi edilmeli mi?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Evet, süt dişlerinin sağlıklı olması çok önemlidir. Süt dişleri; çiğneme, konuşma gelişimi, daimi dişler için yer tutucu ve yüz gelişimi açısından kritik rol oynar. Erken kayıpları çene gelişim bozukluklarına ve daimi dişlerde çapraşıklığa yol açabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuğum diş hekiminden korkuyor, nasıl yardımcı olabilirim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Öncelikle çocuğunuza diş hekimiyle ilgili olumsuz hikayeler anlatmayın. Ziyaret öncesi "korkma, acımayacak" gibi cümleler kurmayın. Bunun yerine diş hekiminin dişlerine bakacağını, sayacağını ve gülüşünü daha güzel yapacağını söyleyin. Kliniğimizde çocuk psikolojisi konusunda eğitimli uzmanlarımız, çocuğunuzun korkularını yenmesine yardımcı olacaktır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuğumun dişlerini nasıl fırçalamalıyım?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>İlk dişler çıkar çıkmaz yumuşak kıllı bir fırçayla günde 2 kez fırçalamaya başlayın. 3 yaşına kadar pirinç tanesi kadar florürlü diş macunu kullanın. 3-6 yaş arasında bezelye büyüklüğünde macun yeterlidir. Çocuklar genellikle 7-8 yaşına kadar dişlerini tek başına etkili şekilde fırçalayamazlar, bu nedenle ebeveyn kontrolü şarttır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Biberon çürüğü nedir, nasıl önlenir?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Biberon çürüğü, özellikle gece boyunca şekerli sıvılara (süt, mama, meyve suyu) maruz kalan bebek dişlerinde görülen yaygın çürüklerdir. Önlemek için: bebeğinizi biberonla uyutmayın, her beslenmeden sonra dişlerini temiz bir bezle silin, 1 yaşından itibaren biberon kullanımını azaltın ve ilk doğum gününden önce diş hekimi ziyareti yapın.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Çocuğunuz İçin Stressiz Diş Hekimi Deneyimi</h2>
+                <p>Uzman pedodontistlerimiz ve çocuk dostu klinik ortamımızla, çocuğunuzun diş sağlığını güvence altına alın.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

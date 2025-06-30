@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodontoloji (Diş Eti Hastalıkları) | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --warning-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/dis-eti-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Uyarı Kutusu */
+        .warning-box {
+            background: #e3f2fd;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Periodontoloji (Diş Eti Hastalıkları)</h1>
+            <p>Sağlıklı dişler için sağlam temeller! Diş eti hastalıklarının teşhis ve tedavisinde uzman periodontologlarımızla hizmetinizdeyiz.</p>
+            <a href="periodontolojiRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Hizmetler/disetiuygulama.png" alt="Diş eti tedavisi">
+                <div class="service-intro-text">
+                    <h2>Diş Eti Sağlığınızı Önemseyin</h2>
+                    <p>Periodontoloji, dişleri çevreleyen yumuşak ve sert dokuların sağlığı ile ilgilenen diş hekimliği dalıdır. Diş eti hastalıkları (gingivitis ve periodontitis) erken dönemde tedavi edilmezse diş kayıplarına ve sistemik sağlık problemlerine yol açabilir.</p>
+                    <p>Kliniğimizde diş eti çekilmesi, diş eti kanaması, diş taşı temizliği, kök yüzeyi düzleştirme ve estetik diş eti operasyonları gibi tüm periodontolojik tedaviler uygulanmaktadır.</p>
+               
+                </div>
+            </section>
+
+            <!-- Uyarı Kutusu -->
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Diş Eti Hastalığı Belirtileri</h3>
+                <p>Diş etlerinizde kızarıklık, şişlik, kanama, hassasiyet, çekilme veya ağız kokusu varsa mutlaka bir periodontoloji uzmanına görünmelisiniz. Erken teşhis, tedavi sürecini kolaylaştırır ve diş kayıplarını önler.</p>
+            </div>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Periodontolojik Tedavilerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+                 
+                    <h3>Diş Taşı Temizliği</h3>
+                    <p>Profesyonel diş taşı temizliği ile diş yüzeylerindeki plak ve tartar birikiminin uzaklaştırılması.</p>
+                </div>
+                
+                <div class="info-box">
+                 
+                    <h3>Kök Yüzeyi Düzleştirme</h3>
+                    <p>Kök yüzeylerindeki bakteri birikimlerinin ve hastalıklı dokuların temizlenmesi işlemi.</p>
+                </div>
+                
+                <div class="info-box">
+            
+                    <h3>Lokal Antibiyotik Tedavisi</h3>
+                    <p>Diş eti ceplerine uygulanan kontrollü antibiyotik tedavileri ile enfeksiyon kontrolü.</p>
+                </div>
+                
+                <div class="info-box">
+          
+                    <h3>Diş Eti Grefti</h3>
+                    <p>Diş eti çekilmesi olan bölgelere greft uygulaması ile estetik ve fonksiyonun düzeltilmesi.</p>
+                </div>
+                
+                <div class="info-box">
+           
+                    <h3>Kemik Greftleme</h3>
+                    <p>Periodontal hastalık nedeniyle kaybedilen kemik dokusunun rejenerasyonu için uygulamalar.</p>
+                </div>
+                
+                <div class="info-box">
+           
+                    <h3>Estetik Diş Eti Düzenlemeleri</h3>
+                    <p>Gülüş hattını düzenlemek için diş eti konturlarının lazer veya cerrahi yöntemlerle şekillendirilmesi.</p>
+                </div>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Periodontal Tedavi Süreci</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Detaylı Muayene ve Teşhis</h3>
+                        <p>Diş eti cep ölçümleri, radyografik incelemeler ve klinik muayene ile hastalığın boyutu belirlenir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Başlangıç Tedavisi</h3>
+                        <p>Diş taşı temizliği, kök yüzeyi düzleştirme ve oral hijyen eğitimi ile hastalık kontrol altına alınır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Cerrahi Tedavi (Gerekirse)</h3>
+                        <p>İlerlemiş vakalarda flep operasyonu, greftleme veya rejeneratif prosedürler uygulanır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Idame Tedavisi</h3>
+                        <p>3-6 aylık periyodik kontrollerle hastalığın tekrarlaması önlenir ve ağız sağlığı korunur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Diş taşı temizliği diş minesine zarar verir mi?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Profesyonel diş taşı temizliği, uzman hekimler tarafından doğru aletlerle yapıldığında diş minesine zarar vermez. Aksine, diş taşlarının temizlenmemesi diş ve diş etlerine ciddi zararlar verebilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Diş eti çekilmesi tedavi edilmezse ne olur?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Diş eti çekilmesi tedavi edilmezse dişlerin kök yüzeyleri açığa çıkar, dişlerde hassasiyet ve sallanma başlar. İlerleyen durumlarda diş kayıpları yaşanabilir. Ayrıca kök çürükleri ve estetik problemler ortaya çıkabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Periodontal tedaviler ağrılı mıdır?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Başlangıç tedavileri genellikle lokal anestezi altında ağrısız olarak gerçekleştirilir. Cerrahi işlemler sonrası birkaç gün sürebilen hafif ağrılar olabilir, bu durumda hekiminizin önereceği ağrı kesiciler kullanılabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Diş eti hastalıklarından nasıl korunabilirim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Günde 2 kez doğru teknikle diş fırçalama, günlük diş ipi kullanımı, düzenli diş hekimi kontrolleri (6 ayda bir), sigara kullanmama ve dengeli beslenme ile diş eti hastalıklarından korunabilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Sağlıklı Diş Etleri İle Güvenle Gülümseyin</h2>
+                <p>Periodontoloji uzmanlarımız diş eti sağlığınızı korumak ve tedavi etmek için burada. Erken teşhis ve doğru tedavi yöntemleriyle dişlerinizi ömür boyu koruyun.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -12,6 +12,7 @@ const ContactUsMessagesPage = () => {
       (state) => state.contactUs.deleteContactUsMessage
     );
   useEffect(() => {
+     window.scrollTo(0, 0); // Sayfanın en üstüne kaydırır
     dispatch(GetAllContactUsMessage());
     if (deleteContactUsMessage.isDeleted) {
       toast.success("Başarılı bir şekilde silindi");

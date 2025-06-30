@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acil Diş Tedavisi | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #c0392b;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --warning-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/acil-dis-tedavi.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .emergency-btn {
+            background-color: transparent;
+            border: 2px solid white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Uyarı Kutusu */
+        .warning-box {
+            background: #ffebee;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Acil Durum Tablosu */
+        .emergency-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .emergency-table th, .emergency-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .emergency-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .emergency-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .emergency-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        /* Çalışma Saatleri */
+        .working-hours {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .working-hours h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .hour-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hour-item .day {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .hour-item .time {
+            font-size: 1.1rem;
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Acil Diş Tedavisi Hizmetleri</h1>
+            <p>Ani diş ağrıları, travmalar ve acil müdahale gerektiren diş problemleriniz için 7/24 hizmet veriyoruz. Nöbetçi diş hekimlerimizle acil durumlarınıza anında çözüm sunuyoruz.</p>
+            <a href="tel:+905554443322" class="btn emergency-btn"><i class="fas fa-phone-alt"></i> ACİL DURUM: 0555 444 33 22</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/hizmetler/AcilDiş.jpg" alt="Acil diş tedavisi">
+                <div class="service-intro-text">
+                    <h2>Acil Diş Problemleriniz İçin Yanınızdayız</h2>
+                    <p>Dentacan Kliniği olarak, ani gelişen diş ağrıları, diş kırılmaları, enfeksiyonlar ve diğer acil dental problemleriniz için nöbetçi diş hekimi hizmeti sunmaktayız. Acil durumlarda zaman kaybetmeden müdahale ederek ağrınızı dindiriyor ve probleminizi çözüyoruz.</p>
+                    <p>Hafta içi akşam saatlerinde ve hafta sonu nöbetçi hekimlerimizle, normal çalışma saatleri dışında da acil diş tedavisi hizmeti veriyoruz. Acil durumlarda lütfen önce telefonla bilgi veriniz.</p>
+                    <a href="tel:+905554443322" class="btn"><i class="fas fa-phone-alt"></i> Hemen Ara</a>
+                </div>
+            </section>
+
+            <!-- Uyarı Kutusu -->
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Acil Müdahale Gerektiren Durumlar</h3>
+                <p>Şiddetli diş ağrısı, şişmiş yüz/diş eti, travma sonucu diş kırılması/yerinden çıkması, kontrol edilemeyen kanama, dental abse ve enfeksiyonlar, protez veya braketlerin neden olduğu acil durumlar için derhal kliniğimizi arayınız. Özellikle yüzde yayılan şişlik ve nefes almada zorluk gibi durumlar hayati risk taşıyabilir.</p>
+            </div>
+
+            <!-- Çalışma Saatleri -->
+            <div class="working-hours">
+                <h3><i class="fas fa-clock"></i> Acil Servis Çalışma Saatleri</h3>
+                <div class="hours-grid">
+                    <div class="hour-item">
+                        <div class="day">Pazartesi-Cumartesi</div>
+                        <div class="time">08:30 - 17:30</div>
+                    </div>
+                    <div class="hour-item">
+                        <div class="day">Pazartesi-Cumartesi Akşam</div>
+                        <div class="time">17:30 - 23:00 <span class="badge">Nöbetçi Hekim</span></div>
+                    </div>
+                    <div class="hour-item">
+                        <div class="day">Pazar</div>
+                        <div class="time">08:30 - 23:00 <span class="badge">Nöbetçi Hekim</span></div>
+                    </div>
+                </div>
+                <p class="note">Not: Nöbetçi hekim hizmetimiz sadece acil durumlar içindir. Rutin tedaviler için normal çalışma saatlerinde randevu alınız.</p>
+            </div>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Acil Diş Tedavisi Hizmetlerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+                   
+                    <h3>Şiddetli Diş Ağrısı</h3>
+                    <p>Ani başlayan, dayanılmaz diş ağrılarında acil müdahale. Ağrı kaynağı tespit edilerek gerekli tedavi uygulanır.</p>
+                </div>
+                
+                <div class="info-box">
+                    
+                    <h3>Diş Kırılması/Düşmesi</h3>
+                    <p>Travma sonucu kırılan veya yerinden çıkan dişler için acil müdahale. Doğru müdahale ile diş kurtarılabilir.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Enfeksiyon ve Apse</h3>
+                    <p>Diş ve diş eti enfeksiyonlarına bağlı şişliklerde acil müdahale. Antibiyotik tedavisi ve drenaj uygulanır.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Kontrolsüz Kanama</h3>
+                    <p>Diş çekimi sonrası veya travmaya bağlı uzun süren kanamalarda acil müdahale.</p>
+                </div>
+                
+                <div class="info-box">
+                  
+                    <h3>Protez Acil Durumları</h3>
+                    <p>Kırılan protezler, vuruk yaraları ve çıkmayan protezler için acil çözümler.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Ortodontik Aciller</h3>
+                    <p>Braket kopması, tellerin batması gibi ortodontik acil durumların çözümü.</p>
+                </div>
+            </div>
+
+            <!-- Acil Durum Tablosu -->
+            <h2 class="section-title">Acil Durumlarda Yapılması Gerekenler</h2>
+            <table class="emergency-table">
+                <thead>
+                    <tr>
+                        <th>Durum</th>
+                        <th>Yapılacaklar</th>
+                        <th>Yapılmayacaklar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Diş Kırılması</td>
+                        <td>Kırık parçaları saklayın, temiz gazlı bezle basınç uygulayın</td>
+                        <td>Kırık parçaları atmayın, köküne dokunmayın</td>
+                    </tr>
+                    <tr>
+                        <td>Dişin Tamamen Çıkması</td>
+                        <td>Dişi süt veya tükürük içinde saklayın, 1 saat içinde ulaşın</td>
+                        <td>Dişi kökünden tutmayın, temizlemeye çalışmayın</td>
+                    </tr>
+                    <tr>
+                        <td>Şiddetli Ağrı</td>
+                        <td>Ilık tuzlu suyla gargara, ağrı kesici alın</td>
+                        <td>Aspirin kullanmayın, sıcak uygulama yapmayın</td>
+                    </tr>
+                    <tr>
+                        <td>Yüzde Şişlik</td>
+                        <td>Soğuk kompres uygulayın, hemen kliniği arayın</td>
+                        <td>Sıcak uygulamayın, şişliği patlatmayın</td>
+                    </tr>
+                    <tr>
+                        <td>Protez Vurukları</td>
+                        <td>Protezi çıkarın, tuzlu su gargarası yapın</td>
+                        <td>Protezi yapıştırıcıyla yapıştırmaya çalışmayın</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Gece yarısı diş ağrısı olduğunda ne yapmalıyım?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Gece ağrılarında öncelikle ağzınızı ılık tuzlu suyla çalkalayın. Diş aralarında yiyecek artığı varsa diş ipiyle temizleyin. Ağrı kesici alabilirsiniz (aspirin dışında). Kesinlikle ağrıyan dişin üzerine aspirin veya alkol koymayın. Mümkünse soğuk kompres uygulayın. Ağrı çok şiddetliyse ve şişlik eşlik ediyorsa nöbetçi diş hekimimize başvurun.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Yerinden çıkan dişi nasıl muhafaza etmeliyim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yerinden çıkan dişi kök kısmından tutmadan alın. Eğer kirliyse akan su altında 10 saniyeden fazla olmamak kaydıyla yıkayın. İdeal olarak diş, süt içinde muhafaza edilmelidir. Eğer süt yoksa ağız içinde (yanak ile dişler arasında) saklayabilirsiniz. Kesinlikle kurutmayın veya temizlemek için fırçalamayın. Diş hekimine en kısa sürede (ideal olarak ilk 1 saat içinde) ulaşın.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Acil servis ücretleri normal randevulardan farklı mı?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Acil servis ücretleri, yapılan işleme göre değişmekle birlikte, normal çalışma saatlerindeki ücretlerle aynıdır. Ancak sadece ağrı kesici müdahale ve geçici tedaviler için sabit bir acil muayene ücreti alınmaktadır. Kesin ücret bilgisi için muayene sonrası size bilgi verilecektir. SGK anlaşmalı hastalarımız için acil müdahaleler SGK kapsamındadır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuğumun süt dişi düştü, acil servise gelmeli miyim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Süt dişlerinin düşmesi normal bir süreçtir ve genellikle acil müdahale gerektirmez. Ancak; diş erken yaşta ve travma olmadan düştüyse, kanama 15-20 dakika sonra hala devam ediyorsa, çocuğunuzda ateş veya halsizlik varsa mutlaka diş hekimine başvurmalısınız. Travma sonucu düşen süt dişleri yerine asla tekrar yerleştirilmez.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Acil Diş Problemleriniz İçin Hemen Ulaşın!</h2>
+                <p>Şiddetli diş ağrısı, kırık diş veya dental enfeksiyon gibi acil durumlarda zaman kaybetmeyin. Nöbetçi diş hekimlerimizle acil çözüm sunuyoruz.</p>
+                <a href="tel:+905554443322" class="btn"><i class="fas fa-phone-alt"></i> 0555 444 33 22</a>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

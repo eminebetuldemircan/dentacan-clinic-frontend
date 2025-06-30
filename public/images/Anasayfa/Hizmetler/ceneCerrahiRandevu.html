@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çene Cerrahisi Randevu | Dentacan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .appointment-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/cerrahi-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .appointment-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Randevu Formu */
+        .appointment-section {
+            padding: 80px 0;
+        }
+        
+        .appointment-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .appointment-form {
+            padding: 40px;
+            flex: 1;
+        }
+        
+        .form-title {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Doktor Bilgisi */
+        .doctor-info {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px;
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .doctor-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .doctor-specialty {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .doctor-bio {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .doctor-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 5px 0;
+        }
+        
+        /* Hizmet Seçimi */
+        .service-options {
+            margin-top: 30px;
+        }
+        
+        .service-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-option:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .service-option input {
+            margin-right: 15px;
+        }
+        
+        /* KVKK Checkbox */
+        .checkbox-group {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
+        /* KVKK Modal */
+        .kvkk-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .kvkk-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+        
+        .close-kvkk-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-kvkk-modal:hover {
+            color: black;
+        }
+        
+        .kvkk-content {
+            margin-bottom: 30px;
+        }
+        
+        .consent-form {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        /* Hizmet Bilgileri */
+        .service-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .service-info h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .appointment-card {
+                flex-direction: column;
+            }
+            
+            .doctor-info {
+                flex: 1;
+                padding: 30px;
+            }
+            
+            .kvkk-modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="appointment-header">
+        <div class="container">
+            <h1>Ağız, Diş ve Çene Cerrahisi Randevu</h1>
+            <p>Uzm. Dr. Dt. Ahmet Can ile güvenli cerrahi müdahaleler</p>
+        </div>
+    </header>
+
+    <!-- Randevu Formu -->
+    <section class="appointment-section">
+        <div class="container">
+            <div class="appointment-card">
+                <div class="appointment-form">
+                    <h2 class="form-title">Randevu Formu</h2>
+                    <form id="cerrahi-randevu-form">
+                        <div class="form-group">
+                            <label for="name">Ad Soyad</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" class="form-control" required placeholder="5__ ___ __ __">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" class="form-control" placeholder="opsiyonel">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Tercih Edilen Tarih</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time">Tercih Edilen Saat</label>
+                            <select id="time" class="form-control" required>
+                                <option value="">Seçiniz</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="17:00">17:00</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Hizmet Seçimi</label>
+                            <div class="service-options">
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="20 Yaş Diş Çekimi" required> 20 Yaş Diş Çekimi
+                                </label>
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="Gömülü Diş Operasyonu"> Gömülü Diş Operasyonu
+                                </label>
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="Çene Kemiği Greftleme"> Çene Kemiği Greftleme
+                                </label>
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="Zirkonyum İmplant"> Zirkonyum İmplant
+                                </label>
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="Sinüs Lifting"> Sinüs Lifting
+                                </label>
+                                <label class="service-option">
+                                    <input type="radio" name="service" value="Danışmanlık"> Ön Danışmanlık
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Ek Notlar (Mevcut tetkikler, alerjiler vb.)</label>
+                            <textarea id="notes" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <!-- KVKK Onayı -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="kvkk" name="kvkk" required>
+                            <label for="kvkk">
+                                <a href="#" id="showKvkkModal" style="color: var(--primary-color); text-decoration: underline;">
+                                    Kişisel verilerin korunması hakkında bilgilendirmeyi okudum, onaylıyorum.
+                                </a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Randevu Oluştur</button>
+                        
+                        <div class="service-info">
+                            <h3>Çene Cerrahisi Randevusu Hakkında</h3>
+                            <p><strong>İlk Muayene:</strong> Detaylı muayene ve radyolojik inceleme</p>
+                            <p><strong>İşlem Süresi:</strong> Vakaya göre 30 dakika ile 2 saat arası</p>
+                            <p><strong>Hazırlık:</strong> Operasyon öncesi detaylı bilgilendirme</p>
+                            <p><strong>Anestezi:</strong> Lokal veya genel anestezi seçenekleri</p>
+                            <p><strong>Takip:</strong> Operasyon sonrası düzenli kontroller</p>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="doctor-info">
+                    <img src="images/Anasayfa/AhmetCan.jpg" alt="Uzm. Dr. Dt. Ahmet Can" class="doctor-img">
+                    <h3 class="doctor-name">Uzm. Dr. Dt. Ahmet CAN</h3>
+                    <p class="doctor-specialty">Çene Cerrahisi Uzmanı</p>
+                    
+                    <div class="doctor-badge">Hacettepe Üniversitesi Mezunu</div>
+                    <div class="doctor-badge">Cumhuriyet Üniversitesi Uzmanlık</div>
+                    <div class="doctor-badge">İsviçre'de İleri Eğitim</div>
+                    <div class="doctor-badge">1000+ Cerrahi Operasyon</div>
+                    
+                    <p class="doctor-bio">2002 Hacettepe Üniversitesi mezunu. Cumhuriyet Üniversitesi'nde uzmanlık eğitimi aldı. İleri çene cerrahisi ve implantoloji alanında İsviçre'de eğitim gördü.</p>
+                    <p><i class="fas fa-phone-alt"></i> 0 (555) 123 45 67</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KVKK Modal Penceresi -->
+    <div id="kvkkModal" class="kvkk-modal">
+        <div class="kvkk-modal-content">
+            <span class="close-kvkk-modal">&times;</span>
+            
+            <h1 style="text-align: center; color: var(--secondary-color);">DENTACAN AĞIZ VE DİŞ SAĞLIĞI KLİNİĞİ</h1>
+            <h2 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Kişisel Verilerin İşlenmesi Hakkında Aydınlatma Metni</h2>
+            
+            <div class="kvkk-content">
+                <p><strong>Dentacan Ağız ve Diş Sağlığı Polikliniği ("Dentacan")</strong> olarak, kişisel verilerinizin güvenliği konusuna büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, kişisel verilerinizin işlenmesine ilişkin aydınlatma metnini aşağıda sunuyoruz:</p>
+                
+                <h3>1. Veri Sorumlusu</h3>
+                <p>Kişisel verileriniz, Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından veri sorumlusu sıfatıyla işlenecektir.</p>
+                
+                <h3>2. Kişisel Verilerin İşlenme Amaçları</h3>
+                <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                <ul>
+                    <li>Sağlık hizmetlerinin sunulması ve tedavi süreçlerinin yürütülmesi</li>
+                    <li>Randevu yönetimi ve hasta iletişimi</li>
+                    <li>Yasal ve düzenleyici gerekliliklerin yerine getirilmesi</li>
+                    <li>Hizmet kalitesinin artırılması ve geliştirilmesi</li>
+                    <li>Faturalandırma ve ödeme süreçlerinin yönetilmesi</li>
+                </ul>
+                
+                <h3>3. Toplanan Kişisel Veri Türleri</h3>
+                <p>Hizmetlerimizden yararlanabilmeniz için aşağıdaki verileri topluyoruz:</p>
+                <ul>
+                    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet</li>
+                    <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, ikametgah adresi</li>
+                    <li><strong>Sağlık Verileri:</strong> Tıbbi öykü, teşhis bilgileri, tedavi planları, radyolojik görüntüler</li>
+                    <li><strong>Finansal Bilgiler:</strong> Ödeme bilgileri, sigorta bilgileri, fatura bilgileri</li>
+                </ul>
+                
+                <h3>4. Verilerin Aktarımı</h3>
+                <p>Kişisel verileriniz, yasal zorunluluklar ve hizmetlerimizin sağlanması amacıyla aşağıdaki paydaşlarla paylaşılabilir:</p>
+                <ul>
+                    <li>Sağlık Bakanlığı ve bağlı kuruluşlar</li>
+                    <li>Sosyal Güvenlik Kurumu</li>
+                    <li>Özel sigorta şirketleri</li>
+                    <li>Laboratuvarlar ve tıbbi görüntüleme merkezleri</li>
+                    <li>Hukuki danışmanlarımız ve denetçiler</li>
+                    <li>Yetkili kamu kurum ve kuruluşları</li>
+                </ul>
+                
+                <h3>5. Veri Güvenliği</h3>
+                <p>Kişisel verileriniz, 6698 sayılı Kanun'un öngördüğü şekilde ve en az 10 yıl süreyle saklanacaktır. Verileriniz teknik ve idari tedbirlerle korunmaktadır:</p>
+                <ul>
+                    <li>Elektronik ortamda güvenli sunucular ve şifreleme sistemleri</li>
+                    <li>Fiziksel arşivlerde güvenlik önlemleri</li>
+                    <li>Yetkilendirme ve erişim kontrol sistemleri</li>
+                </ul>
+                
+                <h3>6. Haklarınız</h3>
+                <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul>
+                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                    <li>Verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+                    <li>Verilerinizin eksik/yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+                    <li>Verilerinizin silinmesini veya yok edilmesini isteme</li>
+                    <li>İşlenen verilerin aktarıldığı üçüncü kişilere yukarıdaki taleplerin iletilmesini isteme</li>
+                </ul>
+                
+                <h3>7. Başvuru Yöntemi</h3>
+                <p>Haklarınızı kullanmak için kliniğimize aşağıdaki kanallardan ulaşabilirsiniz:</p>
+                <ul>
+                    <li><strong>Adres:</strong> 1234. Sokak, No:5, Şişli/İstanbul</li>
+                    <li><strong>E-posta:</strong> kvkk@dentacan.com</li>
+                    <li><strong>Telefon:</strong> 0212 123 45 67</li>
+                    <li><strong>Web:</strong> <a href="https://www.dentacan.com/kvkk" target="_blank">www.dentacan.com/kvkk</a></li>
+                </ul>
+                
+                <p style="font-style: italic; margin-top: 20px;">Bu metin 01.01.2024 tarihinde güncellenmiştir. Değişiklikler web sitemizden duyurulacaktır.</p>
+            </div>
+            
+            <div class="consent-form">
+                <h2 style="color: var(--secondary-color);">Açık Rıza Formu</h2>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent1" required>
+                    <label for="modalConsent1">Kişisel verilerimin Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından yukarıda belirtilen amaçlarla işlenmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent2" required>
+                    <label for="modalConsent2">Kişisel verilerimin yasal zorunluluklar çerçevesinde belirtilen üçüncü kişilerle paylaşılmasını kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent3">
+                    <label for="modalConsent3">Randevu hatırlatma, tedavi takibi ve hizmet geliştirme amaçlı elektronik ileti gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent4">
+                    <label for="modalConsent4">Kampanya, promosyon ve indirimler hakkında bilgilendirme gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <button id="confirmKvkkConsent" class="btn-submit" style="margin-top: 15px;">Onaylıyorum ve Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Minimum tarihi bugün olarak ayarla
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').min = today;
+            
+            // Telefon numarası formatlama
+            document.getElementById('phone').addEventListener('input', function(e) {
+                let phoneNumber = this.value.replace(/\D/g, '');
+                
+                // 11 haneyi geçmemesi için
+                if (phoneNumber.length > 10) {
+                    phoneNumber = phoneNumber.substring(0, 10);
+                }
+                
+                // Formatlama
+                if (phoneNumber.length > 0) {
+                    phoneNumber = phoneNumber.match(new RegExp('.{1,' + (phoneNumber.length > 7 ? 3 : (phoneNumber.length > 4 ? 3 : 4)) + '}', 'g')).join(' ');
+                }
+                
+                this.value = phoneNumber;
+            });
+            
+            // KVKK Modal İşlemleri
+            const kvkkModal = document.getElementById('kvkkModal');
+            const showKvkkModal = document.getElementById('showKvkkModal');
+            const closeKvkkModal = document.querySelector('.close-kvkk-modal');
+            const confirmKvkkConsent = document.getElementById('confirmKvkkConsent');
+            
+            // KVKK linkine tıklanınca modalı aç
+            showKvkkModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                kvkkModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı engelle
+            });
+            
+            // Kapatma butonuna tıklanınca modalı kapat
+            closeKvkkModal.addEventListener('click', function() {
+                kvkkModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+            });
+            
+            // Onay butonuna tıklanınca
+            confirmKvkkConsent.addEventListener('click', function() {
+                // Zorunlu onay kutularını kontrol et
+                const consent1 = document.getElementById('modalConsent1').checked;
+                const consent2 = document.getElementById('modalConsent2').checked;
+                
+                if (consent1 && consent2) {
+                    // Ana formdaki KVKK checkbox'ını işaretle
+                    document.getElementById('kvkk').checked = true;
+                    kvkkModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+                } else {
+                    alert('Lütfen zorunlu onay kutularını işaretleyiniz.');
+                }
+            });
+            
+            // Modal dışına tıklanınca kapat
+            window.addEventListener('click', function(e) {
+                if (e.target == kvkkModal) {
+                    kvkkModal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Sayfa kaydırmayı geri aç
+                }
+            });
+            
+            // Form gönderimi
+            document.getElementById('cerrahi-randevu-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // KVKK onayını kontrol et
+                if (!document.getElementById('kvkk').checked) {
+                    alert('Lütfen KVKK aydınlatma metnini okuyup onaylayınız.');
+                    return;
+                }
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    service: document.querySelector('input[name="service"]:checked').value,
+                    notes: document.getElementById('notes').value,
+                    kvkkConsent: true,
+                    marketingConsent: document.getElementById('modalConsent3')?.checked || false,
+                    promotionsConsent: document.getElementById('modalConsent4')?.checked || false
+                };
+                
+                // Burada form verilerini sunucuya gönderebilirsiniz
+                console.log('Çene Cerrahisi Randevu Bilgileri:', formData);
+                
+                // Başarılı mesajı göster
+                alert('Çene cerrahisi randevunuz başarıyla oluşturuldu!\n\n' + 
+                      'Tarih: ' + formatDateDisplay(formData.date) + '\n' +
+                      'Saat: ' + formData.time + '\n\n' +
+                      'Randevu detayları e-posta adresinize gönderilmiştir.');
+                
+                // Formu temizle
+                this.reset();
+                document.getElementById('date').min = new Date().toISOString().split('T')[0];
+                document.getElementById('kvkk').checked = false;
+            });
+            
+            function formatDateDisplay(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                return `${day}.${month}.${year}`;
+            }
+        });
+    </script>
+</body>
+</html>

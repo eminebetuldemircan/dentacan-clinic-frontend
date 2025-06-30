@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Anestezi ve Sedasyon Randevusu | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #1a5276;
+            --light-color: #ebf5fb;
+            --text-color: #333;
+            --text-light: #666;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/anestezi-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Randevu Formu Stilleri */
+        .appointment-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .appointment-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .appointment-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .appointment-form {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .service-info {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .service-info h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .notice-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        /* KVKK Modal Stilleri */
+        .kvkk-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+        
+        .kvkk-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .close-kvkk-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-kvkk-modal:hover,
+        .close-kvkk-modal:focus {
+            color: black;
+            text-decoration: none;
+        }
+        
+        .kvkk-content {
+            margin-bottom: 30px;
+        }
+        
+        .consent-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .service-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .service-header p {
+                font-size: 1rem;
+            }
+            
+            .kvkk-modal-content {
+                width: 90%;
+                margin: 10% auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Genel Anestezi ve Sedasyon Randevusu</h1>
+            <p>Diş hekimi korkusu olanlar, engelli bireyler ve çocuklar için güvenli anestezi ve sedasyon uygulamaları ile konforlu tedavi imkanı</p>
+        </div>
+    </header>
+
+    <!-- Randevu Formu -->
+    <div class="container">
+        <div class="appointment-container">
+            <div class="appointment-header">
+                <h2>Genel Anestezi/Sedasyon Randevu Formu</h2>
+            </div>
+            
+            <form class="appointment-form" id="anesthesiaAppointmentForm">
+                <input type="hidden" name="service" value="genel-anestezi-sedasyon">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullname">Adınız</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Soyadınız</label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Telefon Numaranız</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta Adresiniz</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="birthdate">Doğum Tarihiniz</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Kilonuz (kg)</label>
+                        <input type="number" id="weight" name="weight" min="10" max="200">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-date">Tercih Ettiğiniz Tarih</label>
+                    <input type="date" id="preferred-date" name="preferred-date" required min="">
+                </div>
+                
+                <div class="form-group">
+                    <label for="preferred-time">Tercih Ettiğiniz Saat</label>
+                    <select id="preferred-time" name="preferred-time" required>
+                        <option value="">Seçiniz</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="doctor">Tercih Ettiğiniz Doktor</label>
+                    <select id="doctor" name="doctor">
+                        <option value="">Fark etmez</option>
+                        <option value="ahmet-yildiz">Prof. Dr. Ahmet YILDIZ (Anesteziyoloji Uzmanı)</option>
+                        <option value="selin-arslan">Uzm. Dr. Selin ARSLAN (Sedasyon Uzmanı)</option>
+                        <option value="mehmet-kaya">Uzm. Dr. Mehmet KAYA (Pediatrik Anestezi Uzmanı)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="anesthesia-type">Anestezi/Sedasyon Türü</label>
+                    <select id="anesthesia-type" name="anesthesia-type" required>
+                        <option value="">Seçiniz</option>
+                        <option value="Genel Anestezi">Genel Anestezi</option>
+                        <option value="Bilinçli Sedasyon">Bilinçli Sedasyon</option>
+                        <option value="Derin Sedasyon">Derin Sedasyon</option>
+                        <option value="Hekim karar versin">Hekim karar versin</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="procedure">Yapılacak İşlem</label>
+                    <select id="procedure" name="procedure">
+                        <option value="">Seçiniz</option>
+                        <option value="Çocuk diş tedavisi">Çocuk diş tedavisi</option>
+                        <option value="20 yaş diş çekimi">20 yaş diş çekimi</option>
+                        <option value="İmplant uygulaması">İmplant uygulaması</option>
+                        <option value="Çoklu diş çekimi">Çoklu diş çekimi</option>
+                        <option value="Diğer">Diğer</option>
+                    </select>
+                </div>
+                
+                <div class="warning-box">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>ÖNEMLİ:</strong> Genel anestezi/sedasyon öncesi 6 saat açlık gereklidir. Randevu sabahı su dahil hiçbir şey tüketmeyiniz.
+                </div>
+                
+                <div class="form-group">
+                    <label for="medical-history">Tıbbi Geçmişiniz</label>
+                    <textarea id="medical-history" name="medical-history" rows="3" placeholder="Kronik hastalıklar, alerjiler, kullandığınız ilaçlar, daha önce geçirdiğiniz anestezi deneyimleri"></textarea>
+                </div>
+                
+                <div class="notice-box">
+                    <i class="fas fa-info-circle"></i> Anestezi sonrası en az 1 refakatçi ile gelmeniz ve 24 saat araç kullanmamanız gerekmektedir.
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="companion" name="companion" required>
+                    <label for="companion">Randevu günü refakatçim olacağını onaylıyorum</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="fasting" name="fasting" required>
+                    <label for="fasting">6 saat aç kalacağımı ve randevu sabahı hiçbir şey yiyip içmeyeceğimi onaylıyorum</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="kvkk" name="kvkk" required>
+                    <label for="kvkk">
+                        <a href="#" id="showKvkkModal" style="color: var(--primary-color); text-decoration: underline;">
+                            Kişisel verilerin korunması hakkında bilgilendirmeyi okudum, onaylıyorum.
+                        </a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Randevu Oluştur</button>
+            </form>
+            
+            <div class="service-info">
+                <h3>Genel Anestezi ve Sedasyon Hakkında</h3>
+                <p><strong>Hazırlık:</strong> Ön muayene ve preoperatif değerlendirme gerekir</p>
+                <p><strong>Ekip:</strong> Anestezi uzmanı eşliğinde güvenli uygulama</p>
+                <p><strong>Süre:</strong> İşlem süresine göre 1-4 saat arası</p>
+                <p><strong>Sonrası:</strong> 1 saat gözlem odasında dinlenme</p>
+                <p><strong>Güvenlik:</strong> Monitörizasyon ve acil müdahale ekipmanları</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- KVKK Modal Penceresi -->
+    <div id="kvkkModal" class="kvkk-modal">
+        <div class="kvkk-modal-content">
+            <span class="close-kvkk-modal">&times;</span>
+            
+            <h1 style="text-align: center; color: var(--secondary-color);">DENTACAN AĞIZ VE DİŞ SAĞLIĞI KLİNİĞİ</h1>
+            <h2 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Kişisel Verilerin İşlenmesi Hakkında Aydınlatma Metni</h2>
+            
+            <div class="kvkk-content">
+                <p><strong>Dentacan Ağız ve Diş Sağlığı Polikliniği ("Dentacan")</strong> olarak, kişisel verilerinizin güvenliği konusuna büyük önem vermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, kişisel verilerinizin işlenmesine ilişkin aydınlatma metnini aşağıda sunuyoruz:</p>
+                
+                <h3>1. Veri Sorumlusu</h3>
+                <p>Kişisel verileriniz, Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından veri sorumlusu sıfatıyla işlenecektir.</p>
+                
+                <h3>2. Kişisel Verilerin İşlenme Amaçları</h3>
+                <p>Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
+                <ul>
+                    <li>Sağlık hizmetlerinin sunulması ve tedavi süreçlerinin yürütülmesi</li>
+                    <li>Randevu yönetimi ve hasta iletişimi</li>
+                    <li>Yasal ve düzenleyici gerekliliklerin yerine getirilmesi</li>
+                    <li>Hizmet kalitesinin artırılması ve geliştirilmesi</li>
+                    <li>Faturalandırma ve ödeme süreçlerinin yönetilmesi</li>
+                </ul>
+                
+                <h3>3. Toplanan Kişisel Veri Türleri</h3>
+                <p>Hizmetlerimizden yararlanabilmeniz için aşağıdaki verileri topluyoruz:</p>
+                <ul>
+                    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet</li>
+                    <li><strong>İletişim Bilgileri:</strong> Telefon numarası, e-posta adresi, ikametgah adresi</li>
+                    <li><strong>Sağlık Verileri:</strong> Tıbbi öykü, teşhis bilgileri, tedavi planları, radyolojik görüntüler</li>
+                    <li><strong>Finansal Bilgiler:</strong> Ödeme bilgileri, sigorta bilgileri, fatura bilgileri</li>
+                </ul>
+                
+                <h3>4. Verilerin Aktarımı</h3>
+                <p>Kişisel verileriniz, yasal zorunluluklar ve hizmetlerimizin sağlanması amacıyla aşağıdaki paydaşlarla paylaşılabilir:</p>
+                <ul>
+                    <li>Sağlık Bakanlığı ve bağlı kuruluşlar</li>
+                    <li>Sosyal Güvenlik Kurumu</li>
+                    <li>Özel sigorta şirketleri</li>
+                    <li>Laboratuvarlar ve tıbbi görüntüleme merkezleri</li>
+                    <li>Hukuki danışmanlarımız ve denetçiler</li>
+                    <li>Yetkili kamu kurum ve kuruluşları</li>
+                </ul>
+                
+                <h3>5. Veri Güvenliği</h3>
+                <p>Kişisel verileriniz, 6698 sayılı Kanun'un öngördüğü şekilde ve en az 10 yıl süreyle saklanacaktır. Verileriniz teknik ve idari tedbirlerle korunmaktadır:</p>
+                <ul>
+                    <li>Elektronik ortamda güvenli sunucular ve şifreleme sistemleri</li>
+                    <li>Fiziksel arşivlerde güvenlik önlemleri</li>
+                    <li>Yetkilendirme ve erişim kontrol sistemleri</li>
+                </ul>
+                
+                <h3>6. Haklarınız</h3>
+                <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+                <ul>
+                    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                    <li>Verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+                    <li>Verilerinizin eksik/yanlış işlenmiş olması halinde düzeltilmesini isteme</li>
+                    <li>Verilerinizin silinmesini veya yok edilmesini isteme</li>
+                    <li>İşlenen verilerin aktarıldığı üçüncü kişilere yukarıdaki taleplerin iletilmesini isteme</li>
+                </ul>
+                
+                <h3>7. Başvuru Yöntemi</h3>
+                <p>Haklarınızı kullanmak için kliniğimize aşağıdaki kanallardan ulaşabilirsiniz:</p>
+                <ul>
+                    <li><strong>Adres:</strong>1234. Sokak, No:5, Şişli/İstanbul</li>
+                    <li><strong>E-posta:</strong> kvkk@dentacan.com</li>
+                    <li><strong>Telefon:</strong> 0212 123 45 67</li>
+                    <li><strong>Web:</strong> <a href="https://www.dentacan.com/kvkk" target="_blank">www.dentacan.com/kvkk</a></li>
+                </ul>
+                
+                <p style="font-style: italic; margin-top: 20px;">Bu metin 01.01.2024 tarihinde güncellenmiştir. Değişiklikler web sitemizden duyurulacaktır.</p>
+            </div>
+            
+            <div class="consent-form">
+                <h2 style="color: var(--secondary-color);">Açık Rıza Formu</h2>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent1" required>
+                    <label for="modalConsent1">Kişisel verilerimin Dentacan Ağız ve Diş Sağlığı Polikliniği tarafından yukarıda belirtilen amaçlarla işlenmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent2" required>
+                    <label for="modalConsent2">Kişisel verilerimin yasal zorunluluklar çerçevesinde belirtilen üçüncü kişilerle paylaşılmasını kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent3">
+                    <label for="modalConsent3">Randevu hatırlatma, tedavi takibi ve hizmet geliştirme amaçlı elektronik ileti gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modalConsent4">
+                    <label for="modalConsent4">Kampanya, promosyon ve indirimler hakkında bilgilendirme gönderilmesini kabul ediyorum.</label>
+                </div>
+                
+                <button id="confirmKvkkConsent" class="submit-btn" style="margin-top: 15px;">Onaylıyorum ve Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Minimum tarihi bugün olarak ayarla
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+            const minDate = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('preferred-date').min = minDate;
+            
+            // Telefon numarası formatlama
+            document.getElementById('phone').addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '')
+                    .replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4')
+                    .slice(0, 14);
+            });
+            
+            // KVKK Modal İşlemleri
+            const kvkkModal = document.getElementById('kvkkModal');
+            const showKvkkModal = document.getElementById('showKvkkModal');
+            const closeKvkkModal = document.querySelector('.close-kvkk-modal');
+            const confirmKvkkConsent = document.getElementById('confirmKvkkConsent');
+            
+            // KVKK linkine tıklanınca modalı aç
+            showKvkkModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                kvkkModal.style.display = 'block';
+            });
+            
+            // Kapatma butonuna tıklanınca modalı kapat
+            closeKvkkModal.addEventListener('click', function() {
+                kvkkModal.style.display = 'none';
+            });
+            
+            // Onay butonuna tıklanınca
+            confirmKvkkConsent.addEventListener('click', function() {
+                // Zorunlu onay kutularını kontrol et
+                const consent1 = document.getElementById('modalConsent1').checked;
+                const consent2 = document.getElementById('modalConsent2').checked;
+                
+                if (consent1 && consent2) {
+                    // Ana formdaki KVKK checkbox'ını işaretle
+                    document.getElementById('kvkk').checked = true;
+                    kvkkModal.style.display = 'none';
+                } else {
+                    alert('Lütfen zorunlu onay kutularını işaretleyiniz.');
+                }
+            });
+            
+            // Modal dışına tıklanınca kapat
+            window.addEventListener('click', function(e) {
+                if (e.target == kvkkModal) {
+                    kvkkModal.style.display = 'none';
+                }
+            });
+            
+            // Form gönderimi
+            document.getElementById('anesthesiaAppointmentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // KVKK onayını kontrol et
+                if (!document.getElementById('kvkk').checked) {
+                    alert('Lütfen KVKK aydınlatma metnini okuyup onaylayınız.');
+                    return;
+                }
+                
+                const formData = {
+                    service: 'Genel Anestezi/Sedasyon',
+                    fullname: document.getElementById('fullname').value + ' ' + document.getElementById('surname').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    birthdate: document.getElementById('birthdate').value,
+                    weight: document.getElementById('weight').value,
+                    date: document.getElementById('preferred-date').value,
+                    time: document.getElementById('preferred-time').value,
+                    doctor: document.getElementById('doctor').value || 'Fark etmez',
+                    anesthesiaType: document.getElementById('anesthesia-type').value,
+                    procedure: document.getElementById('procedure').value,
+                    medicalHistory: document.getElementById('medical-history').value,
+                    companion: document.getElementById('companion').checked ? 'Evet' : 'Hayır',
+                    fasting: document.getElementById('fasting').checked ? 'Evet' : 'Hayır',
+                    kvkkConsent: true,
+                    marketingConsent: document.getElementById('modalConsent3').checked,
+                    promotionsConsent: document.getElementById('modalConsent4').checked
+                };
+                
+                // Burada form verilerini sunucuya gönderebilirsiniz
+                console.log('Anestezi Randevu Bilgileri:', formData);
+                
+                // Başarılı mesajı göster
+                alert('Genel anestezi/sedasyon randevunuz başarıyla oluşturuldu!\n\n' + 
+                      'Tarih: ' + formatDateDisplay(formData.date) + '\n' +
+                      'Saat: ' + formData.time + '\n\n' +
+                      'ÖNEMLİ UYARILAR:\n' +
+                      '- Randevu öncesi anestezi ön değerlendirme için kliniğimizi arayınız\n' +
+                      '- Randevu sabahı 6 saat aç kalınız\n' +
+                      '- Mutlaka refakatçi ile geliniz\n\n' +
+                      'Randevu detayları e-posta adresinize gönderilmiştir.');
+                
+                // Formu temizle
+                this.reset();
+                document.getElementById('preferred-date').min = minDate;
+                document.getElementById('kvkk').checked = false;
+            });
+            
+            function formatDateDisplay(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                return `${day}.${month}.${year}`;
+            }
+        });
+    </script>
+</body>
+</html>

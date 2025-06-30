@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konservatif Diş Tedavisi (Dolgu Uygulaması) | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --warning-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/dolgu-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Uyarı Kutusu */
+        .warning-box {
+            background: #e3f2fd;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Materyal Karşılaştırma Tablosu */
+        .material-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .material-table th, .material-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .material-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .material-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .material-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .material-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Konservatif Diş Tedavisi (Dolgu Uygulaması)</h1>
+            <p>Çürük dişlerinizi kurtarmak ve doğal görünümünü korumak için modern dolgu teknikleriyle hizmetinizdeyiz. Ağrısız ve kalıcı çözümler için uzman diş hekimlerimizle tanışın.</p>
+            <a href="konservatifDisRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Anasayfa/DişDolgusu.jpg" alt="Diş dolgu uygulaması">
+                <div class="service-intro-text">
+                    <h2>Dişlerinizi Kaybetmeden Çürüklerden Kurtulun</h2>
+                    <p>Konservatif diş tedavisi, diş çürüklerinin temizlenerek dişin sağlam dokusunu koruyacak şekilde dolgu malzemeleriyle restore edilmesi işlemidir. Amacımız, mümkün olan en fazla sağlam diş dokusunu koruyarak dişin fonksiyon ve estetiğini geri kazandırmaktır.</p>
+                    <p>Kliniğimizde kompozit (beyaz) dolgular, amalgam (gümüş) dolgular, inley/onley dolgular ve cam iyonomer dolgular gibi tüm modern dolgu teknikleri uygulanmaktadır.</p>
+               
+                </div>
+            </section>
+
+            <!-- Uyarı Kutusu -->
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Diş Çürüğü Belirtileri</h3>
+                <p>Dişlerinizde sıcak-soğuk hassasiyeti, tatlı yiyeceklerde ağrı, görülebilir çukurlaşma veya renk değişiklikleri varsa çürük başlamış olabilir. Erken dönemde müdahale edilirse basit bir dolgu ile dişinizi kurtarabiliriz. İhmal edilen çürükler kanal tedavisi veya diş çekimi gerektirebilir.</p>
+            </div>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Dolgu Çeşitlerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+  
+                    <h3>Kompozit Dolgular</h3>
+                    <p>Estetik beyaz dolgular. Diş renginde olduğu için özellikle ön dişlerde tercih edilir. Tek seansta uygulanır.</p>
+                </div>
+                
+                <div class="info-box">
+               
+                    <h3>Amalgam Dolgular</h3>
+                    <p>Dayanıklı metal dolgular. Arka dişlerde yüksek çiğneme kuvvetlerine karşı uzun ömürlü çözüm sunar.</p>
+                </div>
+                
+                <div class="info-box">
+              
+                    <h3>Inley/Onley Dolgular</h3>
+                    <p>Laboratuvarda özel olarak hazırlanan dolgular. Büyük çürüklerde dişin anatomik yapısını korur.</p>
+                </div>
+                
+                <div class="info-box">
+          
+                    <h3>Cam İyonomer Dolgular</h3>
+                    <p>Flor salınımı yaparak dişi koruyan dolgular. Çocuk dişlerinde ve kök yüzeyi çürüklerinde idealdir.</p>
+                </div>
+                
+                <div class="info-box">
+     
+                    <h3>Smart Dentin Replacement</h3>
+                    <p>En yeni nesil dolgu teknolojisi. Çürük temizleme sırasında sağlam diş dokusunu maksimum korur.</p>
+                </div>
+                
+                <div class="info-box">
+
+                    <h3>Estetik Dolgular</h3>
+                    <p>Gülüş hattındaki dişler için özel renk uyumlu, ışık geçirgenliği ayarlanmış dolgular.</p>
+                </div>
+            </div>
+
+            <!-- Materyal Karşılaştırma Tablosu -->
+            <h2 class="section-title">Dolgu Materyalleri Karşılaştırması</h2>
+            <table class="material-table">
+                <thead>
+                    <tr>
+                        <th>Materyal</th>
+                        <th>Ömrü</th>
+                        <th>Avantajlar</th>
+                        <th>Dezavantajlar</th>
+                        <th>Uygulama Alanı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kompozit (Beyaz Dolgu)</td>
+                        <td>5-10 yıl</td>
+                        <td>Estetik, tek seansta, dişe yapışır</td>
+                        <td>Amalgama göre daha kısa ömürlü</td>
+                        <td>Tüm dişler, özellikle ön bölge</td>
+                    </tr>
+                    <tr>
+                        <td>Amalgam (Gümüş Dolgu)</td>
+                        <td>10-15 yıl</td>
+                        <td>Dayanıklı, ekonomik</td>
+                        <td>Estetik değil, dişi kesmek gerekir</td>
+                        <td>Arka dişlerde çiğneme yüzeyleri</td>
+                    </tr>
+                    <tr>
+                        <td>Cam İyonomer</td>
+                        <td>3-5 yıl</td>
+                        <td>Flor salar, minimal invaziv</td>
+                        <td>Kırılgan, renk stabilitesi zayıf</td>
+                        <td>Çocuk dişleri, kök yüzeyleri</td>
+                    </tr>
+                    <tr>
+                        <td>Inley/Onley</td>
+                        <td>15+ yıl</td>
+                        <td>Mükemmel uyum, dayanıklı</td>
+                        <td>Pahalı, iki seans gerektirir</td>
+                        <td>Geniş çürüklerde</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Dolgu Tedavi Süreci</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Muayene ve Teşhis</h3>
+                        <p>Diş muayenesi ve gerekirse radyografik inceleme ile çürüğün boyutu belirlenir. Tedavi planı oluşturulur.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Anestezi ve Çürük Temizliği</h3>
+                        <p>Lokal anestezi ile ağrısız işlem sağlanır. Özel aletlerle çürük dokular temizlenir, sağlam diş dokusu korunur.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Dolgu Hazırlığı</h3>
+                        <p>Çürük temizlendikten sonra dolgu yapılacak alan özel solüsyonlarla hazırlanır. Gerekirse dişe destekleyici materyaller uygulanır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Dolgu Uygulaması</h3>
+                        <p>Seçilen dolgu materyali katmanlar halinde uygulanır. Her katman özel ışıkla sertleştirilir. Son şekil verilir ve parlatılır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Kontrol ve Bitim</h3>
+                        <p>Isırma kontrolü yapılır, gerekirse düzeltmeler yapılır. Hastaya dolgu bakımı hakkında bilgi verilir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Beyaz dolgu mu amalgam dolgu mu daha iyi?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Her iki dolgu türünün de avantajları vardır. Amalgam dolgular dayanıklılık ve ekonomik olma açısından, beyaz dolgular ise estetik ve dişe daha iyi yapışma özellikleriyle öne çıkar. Hekiminiz çürüğün konumuna, büyüklüğüne ve sizin beklentilerinize göre en uygun seçeneği önerecektir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Dolgu yaptırdıktan sonra nelere dikkat etmeliyim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Dolgu sonrası ilk birkaç saat sert ve yapışkan gıdalardan kaçının. Özellikle beyaz dolgularda ilk 24 saat boyunca çay, kahve, kola ve sigara gibi renklendirici maddelerden uzak durun. Ağrı olursa hekiminizin önerdiği ağrı kesiciyi kullanabilirsiniz. Normal ağız bakımınıza devam edin.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Dolgu yaptırdıktan sonra ağrı normal midir?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Dolgu sonrası 1-2 hafta süren hafif hassasiyet normaldir. Özellikle sıcak-soğuk temaslarında bu hassasiyet görülebilir. Ancak şiddetli, zonklayıcı ağrılar veya kendiliğinden başlayan ağrılar normal değildir, hekiminize başvurmalısınız.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Bir dişe kaç kez dolgu yapılabilir?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Bu dişin kalan sağlam dokusuna bağlıdır. Her dolgu değişiminde biraz daha diş dokusu kaybedilir. Eğer dişin duvarları çok incelmişse veya dolgu çok büyükse artık dolgu yerine kuron (kaplama) önerilebilir. Bu nedenle dolgularınızı kontrol ettirmeli, çok erimeden yenilemelisiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Çürük Dişleriniz İçin Geç Kalmayın!</h2>
+                <p>Erken teşhis edilen çürükler basit dolgularla tedavi edilebilir. İlerlemiş çürükler ise kanal tedavisi veya diş çekimi gerektirebilir. Dişlerinizi kaybetmeden önleminizi alın.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

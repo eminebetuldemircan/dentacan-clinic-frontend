@@ -7,9 +7,10 @@ import {
   faMoneyBillWave, faTeeth, faTeethOpen, faSmile,
   faSyringe, faXRay, faBaby, faFlask, faProcedures,
   faBars, faEnvelope, faStar as solidStar, faStarHalfAlt,
-  faToothbrush, faUser,
+  faUser, faParking,
   faHospital, faStethoscope, faPrescriptionBottleAlt,
-  faShieldAlt, faCreditCard, faHandHoldingMedical
+  faShieldAlt, faCreditCard, faHandHoldingMedical, faWheelchair,
+  faWifi, faChild, faCar, faToilet, faCoffee
 } from '@fortawesome/free-solid-svg-icons'; 
 import { faStar as regularStar, faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
@@ -297,6 +298,7 @@ const DentacanChatBot = () => {
   const [inputValue, setInputValue] = useState('');
   const [userName, setUserName] = useState('');
   const [askedForName, setAskedForName] = useState(false);
+  const [askedForAppointment, setAskedForAppointment] = useState(false);
   const messagesEndRef = useRef(null);
 
   // Dental clinic information database
@@ -483,8 +485,35 @@ const DentacanChatBot = () => {
           'Çene ağrısını giderir',
           'Kişiye özel plaklar'
         ]
+      },
+      'çürük': {
+        title: 'Diş Çürüğü Tedavisi',
+        description: 'Erken teşhis ve modern dolgu teknikleriyle çürük dişlerinizi kurtarıyoruz. Ağrısız ve konforlu tedavi yöntemleri uyguluyoruz.',
+        duration: '30-60 dakika',
+        price: '500-2000 TL',
+        icon: faTeeth,
+        link: '/dis-curugu',
+        benefits: [
+          'Erken müdahale imkanı',
+          'Doğal görünümlü dolgular',
+          'Çürük ilerlemesini durdurma'
+        ]
+      },
+      'ağız kokusu': {
+        title: 'Ağız Kokusu Tedavisi',
+        description: 'Ağız kokusunun nedenlerini tespit ederek kalıcı çözümler sunuyoruz. Profesyonel temizlik ve kişiye özel bakım önerileri ile rahatsız edici kokulardan kurtulun.',
+        duration: '1-3 seans',
+        price: '1000-3000 TL',
+        icon: faTooth,
+        link: '/agiz-kokusu',
+        benefits: [
+          'Nedenin tespiti',
+          'Profesyonel temizlik',
+          'Kişiye özel bakım planı'
+        ]
       }
     },
+
     doctors: [
       { 
         name: 'Uzm. Dr. Dt. Ahmet CAN', 
@@ -493,7 +522,7 @@ const DentacanChatBot = () => {
         bio: '2002 Hacettepe Üniversitesi mezunu. Cumhuriyet Üniversitesi\'nde uzmanlık eğitimi aldı. İleri çene cerrahisi ve implantoloji alanında İsviçre\'de eğitim gördü. 5000\'den fazla başarılı cerrahi operasyon gerçekleştirdi.',
         education: 'Hacettepe Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce, Almanca',
-        photo: '/doctors/dr-ahmet-can.jpg',
+        photo: '/images/Anasayfa/Hizmetler/AhmetCan.jpg',
         schedule: 'Pazartesi, Çarşamba, Cuma'
       },
       { 
@@ -503,7 +532,7 @@ const DentacanChatBot = () => {
         bio: 'Marmara Üniversitesi Ortodonti mezunu. Invisalign Gold Provider sertifikalı. Lingual ortodonti ve şeffaf plak tedavilerinde uzman. 1000\'den fazla başarılı ortodonti tedavisi uyguladı.',
         education: 'Marmara Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce, Fransızca',
-        photo: '/doctors/dr-ayse-demir.jpg',
+        photo: '/images/Anasayfa/Hizmetler/AyşeDemir.jpg',
         schedule: 'Salı, Perşembe, Cumartesi'
       },
       { 
@@ -513,7 +542,7 @@ const DentacanChatBot = () => {
         bio: 'Ankara Üniversitesi mezunu. All-on-4 ve zygoma implant tekniklerinde İstanbul\'da uzmanlık eğitimi aldı. 3000+ başarılı implant uygulaması bulunmaktadır.',
         education: 'Ankara Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce',
-        photo: '/doctors/dr-mehmet-yilmaz.jpg',
+        photo: '/images/Anasayfa/Hizmetler/MehmetYılmaz.jpg',
         schedule: 'Pazartesi-Salı-Çarşamba-Perşembe'
       },
       { 
@@ -523,7 +552,7 @@ const DentacanChatBot = () => {
         bio: 'Gazi Üniversitesi Pedodonti mezunu. Çocuklarda dental anksiyete yönetimi ve sedasyon uygulamalarında uzman. Çocuklarla iletişimde özel teknikler kullanıyor.',
         education: 'Gazi Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce, İspanyolca',
-        photo: '/doctors/dr-zeynep-kaya.jpg',
+        photo: '/images/Anasayfa/Hizmetler/ZeynepKaya.jpg',
         schedule: 'Pazartesi, Çarşamba, Cuma, Cumartesi'
       },
       { 
@@ -533,7 +562,7 @@ const DentacanChatBot = () => {
         bio: 'Ege Üniversitesi Periodontoloji mezunu. Lazer destekli periodontal tedaviler ve diş eti estetiği konusunda ABD\'de eğitim aldı. Diş eti hastalıklarında uzmanlaşmıştır.',
         education: 'Ege Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce, Almanca',
-        photo: '/doctors/dr-ali-sahin.jpg',
+        photo: '/images/Anasayfa/Hizmetler/AliŞahin.jpg',
         schedule: 'Salı, Perşembe, Cumartesi'
       },
       { 
@@ -543,7 +572,7 @@ const DentacanChatBot = () => {
         bio: 'İstanbul Üniversitesi mezunu. Digital Smile Design alanında uzman. Laminate veneer ve zirkonyum kaplamalarda uzman. 500\'den fazla gülüş tasarımı yaptı.',
         education: 'İstanbul Üniversitesi Diş Hekimliği Fakültesi',
         languages: 'İngilizce, Arapça',
-        photo: '/doctors/dr-fatma-arslan.jpg',
+        photo: '/images/Anasayfa/Hizmetler/FatmaArslan.jpg',
         schedule: 'Pazartesi-Cuma'
       }
     ],
@@ -566,14 +595,16 @@ const DentacanChatBot = () => {
         'Sigorta anlaşmalı kurumlar (SGK ve özel sigortalar)'
       ],
       facilities: [
-        'Dijital görüntüleme sistemleri',
-        'Mikroskop altında tedavi',
-        'Lazer diş hekimliği',
-        'Sterilizasyon ünitesi',
-        'Engelli erişimi',
-        'Otopark',
-        'Wi-Fi',
-        'Çocuk oyun alanı'
+        {name: 'Dijital görüntüleme sistemleri', icon: faXRay},
+        {name: 'Mikroskop altında tedavi', icon: faStethoscope},
+        {name: 'Lazer diş hekimliği', icon: faShieldAlt},
+        {name: 'Sterilizasyon ünitesi', icon: faHandHoldingMedical},
+        {name: 'Engelli erişimi', icon: faWheelchair},
+        {name: 'Otopark', icon: faParking},
+        {name: 'Wi-Fi', icon: faWifi},
+        {name: 'Çocuk oyun alanı', icon: faChild},
+        {name: 'Bekleme salonu', icon: faCoffee},
+        {name: 'Ücretsiz otopark', icon: faCar}
       ],
       about: `DENTACAN Ağız ve Diş Sağlığı Kliniği, 2010 yılında Dt. Ahmet CAN tarafından, modern diş hekimliği hizmetlerini en üst standartlarda sunmak amacıyla kurulmuştur. Başlangıçta küçük bir klinik olarak hizmet veren merkezimiz, hasta memnuniyeti odaklı yaklaşımımız sayesinde hızla büyüyerek bugünkü konumuna ulaşmıştır.
 
@@ -587,45 +618,21 @@ Bugün DENTACAN olarak, binlerce hastamızın gülüşüne dokunmanın gururunu 
         'Avrupa Dental Excellence Sertifikası',
         'ISO 9001 Kalite Belgesi',
         'Hasta Memnuniyeti Altın Ödülü'
-      ]
+      ],
+      cancellationPolicy: `Randevu iptal politikamız:
+      
+1. Randevunuzu iptal etmek veya değiştirmek için en az 24 saat önceden bilgi vermeniz gerekmektedir.
+
+2. İptal işlemini şu şekillerde yapabilirsiniz:
+   - Size gönderilen randevu onay emailindeki link üzerinden
+   - Telefonla arayarak (+90 (216) 123 45 67)
+   - WhatsApp üzerinden (+90 (555) 123 45 67)
+
+3. 24 saatten kısa sürede yapılan iptallerde veya randevuya gelinmediğinde, bir sonraki randevu için depozito alınmaktadır.
+
+4. Acil durumlarda lütfen bizi bilgilendirin, esnek çözümler sunmaya çalışıyoruz.`
     },
-    testimonials: [
-      {
-        name: 'Mehmet Y.',
-        treatment: 'İmplant Tedavisi',
-        comment: 'Çok profesyonel bir ekip, ağrısız ve konforlu bir tedavi süreci geçirdim. Kesinlikle tavsiye ederim. İmplantlarım artık kendi dişlerim gibi hissediyorum.',
-        rating: 5,
-        date: '15.03.2023'
-      },
-      {
-        name: 'Ayşe K.',
-        treatment: 'Ortodonti Tedavisi',
-        comment: 'Kızımın diş telleri için geldik, çocuklarla iletişimleri mükemmel. Çok memnun kaldık. Kızım artık diş hekimine gitmekten korkmuyor.',
-        rating: 4.5,
-        date: '22.01.2023'
-      },
-      {
-        name: 'Ali V.',
-        treatment: 'Diş Beyazlatma',
-        comment: 'Hızlı ve etkili bir beyazlatma işlemi oldu. Sonuçlar çok doğal görünüyor. Fiyat/performans olarak çok iyi.',
-        rating: 4,
-        date: '05.12.2022'
-      },
-      {
-        name: 'Zeynep T.',
-        treatment: 'Laminate Veneer',
-        comment: 'Gülüş tasarımı için geldim, hayal ettiğimden daha güzel sonuçlar aldım. Çok titiz ve özenli çalışıyorlar.',
-        rating: 5,
-        date: '30.10.2022'
-      },
-      {
-        name: 'Can D.',
-        treatment: '20 Yaş Diş Çekimi',
-        comment: 'Çok korkuyordum ama hiç ağrı hissetmedim. Doktorun yatıştırıcı tavrı sayesinde rahat bir operasyon geçirdim.',
-        rating: 4.5,
-        date: '18.09.2022'
-      }
-    ],
+    
     faq: [
       {
         question: "Randevu nasıl alabilirim?",
@@ -658,339 +665,353 @@ Bugün DENTACAN olarak, binlerce hastamızın gülüşüne dokunmanın gururunu 
       {
         question: "Diş eti çekilmesi tedavi edilebilir mi?",
         answer: "Evet, diş eti greftleme operasyonları ve lazer destekli tedavilerle diş eti çekilmesi tedavi edilebilir."
-      }
-    ],
-    emergencyInstructions: [
-      {
-        title: "Şiddetli diş ağrısı",
-        steps: [
-          "Ağrı kesici alın (aspirin dışında)",
-          "Soğuk kompres uygulayın",
-          "Sıcak yiyecek/içeceklerden kaçının",
-          "En kısa sürede hekime başvurun"
-        ]
       },
       {
-        title: "Diş kırılması",
-        steps: [
-          "Kırık parçayı temiz suda saklayın",
-          "Keskin kenarları yumuşak mumla kapatın",
-          "Ağrı varsa ağrı kesici alın",
-          "24 saat içinde hekime başvurun"
-        ]
+        question: "Kliniğinizde park yeri var mı?",
+        answer: "Evet, kliniğimizin önünde ücretsiz hasta otoparkı bulunmaktadır. Ayrıca engelli araçları için özel park alanlarımız mevcuttur."
       },
       {
-        title: "Dişin tamamen çıkması",
-        steps: [
-          "Dişi kökünden tutmayın",
-          "Temiz su veya süt içinde saklayın",
-          "Mümkünse yerine yerleştirin",
-          "30 dakika içinde hekime ulaşın"
-        ]
+        question: "Diş fırçalama teknikleri hakkında bilgi verebilir misiniz?",
+        answer: "Doğru diş fırçalama teknikleri:\n1. Fırçayı 45 derece açıyla tutun\n2. Yumuşak dairesel hareketlerle fırçalayın\n3. Tüm diş yüzeylerini temizleyin\n4. Dilinizi de fırçalamayı unutmayın\n5. Günde 2 kez, 2 dakika süreyle fırçalayın"
       },
       {
-        title: "Ağız içi şişlik",
-        steps: [
-          "Soğuk kompres uygulayın",
-          "Yüksek yastıkta yatın",
-          "Sıcak yiyecek/içeceklerden kaçının",
-          "Acilen hekime başvurun"
-        ]
+        question: "Diş ipi nasıl kullanılır?",
+        answer: "Diş ipi kullanım adımları:\n1. Yaklaşık 45 cm ip koparın\n2. İpi orta parmaklarınıza dolayın\n3. Dişler arasında nazikçe kaydırın\n4. C şekli yaparak diş eti hizasına getirin\n5. Her diş arası için temiz bölüm kullanın"
+      },
+            {
+        question: "Randevu iptal politikası nedir?",
+        answer: "Randevularınızı en az 24 saat önceden iptal etmeniz gerekmektedir. Geç iptaller için ücret alınabilir. Acil durumlarda lütfen bizi bilgilendirin."
       }
     ]
   };
 
-  // Initial messages
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      const welcomeMessage = {
-        text: "Merhaba! Dentacan Diş Kliniği'nin dijital asistanıyım. Size nasıl yardımcı olabilirim?",
-        isBot: true,
-        quickReplies: [
-          "Randevu almak istiyorum",
-          "Tedaviler hakkında bilgi",
-          "Doktorlarınız kimler?",
-          "Kliniğiniz nerede?"
-        ]
-      };
-      setMessages([welcomeMessage]);
+  // Initial bot messages
+  const initialMessages = [
+    {
+      text: "Merhaba! Dentacan Ağız ve Diş Sağlığı Kliniği'ne hoş geldiniz. Size nasıl yardımcı olabilirim?",
+      isBot: true,
+      quickReplies: [
+        "Randevu almak istiyorum",
+        "Hizmetler hakkında bilgi",
+        "Doktorlarınız kimler?",
+        "Kliniğiniz nerede?",
+        "Fiyat bilgisi almak istiyorum"
+      ]
     }
-  }, [isOpen]);
+  ];
 
-  // Scroll to bottom when messages change
+  // Scroll to bottom of messages
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollToBottom();
   }, [messages]);
 
+  // Handle opening/closing chatbot
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
     if (!isOpen && messages.length === 0) {
+      setMessages(initialMessages);
+    }
+  };
+
+  // Handle user input
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  // Handle sending message
+  const handleSendMessage = () => {
+    if (inputValue.trim() === '') return;
+
+    // Add user message to chat
+    const userMessage = { text: inputValue, isBot: false };
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+
+    // Process user message and generate bot response
+    setTimeout(() => {
+      generateBotResponse(inputValue);
+    }, 500);
+  };
+
+  // Handle quick reply selection
+  const handleQuickReply = (reply) => {
+    const userMessage = { text: reply, isBot: false };
+    setMessages(prev => [...prev, userMessage]);
+    
+    setTimeout(() => {
+      generateBotResponse(reply);
+    }, 500);
+  };
+
+  // Generate bot response based on user input
+  const generateBotResponse = (userInput) => {
+    let botResponse = { isBot: true };
+    const lowerInput = userInput.toLowerCase();
+
+    if (askedForName) {
+      setUserName(userInput);
       setAskedForName(false);
+      botResponse.text = `Teşekkür ederim ${userInput}. Size nasıl yardımcı olabilirim?`;
+      botResponse.quickReplies = [
+        "Randevu almak istiyorum",
+        "Hizmetler hakkında bilgi",
+        "Doktorlarınız kimler?",
+        "Kliniğiniz nerede?",
+        "Fiyat bilgisi almak istiyorum"
+      ];
+    } 
+    else if (askedForAppointment) {
+      setAskedForAppointment(false);
+      botResponse.text = "Randevu talebiniz alınmıştır. Size en kısa sürede dönüş yapılacaktır. Başka bir konuda yardımcı olabilir miyim?";
+      botResponse.quickReplies = [
+        "Hizmetler hakkında bilgi",
+        "Doktorlarınız kimler?",
+        "Kliniğiniz nerede?",
+        "Teşekkürler, bu kadar yeterli"
+      ];
     }
- };
-
-const handleSendMessage = () => {
-if (inputValue.trim() === '') return;
-
-// Add user message to chat
-const userMessage = { text: inputValue, isBot: false };
-setMessages(prev => [...prev, userMessage]);
-setInputValue('');
-
-// Process the message and generate bot response
-setTimeout(() => {
-  generateBotResponse(inputValue);
-}, 500);
-};
-
-const handleQuickReply = (reply) => {
-const userMessage = { text: reply, isBot: false };
-setMessages(prev => [...prev, userMessage]);
-
-setTimeout(() => {
-  generateBotResponse(reply);
-}, 500);
-};
-
-const generateBotResponse = (userInput) => {
-let response = { text: '', isBot: true, quickReplies: [] };
-const lowerInput = userInput.toLowerCase();
-
-if (!askedForName && messages.length === 1) {
-  response.text = `Size daha iyi yardımcı olabilmemiz için adınızı öğrenebilir miyim?`;
-  setAskedForName(true);
-} 
-else if (askedForName && userName === '') {
-  setUserName(userInput);
-  response.text = `Hoş geldiniz ${userInput}! Size nasıl yardımcı olabilirim?`;
-  response.quickReplies = [
-    "Randevu almak istiyorum",
-    "Tedaviler hakkında bilgi",
-    "Doktorlarınız kimler?",
-    "Kliniğiniz nerede?"
-  ];
-}
-else if (lowerInput.includes('randevu') || lowerInput.includes('rezervasyon')) {
-  response.text = `Randevu almak için aşağıdaki seçeneklerden birini seçebilirsiniz:`;
-  response.quickReplies = [
-    "Online randevu almak istiyorum",
-    "Telefonla randevu almak istiyorum",
-    "Hangi günler randevu alabilirim?",
-    "Randevu ücretleri nedir?"
-  ];
-}
-else if (lowerInput.includes('online randevu')) {
-  response.text = `Online randevu sistemimize aşağıdaki butondan ulaşabilirsiniz. Randevu almak için uygun gün ve saati seçebilirsiniz.`;
-  response.action = {
-    text: "Online Randevu Al",
-    link: "/randevu",
-    icon: faCalendarCheck
-  };
-}
-else if (lowerInput.includes('telefonla randevu')) {
-  response.text = `Randevu için bizi arayabilirsiniz. Telefon numaramız: ${dentalDatabase.clinicInfo.phone}\n\nÇalışma saatlerimiz:\nHafta içi: ${dentalDatabase.clinicInfo.hours.weekdays}\nAkşam: ${dentalDatabase.clinicInfo.hours.evening}\nPazar: ${dentalDatabase.clinicInfo.hours.sunday}`;
-}
-else if (lowerInput.includes('hangi günler') || lowerInput.includes('randevu günleri')) {
-  response.text = `Kliniğimizin çalışma saatleri:\n\nHafta içi: ${dentalDatabase.clinicInfo.hours.weekdays}\nAkşam: ${dentalDatabase.clinicInfo.hours.evening}\nPazar: ${dentalDatabase.clinicInfo.hours.sunday}\n\nNöbetçi hekimimiz her zaman hizmetinizdedir.`;
-}
-else if (lowerInput.includes('ücret') || lowerInput.includes('fiyat')) {
-  response.text = `Tedavi ücretleri tedavinin türüne ve kapsamına göre değişiklik göstermektedir. Aşağıdaki seçeneklerden hangi tedavi ile ilgili fiyat bilgisi almak istersiniz?`;
-  response.quickReplies = Object.keys(dentalDatabase.treatments).slice(0, 5).map(key => dentalDatabase.treatments[key].title);
-}
-else if (lowerInput.includes('tedavi') || lowerInput.includes('hizmet')) {
-  response.text = `Kliniğimizde verdiğimiz başlıca tedavi hizmetleri şunlardır. Detaylı bilgi almak istediğiniz tedaviyi seçebilirsiniz:`;
-  response.quickReplies = Object.keys(dentalDatabase.treatments).slice(0, 5).map(key => dentalDatabase.treatments[key].title);
-}
-else if (Object.keys(dentalDatabase.treatments).some(key => lowerInput.includes(key) || lowerInput.includes(dentalDatabase.treatments[key].title.toLowerCase()))) {
-  const treatmentKey = Object.keys(dentalDatabase.treatments).find(key => 
-    lowerInput.includes(key) || lowerInput.includes(dentalDatabase.treatments[key].title.toLowerCase())
-  );
-  const treatment = dentalDatabase.treatments[treatmentKey];
-  
-  response.text = `${treatment.title} hakkında bilgiler:\n\n${treatment.description}\n\nSüre: ${treatment.duration}\nFiyat Aralığı: ${treatment.price}\n\nFaydaları:\n${treatment.benefits.map(b => `• ${b}`).join('\n')}`;
-  
-  response.action = {
-    text: `Daha fazla bilgi için ${treatment.title} sayfasını ziyaret edin`,
-    link: treatment.link,
-    icon: treatment.icon
-  };
-}
-else if (lowerInput.includes('doktor') || lowerInput.includes('hekim')) {
-  response.text = `Kliniğimizde görev yapan uzman diş hekimlerimiz şunlardır:\n\n${dentalDatabase.doctors.map(d => `• ${d.name} - ${d.specialty}`).join('\n')}\n\nHangi doktorumuz hakkında bilgi almak istersiniz?`;
-  response.quickReplies = dentalDatabase.doctors.slice(0, 4).map(d => d.name);
-}
-else if (dentalDatabase.doctors.some(d => lowerInput.includes(d.name.toLowerCase()))) {
-  const doctor = dentalDatabase.doctors.find(d => lowerInput.includes(d.name.toLowerCase()));
-  response.text = `${doctor.name} - ${doctor.specialty}\n\nDeneyim: ${doctor.experience}\nEğitim: ${doctor.education}\nÇalışma Günleri: ${doctor.schedule}\n\n${doctor.bio}`;
-  
-  response.action = {
-    text: `${doctor.name} ile randevu al`,
-    link: `/randevu?doctor=${encodeURIComponent(doctor.name)}`,
-    icon: faUserMd
-  };
-}
-else if (lowerInput.includes('konum') || lowerInput.includes('nerede') || lowerInput.includes('adres')) {
-  response.text = `Kliniğimizin adresi:\n\n${dentalDatabase.clinicInfo.address}\n\nTelefon: ${dentalDatabase.clinicInfo.phone}\n\nÇalışma saatlerimiz:\nHafta içi: ${dentalDatabase.clinicInfo.hours.weekdays}\nAkşam: ${dentalDatabase.clinicInfo.hours.evening}\nPazar: ${dentalDatabase.clinicInfo.hours.sunday}`;
-  
-  response.action = {
-    text: "Haritada görüntüle",
-    link: dentalDatabase.clinicInfo.mapUrl,
-    icon: faMapMarkerAlt
-  };
-}
-else if (lowerInput.includes('saat') || lowerInput.includes('açık')) {
-  response.text = `Çalışma saatlerimiz:\n\nHafta içi: ${dentalDatabase.clinicInfo.hours.weekdays}\nAkşam: ${dentalDatabase.clinicInfo.hours.evening}\nPazar: ${dentalDatabase.clinicInfo.hours.sunday}\n\nNöbetçi hekimimiz her zaman hizmetinizdedir.`;
-}
-else if (lowerInput.includes('iletişim') || lowerInput.includes('telefon') || lowerInput.includes('numara')) {
-  response.text = `Bize aşağıdaki iletişim bilgilerinden ulaşabilirsiniz:\n\nTelefon: ${dentalDatabase.clinicInfo.phone}\nWhatsApp: ${dentalDatabase.clinicInfo.whatsapp}\nE-posta: ${dentalDatabase.clinicInfo.email}\nAdres: ${dentalDatabase.clinicInfo.address}`;
-  
-  response.actions = [
-    {
-      text: "Ara",
-      link: `tel:${dentalDatabase.clinicInfo.phone.replace(/[^0-9]/g, '')}`,
-      icon: faPhoneAlt,
-      secondary: false
-    },
-    {
-      text: "WhatsApp",
-      link: `https://wa.me/${dentalDatabase.clinicInfo.whatsapp.replace(/[^0-9]/g, '')}`,
-      icon: faComment,
-      secondary: true
+    else if (lowerInput.includes('randevu') || lowerInput.includes('rezervasyon')) {
+      if (!userName) {
+        setAskedForName(true);
+        botResponse.text = "Randevu oluşturmak için lütfen adınızı ve soyadınızı yazar mısınız?";
+      } else {
+        setAskedForAppointment(true);
+        botResponse.text = `${userName}, hangi tedavi için randevu almak istiyorsunuz?`;
+        botResponse.quickReplies = Object.keys(dentalDatabase.treatments).map(key => dentalDatabase.treatments[key].title);
+      }
     }
-  ];
-}
-else if (lowerInput.includes('acil') || lowerInput.includes('yaralanma') || lowerInput.includes('ağrı')) {
-  response.text = `Acil durumlarda 7/24 hizmet veren acil hattımızı arayabilirsiniz: ${dentalDatabase.clinicInfo.phone}\n\nAşağıdaki acil durum talimatlarını inceleyebilirsiniz:`;
-  
-  response.quickReplies = dentalDatabase.emergencyInstructions.map(e => e.title);
-}
-else if (dentalDatabase.emergencyInstructions.some(e => lowerInput.includes(e.title.toLowerCase()))) {
-  const emergency = dentalDatabase.emergencyInstructions.find(e => lowerInput.includes(e.title.toLowerCase()));
-  response.text = `${emergency.title} durumunda yapılması gerekenler:\n\n${emergency.steps.map((s, i) => `${i+1}. ${s}`).join('\n')}\n\nLütfen en kısa sürede hekiminize başvurun.`;
-}
-else if (lowerInput.includes('yorum') || lowerInput.includes('memnuniyet') || lowerInput.includes('değerlendirme')) {
-  response.text = `Hastalarımızın yorumları:\n\n${dentalDatabase.testimonials.slice(0, 3).map(t => `"${t.comment}" - ${t.name} (${t.treatment})`).join('\n\n')}`;
-  
-  response.action = {
-    text: "Tüm yorumları gör",
-    link: "/hasta-yorumlari",
-    icon: faComment
+    else if (lowerInput.includes('hizmet') || lowerInput.includes('tedavi') || lowerInput.includes('servis')) {
+      botResponse.text = "Kliniğimizde sunulan başlıca tedavi hizmetleri:";
+      botResponse.quickReplies = Object.keys(dentalDatabase.treatments).map(key => dentalDatabase.treatments[key].title);
+    }
+    else if (lowerInput.includes('doktor') || lowerInput.includes('hekim')) {
+      botResponse.text = "Uzman diş hekimlerimiz:";
+      botResponse.doctors = dentalDatabase.doctors.slice(0, 3);
+      botResponse.quickReplies = ["Tüm doktorları gör", "Randevu almak istiyorum"];
+    }
+    else if (lowerInput.includes('tüm doktor')) {
+      botResponse.text = "Tüm diş hekimlerimiz:";
+      botResponse.doctors = dentalDatabase.doctors;
+      botResponse.quickReplies = ["Randevu almak istiyorum", "Kliniğiniz nerede?"];
+    }
+    else if (lowerInput.includes('konum') || lowerInput.includes('nerede') || lowerInput.includes('adres')) {
+      botResponse.text = "Kliniğimizin iletişim bilgileri:";
+      botResponse.infoCard = true;
+      botResponse.quickReplies = ["Randevu almak istiyorum", "Çalışma saatleri nedir?"];
+    }
+    else if (lowerInput.includes('saat') || lowerInput.includes('açık')) {
+      botResponse.text = "Çalışma saatlerimiz:";
+      botResponse.infoHours = true;
+      botResponse.quickReplies = ["Randevu almak istiyorum", "Kliniğiniz nerede?"];
+    }
+    else if (lowerInput.includes('fiyat') || lowerInput.includes('ücret') || lowerInput.includes('tutar')) {
+      botResponse.text = "Tedavi ücretleri tedavi türüne ve karmaşıklığına göre değişmektedir. Hangi tedavi hakkında fiyat bilgisi almak istersiniz?";
+      botResponse.quickReplies = Object.keys(dentalDatabase.treatments).map(key => dentalDatabase.treatments[key].title);
+    }
+    else if (lowerInput.includes('teşekkür') || lowerInput.includes('sağ ol')) {
+      botResponse.text = "Rica ederim! Başka bir konuda yardımcı olabileceğim bir şey var mı?";
+      botResponse.quickReplies = [
+        "Randevu almak istiyorum",
+        "Hizmetler hakkında bilgi",
+        "Doktorlarınız kimler?",
+        "Hayır, teşekkürler"
+      ];
+    }
+    else if (lowerInput.includes('hayır') || lowerInput.includes('yok')) {
+      botResponse.text = "Anladım. Dentacan Ağız ve Diş Sağlığı Kliniği olarak sağlıklı günler dileriz!";
+    }
+    else {
+      // Check if input matches any treatment
+      const matchedTreatment = Object.keys(dentalDatabase.treatments).find(key => 
+        dentalDatabase.treatments[key].title.toLowerCase().includes(lowerInput) ||
+        key.toLowerCase().includes(lowerInput)
+      );
+
+      if (matchedTreatment) {
+        const treatment = dentalDatabase.treatments[matchedTreatment];
+        botResponse.text = `${treatment.title} hakkında bilgi:`;
+        botResponse.treatment = treatment;
+        botResponse.quickReplies = [
+          "Randevu almak istiyorum",
+          "Başka tedavi seçenekleri",
+          "Doktor bilgisi"
+        ];
+      } else {
+        botResponse.text = "Anlayamadım, lütfen başka şekilde ifade edebilir misiniz?";
+        botResponse.quickReplies = [
+          "Randevu almak istiyorum",
+          "Hizmetler hakkında bilgi",
+          "Doktorlarınız kimler?",
+          "Kliniğiniz nerede?"
+        ];
+      }
+    }
+
+    setMessages(prev => [...prev, botResponse]);
   };
-}
-else if (lowerInput.includes('ödeme') || lowerInput.includes('fiyat') || lowerInput.includes('taksit')) {
-  response.text = `Ödeme seçeneklerimiz:\n\n${dentalDatabase.clinicInfo.paymentOptions.map((p, i) => `${i+1}. ${p}`).join('\n')}\n\nSigorta anlaşmalı kurumlar için lütfen iletişime geçiniz.`;
-}
-else if (lowerInput.includes('sss') || lowerInput.includes('sık sorulan')) {
-  response.text = `Sık sorulan sorulardan bazıları:\n\n${dentalDatabase.faq.slice(0, 3).map((q, i) => `${i+1}. ${q.question}`).join('\n')}\n\nHangisi hakkında bilgi almak istersiniz?`;
-  response.quickReplies = dentalDatabase.faq.slice(0, 5).map(q => q.question);
-}
-else if (dentalDatabase.faq.some(q => lowerInput.includes(q.question.toLowerCase()))) {
-  const faq = dentalDatabase.faq.find(q => lowerInput.includes(q.question.toLowerCase()));
-  response.text = `Soru: ${faq.question}\n\nCevap: ${faq.answer}`;
-}
-else {
-  response.text = `Anlayamadım, lütfen başka şekilde ifade edebilir misiniz? Size şu konularda yardımcı olabilirim:`;
-  response.quickReplies = [
-    "Randevu almak istiyorum",
-    "Tedaviler hakkında bilgi",
-    "Doktorlarınız kimler?",
-    "Kliniğiniz nerede?"
-  ];
-}
 
-setMessages(prev => [...prev, response]);
-};
+  // Handle key press (Enter key)
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
 
-const handleKeyPress = (e) => {
-if (e.key === 'Enter') {
-handleSendMessage();
-}
-};
-
-return (
-<ChatbotContainer>
-<ChatbotButton onClick={toggleChatbot}>
-<FontAwesomeIcon icon={isOpen ? faTimes : faComment} />
-</ChatbotButton>
-
-  <ChatbotWindow isOpen={isOpen}>
-    <ChatbotHeader>
-      <ChatbotTitle>
-        <FontAwesomeIcon icon={faTooth} />
-        Dentacan Asistanı
-      </ChatbotTitle>
-      <ChatbotClose onClick={toggleChatbot}>
-        <FontAwesomeIcon icon={faTimes} />
-      </ChatbotClose>
-    </ChatbotHeader>
-
-    <ChatbotBody>
-      {messages.map((message, index) => (
-        <Message key={index} isBot={message.isBot}>
-          <MessageContent isBot={message.isBot}>
-            {message.text}
-            
-            {message.quickReplies && (
-              <QuickReplies>
-                {message.quickReplies.map((reply, i) => (
-                  <QuickReply key={i} onClick={() => handleQuickReply(reply)}>
-                    {reply}
-                  </QuickReply>
-                ))}
-              </QuickReplies>
-            )}
-
-            {message.action && (
-              <ActionButton to={message.action.link}>
-                <FontAwesomeIcon icon={message.action.icon} />
-                {message.action.text}
-              </ActionButton>
-            )}
-
-            {message.actions && message.actions.map((action, i) => (
-              <ActionButton 
-                key={i} 
-                to={action.link} 
-                secondary={action.secondary}
-                target="_blank"
-              >
-                <FontAwesomeIcon icon={action.icon} />
-                {action.text}
-              </ActionButton>
-            ))}
-
-            {message.infoCard && (
-              <InfoCard>
-                {message.infoCard.items.map((item, i) => (
-                  <InfoItem key={i}>
-                    <FontAwesomeIcon icon={item.icon} />
-                    <span>{item.text}</span>
-                  </InfoItem>
-                ))}
-              </InfoCard>
-            )}
-          </MessageContent>
-        </Message>
-      ))}
-      <div ref={messagesEndRef} />
-    </ChatbotBody>
-
-    <ChatbotFooter>
-      <ChatbotInput
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyPress={handleKeyPress}
-        placeholder="Mesajınızı yazın..."
-      />
-      <ChatbotSend onClick={handleSendMessage}>
+  return (
+    <ChatbotContainer>
+      <ChatbotButton onClick={toggleChatbot}>
         <FontAwesomeIcon icon={faComment} />
-      </ChatbotSend>
-    </ChatbotFooter>
-  </ChatbotWindow>
-</ChatbotContainer>
-);
+      </ChatbotButton>
+      
+      <ChatbotWindow isOpen={isOpen}>
+        <ChatbotHeader>
+          <ChatbotTitle>
+            <FontAwesomeIcon icon={faTooth} />
+            Dentacan Asistan
+          </ChatbotTitle>
+          <ChatbotClose onClick={toggleChatbot}>
+            <FontAwesomeIcon icon={faTimes} />
+          </ChatbotClose>
+        </ChatbotHeader>
+        
+        <ChatbotBody>
+          {messages.map((message, index) => (
+            <Message key={index} isBot={message.isBot}>
+              <MessageContent isBot={message.isBot}>
+                {message.text}
+                
+                {message.treatment && (
+                  <InfoCard>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={message.treatment.icon} />
+                      <span>{message.treatment.description}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faClock} />
+                      <span>Tedavi süresi: {message.treatment.duration}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faMoneyBillWave} />
+                      <span>Ortalama fiyat: {message.treatment.price}</span>
+                    </InfoItem>
+                    {message.treatment.benefits && (
+                      <div style={{ marginTop: '10px' }}>
+                        <strong>Avantajlar:</strong>
+                        <ul style={{ margin: '5px 0 0 15px', padding: 0 }}>
+                          {message.treatment.benefits.map((benefit, i) => (
+                            <li key={i} style={{ marginBottom: '5px' }}>{benefit}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    <ActionButton to={message.treatment.link}>
+                      <FontAwesomeIcon icon={faUserMd} />
+                      Bu tedavi hakkında detaylı bilgi
+                    </ActionButton>
+                    <ActionButton secondary to="/randevu-al">
+                      <FontAwesomeIcon icon={faCalendarCheck} />
+                      Randevu Al
+                    </ActionButton>
+                  </InfoCard>
+                )}
+                
+                {message.doctors && (
+                  <div style={{ marginTop: '10px' }}>
+                    {message.doctors.map((doctor, i) => (
+                      <InfoCard key={i}>
+                        <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>
+                          <FontAwesomeIcon icon={faUserMd} /> {doctor.name}
+                        </div>
+                        <div style={{ marginBottom: '5px' }}>{doctor.specialty}</div>
+                        <InfoItem>
+                          <FontAwesomeIcon icon={faClock} />
+                          <span>{doctor.experience} deneyim</span>
+                        </InfoItem>
+                        <InfoItem>
+                          <FontAwesomeIcon icon={faCalendarAlt} />
+                          <span>Çalışma günleri: {doctor.schedule}</span>
+                        </InfoItem>
+                        <ActionButton to={`/doktorlar/${doctor.name.replace(/\s+/g, '-').toLowerCase()}`}>
+                          <FontAwesomeIcon icon={faUser} />
+                          Profili Görüntüle
+                        </ActionButton>
+                      </InfoCard>
+                    ))}
+                  </div>
+                )}
+                
+                {message.infoCard && (
+                  <InfoCard>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faMapMarkerAlt} />
+                      <span>{dentalDatabase.clinicInfo.address}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faPhoneAlt} />
+                      <span>{dentalDatabase.clinicInfo.phone}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      <span>{dentalDatabase.clinicInfo.email}</span>
+                    </InfoItem>
+                    <ActionButton to={dentalDatabase.clinicInfo.mapUrl} target="_blank">
+                      <FontAwesomeIcon icon={faMapMarkerAlt} />
+                      Haritada Göster
+                    </ActionButton>
+                  </InfoCard>
+                )}
+                
+                {message.infoHours && (
+                  <InfoCard>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faClock} />
+                      <span>Hafta içi: {dentalDatabase.clinicInfo.hours.weekdays}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faClock} />
+                      <span>Akşam: {dentalDatabase.clinicInfo.hours.evening}</span>
+                    </InfoItem>
+                    <InfoItem>
+                      <FontAwesomeIcon icon={faClock} />
+                      <span>Pazar: {dentalDatabase.clinicInfo.hours.sunday}</span>
+                    </InfoItem>
+                  </InfoCard>
+                )}
+              </MessageContent>
+              
+              {message.quickReplies && (
+                <QuickReplies>
+                  {message.quickReplies.map((reply, i) => (
+                    <QuickReply key={i} onClick={() => handleQuickReply(reply)}>
+                      {reply}
+                    </QuickReply>
+                  ))}
+                </QuickReplies>
+              )}
+            </Message>
+          ))}
+          <div ref={messagesEndRef} />
+        </ChatbotBody>
+        
+        <ChatbotFooter>
+          <ChatbotInput
+            type="text"
+            placeholder="Mesajınızı yazın..."
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
+          />
+          <ChatbotSend onClick={handleSendMessage}>
+            <FontAwesomeIcon icon={faComment} />
+          </ChatbotSend>
+        </ChatbotFooter>
+      </ChatbotWindow>
+    </ChatbotContainer>
+  );
 };
 
 export default DentacanChatBot;
-

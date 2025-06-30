@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etik Politikamız | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* GENEL STİLLER */
+        :root {
+            --primary: #00b4d8;
+            --secondary: #ff9e00;
+            --accent: #ef476f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text: #495057;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: white;
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .tooth-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        .navbar-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .navbar-links li {
+            margin-left: 30px;
+        }
+        
+        .navbar-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .navbar-links a:hover {
+            color: var(--primary);
+        }
+        
+        .navbar-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .navbar-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* POLİTİKA SAYFASI STİLLERİ */
+        .policy-header {
+            background: linear-gradient(rgba(0, 180, 216, 0.8), rgba(0, 180, 216, 0.8)), 
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .policy-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .policy-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .policy-container h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .policy-container h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .policy-container section {
+            margin-bottom: 40px;
+        }
+        
+        .policy-container h2 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .policy-container h3 {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+        
+        .policy-container p, 
+        .policy-container li {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .policy-container ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .policy-container li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .mission-vision-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .mission-box, .vision-box {
+            background-color: #f5fbff;
+            border: 1px solid #d1e9ff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .mission-box h3 i, .vision-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .policy-date {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: 50px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-tooth-icon {
+            font-size: 1.8rem;
+            color: white;
+            margin-right: 10px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #aaa;
+        }
+        
+        .footer-links h3, 
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+            color: #aaa;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* FOOTER LEGAL LINKS STYLING */
+        .footer-legal {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            margin: 30px 0;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-legal a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0 5px;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        .footer-legal a:not(:last-child):after {
+            content: "|";
+            position: absolute;
+            right: -18px;
+            color: #555;
+        }
+
+        .footer-legal a:hover:after {
+            color: #555;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .policy-header {
+                padding: 80px 0;
+            }
+            
+            .policy-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .policy-container h1 {
+                font-size: 1.8rem;
+            }
+            
+            .policy-container h2 {
+                font-size: 1.4rem;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .footer-legal a:not(:last-child):after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-container">
+                <i class="fas fa-tooth tooth-icon"></i>
+                <a href="index.html" class="navbar-logo">DENTACAN</a>
+            </div>
+            
+            <ul class="navbar-links">
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="index.html#hizmetler">Hizmetlerimiz</a></li>
+                <li><a href="index.html#ekip">Ekibimiz</a></li>
+                <li><a href="index.html#galeri">Galeri</a></li>
+                <li><a href="index.html#hasta-yorumlari">Hasta Görüşleri</a></li>
+                <li><a href="index.html#hakkinda">Hakkında</a></li>
+                <li><a href="index.html#iletisim">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- POLİTİKA BAŞLIK -->
+    <header class="policy-header">
+        <div class="container">
+            <h1>Etik Politikamız</h1>
+            <p>Dentacan Kliniği olarak misyonumuz, vizyonumuz ve temel değerlerimiz</p>
+        </div>
+    </header>
+    
+    <!-- POLİTİKA İÇERİK -->
+    <main class="policy-container">
+        <h1>Etik Politikamız</h1>
+        
+        <section>
+            <h2>1. Giriş</h2>
+            <p>Dentacan Ağız ve Diş Sağlığı Kliniği olarak, hasta haklarına saygılı, şeffaf ve etik değerlere bağlı bir hizmet anlayışını benimsemekteyiz. Bu politika, kliniğimizin temel ilkelerini, misyon ve vizyonunu, hedeflerini ve etik kurallarını açıklamaktadır.</p>
+            
+            <div class="highlight-box">
+                <p>Etik politikamız, tüm çalışanlarımız ve iş ortaklarımız için bağlayıcıdır. Kliniğimizde hizmet veren herkesin bu politikanın gereklerini yerine getirmesi beklenmektedir.</p>
+            </div>
+        </section>
+
+        <div class="mission-vision-box">
+            <div class="mission-box">
+                <h3><i class="fas fa-bullseye"></i> Misyonumuz</h3>
+                <p>En son teknolojileri kullanarak, hasta memnuniyetini ön planda tutan, bireysel ihtiyaçlara özel çözümler sunan ve uluslararası standartlarda ağız ve diş sağlığı hizmeti vermek.</p>
+                <p>Hastalarımızın yaşam kalitesini artırmak için güvenilir, erişilebilir ve kaliteli diş hekimliği hizmetleri sunmak temel misyonumuzdur.</p>
+            </div>
+            
+            <div class="vision-box">
+                <h3><i class="fas fa-eye"></i> Vizyonumuz</h3>
+                <p>Türkiye'nin önde gelen ağız ve diş sağlığı merkezlerinden biri olarak, sürekli gelişen ve yeniliklere açık bir kurum olmak.</p>
+                <p>Diş hekimliği alanında öncü ve yenilikçi uygulamalarıyla referans gösterilen, hasta ve çalışan memnuniyetinde sektör lideri bir klinik olmak vizyonumuzu oluşturmaktadır.</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>2. Temel Değerlerimiz</h2>
+            <p>Kliniğimizin tüm faaliyetlerinde rehberlik eden temel değerlerimiz:</p>
+            
+            <h3>2.1. Hasta Odaklılık</h3>
+            <ul>
+                <li>Her hastaya bireysel ve özenli yaklaşım</li>
+                <li>Hasta mahremiyetine ve gizliliğine saygı</li>
+                <li>Hasta haklarının korunması</li>
+                <li>Şeffaf ve açık iletişim</li>
+            </ul>
+            
+            <h3>2.2. Kalite ve Güven</h3>
+            <ul>
+                <li>Uluslararası sterilizasyon standartları</li>
+                <li>Kanıta dayalı diş hekimliği uygulamaları</li>
+                <li>Sürekli eğitim ve gelişim</li>
+                <li>Kalite kontrol sistemleri</li>
+            </ul>
+            
+            <h3>2.3. Etik ve Profesyonellik</h3>
+            <ul>
+                <li>Mesleki etik kurallara bağlılık</li>
+                <li>Dürüst ve şeffaf hasta-hekim ilişkisi</li>
+                <li>Adil ve eşit hizmet anlayışı</li>
+                <li>Çıkar çatışmasından kaçınma</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Hedeflerimiz</h2>
+            <p>Kliniğimizin önümüzdeki 5 yıl için belirlediği stratejik hedefler:</p>
+            
+            <h3>3.1. Hizmet Kalitesi</h3>
+            <ul>
+                <li>Hasta memnuniyet oranını %95'in üzerine çıkarmak</li>
+                <li>Tedavi başarı oranını uluslararası standartlara ulaştırmak</li>
+                <li>Bekleme sürelerini en aza indirgemek</li>
+            </ul>
+            
+            <h3>3.2. Teknolojik Gelişim</h3>
+            <ul>
+                <li>Dijital diş hekimliği uygulamalarını %100 entegre etmek</li>
+                <li>Yıllık teknoloji yatırım bütçesini artırmak</li>
+                <li>Yapay zeka destekli teşhis sistemlerini uygulamaya almak</li>
+            </ul>
+            
+            <h3>3.3. Toplumsal Sorumluluk</h3>
+            <ul>
+                <li>Diş sağlığı okuryazarlığını artırmak için eğitim programları düzenlemek</li>
+                <li>Sosyal sorumluluk projelerine destek vermek</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Etik Kurallar</h2>
+            <p>Tüm çalışanlarımızın uyması gereken etik kurallar:</p>
+            
+            <h3>4.1. Hasta İlişkileri</h3>
+            <ul>
+                <li>Hastalara karşı saygılı, anlayışlı ve sabırlı davranmak</li>
+                <li>Doğru ve eksiksiz bilgilendirme yapmak</li>
+                <li>Rıza alınmadan hiçbir işlem yapmamak</li>
+                <li>Tıbbi gereklilik dışında müdahalede bulunmamak</li>
+            </ul>
+            
+            <h3>4.2. Mesleki Uygulamalar</h3>
+            <ul>
+                <li>Bilgi ve becerinin üstünde hizmet vermemek</li>
+                <li>Gerektiğinde konsültasyon istemek</li>
+                <li>Mesleki gelişimi sürdürmek</li>
+                <li>Bilimsel doğrulardan taviz vermemek</li>
+            </ul>
+            
+            <h3>4.3. İş Etiği</h3>
+            <ul>
+                <li>Hediye ve avantajlardan kaçınmak</li>
+                <li>Reklam etiğine uygun davranmak</li>
+                <li>Rakip kurumlara saygılı olmak</li>
+                <li>Kaynakları verimli kullanmak</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p>Etik ihlal durumlarında, kliniğimizde oluşturulan Etik Kurul tarafından gerekli incelemeler yapılmakta ve disiplin süreçleri işletilmektedir.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Uygulama ve İzleme</h2>
+            <p>Etik politikamızın etkin bir şekilde uygulanması için:</p>
+            
+            <ul>
+                <li>Tüm çalışanlar politika hakkında eğitim alır</li>
+                <li>Yıllık etik denetimler yapılır</li>
+                <li>Etik ihlal iddiaları titizlikle incelenir</li>
+                <li>Politika yılda bir gözden geçirilir ve güncellenir</li>
+            </ul>
+            
+            <div class="contact-info-box">
+                <h3>Etik İhlal Bildirimi</h3>
+                <p>Etik ihlal şüphesi durumunda aşağıdaki iletişim kanallarını kullanabilirsiniz:</p>
+                <p><strong>E-posta:</strong> etik@dentacan.com</p>
+                <p><strong>Telefon:</strong> 0 (212) 123 45 67 (Dahili: 101)</p>
+                <p>Bildirimler gizlilik içinde ele alınacak ve gerekli önlemler alınacaktır.</p>
+            </div>
+        </section>
+
+        <div class="policy-date">
+            <p>Son güncelleme tarihi: 01/01/2024</p>
+        </div>
+    </main>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo-container">
+                        <i class="fas fa-tooth footer-tooth-icon"></i>
+                        <h3 class="footer-logo">DENTACAN</h3>
+                    </div>
+                    <p>"Gülümsemek İçin Bir Neden Daha" mottosuyla hizmet veren kliniğimiz, modern teknolojilerle ağız ve diş sağlığınızı korumayı amaçlar.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Hızlı Linkler</h3>
+                    <ul>
+                        <li><a href="index.html">Anasayfa</a></li>
+                        <li><a href="index.html#hizmetler">Hizmetlerimiz</a></li>
+                        <li><a href="index.html#ekip">Ekibimiz</a></li>
+                        <li><a href="index.html#galeri">Galeri</a></li>
+                        <li><a href="index.html#hasta-yorumlari">Hasta Görüşleri</a></li>
+                        <li><a href="index.html#hakkinda">Hakkında</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Hizmetlerimiz</h3>
+                    <ul>
+                        <li><a href="dis-beyazlatma.html">Diş Beyazlatma</a></li>
+                        <li><a href="estetik-dis-hekimligi.html">Estetik Diş Hekimliği</a></li>
+                        <li><a href="implant-tedavi.html">İmplant Tedavisi</a></li>
+                        <li><a href="ortodonti.html">Ortodonti</a></li>
+                        <li><a href="agiz-dis-cene-cerrahi.html">Ağız Cerrahisi</a></li>
+                        <li><a href="periodontoloji.html">Periodontoloji</a></li>
+                        <li><a href="pedodonti.html">Pedodonti</a></li>
+                        <li><a href="endodonti.html">Endodonti</a></li>
+                        <li><a href="konservatif-dis.html">Konservatif Diş Tedavisi</a></li>
+                        <li><a href="radyoloji.html">Oral Diagnoz ve Radyoloji</a></li>
+                        <li><a href="genel-anestezi.html">Genel Anestezi ve Sedasyon</a></li>
+                        <li><a href="acil-tedavi.html">Acil Tedavi</a></li>
+                    </ul>
+                </div>
+                
+                
+                
+                <div class="footer-contact">
+                    <h3>İletişim</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>1234. Sokak, No:5, Şişli/İstanbul</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0 (212) 123 45 67</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@dentacan.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-legal">
+                <a href="kvkk.html">Kişisel Verilerin Korunması</a>
+                <a href="gizlilik.html">Gizlilik Politikası</a>
+                <a href="cerez.html">Çerez Politikası</a>
+                <a href="etik.html">Etik Politikamız</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 DENTACAN Ağız ve Diş Sağlığı Kliniği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

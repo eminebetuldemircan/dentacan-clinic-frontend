@@ -646,7 +646,7 @@ const HomePage = () => {
       <HomePageContainer>
        
         {/* Header */}
-        <Header>
+       <Header id="home">
           <div className="container">
             <HeaderLogo>
               <HeaderToothIcon icon={faTooth} />

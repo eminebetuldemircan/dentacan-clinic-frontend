@@ -75,6 +75,7 @@ const NavLink = styled(Link)`
   font-weight: 500;
   transition: color 0.3s;
   position: relative;
+  cursor: pointer;
 
   &:hover {
     color: var(--primary);
@@ -144,7 +145,7 @@ const MainHeader = () => {
     setIsMenuOpen(false);
   };
 
-    const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
 
   const handleShowLanguageModal = () => {
     setShowLanguageModal(true);
@@ -152,7 +153,22 @@ const MainHeader = () => {
   const handleCloseLanguageModal = () => {
     setShowLanguageModal(false);
   };
- const { t } = useTranslation();
+  
+  const { t } = useTranslation();
+  
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const navbarHeight = document.querySelector('nav').offsetHeight;
+      const elementPosition = element.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+    closeMenu();
+  };
+
   return (
     <Navbar>
       <NavbarContainer>
@@ -166,33 +182,41 @@ const MainHeader = () => {
         </MobileMenuButton>
 
         <NavbarLinks isOpen={isMenuOpen}>
-          
           <NavItem>
-            <NavLink to="/" onClick={closeMenu}>Anasayfa</NavLink>
+            <NavLink to="/" onClick={() => scrollToSection('home')}>Anasayfa</NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink as="span" onClick={() => scrollToSection('hizmetler')}>Hizmetler</NavLink>
           </NavItem>
             
-           <NavItem>
-            <NavLink to="/#ekip" onClick={closeMenu}>Ekibimiz</NavLink>
-          </NavItem>
           <NavItem>
-            <NavLink to="/#galeri" onClick={closeMenu}>Galeri</NavLink>
+            <NavLink as="span" onClick={() => scrollToSection('ekip')}>Ekibimiz</NavLink>
           </NavItem>
+          
           <NavItem>
-            <NavLink to="/#hasta-yorumlari" onClick={closeMenu}>Hasta Görüşleri</NavLink>
+            <NavLink as="span" onClick={() => scrollToSection('galeri')}>Galeri</NavLink>
           </NavItem>
+          
           <NavItem>
-            <NavLink to="/#hakkinda" onClick={closeMenu}>Hakkında</NavLink>
+            <NavLink as="span" onClick={() => scrollToSection('hasta-yorumlari')}>Hasta Görüşleri</NavLink>
+          </NavItem>
+          
+          <NavItem>
+            <NavLink as="span" onClick={() => scrollToSection('hakkinda')}>Hakkında</NavLink>
           </NavItem> 
+          
           <NavItem>
             <NavLink to="/iletisim" onClick={closeMenu}>İletişim</NavLink>
           </NavItem>
-          <NavItem>
-            <LoginButton to="/login" onClick={closeMenu}>Admin Giriş</LoginButton>
-          </NavItem>
 
-           <div className='ms-4'>
+          <NavItem>
+            <NavLink to="/randevu-al" onClick={closeMenu}>Randevu Al</NavLink>
+          </NavItem>
+          
+          <div className='ms-4'>
             <i
-              class="fa-solid fa-globe me-3 mt-1"
+              className="fa-solid fa-globe me-3 mt-1"
               onClick={handleShowLanguageModal}
             ></i>
             <LanguageModal
@@ -200,11 +224,10 @@ const MainHeader = () => {
               handleCloseLanguageModal={handleCloseLanguageModal}
             />
           </div>
-      
         </NavbarLinks>
       </NavbarContainer>
     </Navbar>
   );
 };
 
-export default MainHeader; 
+export default MainHeader;

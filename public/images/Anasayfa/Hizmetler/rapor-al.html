@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentacan Klinik - Raporlar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --primary-light: rgba(42, 157, 143, 0.1);
+            --primary-dark: #23857a;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            position: fixed;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .sidebar-brand {
+            padding: 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--light-gray);
+            background: var(--primary);
+        }
+        
+        .sidebar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .sidebar-brand span {
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-title {
+            padding: 0.5rem 1.5rem;
+            color: var(--gray);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .menu-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .menu-item.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .menu-item i {
+            width: 24px;
+            margin-right: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .menu-badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            transition: all 0.3s;
+        }
+        
+        /* Topbar */
+        .topbar {
+            height: 70px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-right: 1rem;
+        }
+        
+        .search-bar {
+            position: relative;
+            flex-grow: 1;
+            max-width: 500px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .notification-btn, .user-menu-btn {
+            background: none;
+            border: none;
+            position: relative;
+            color: var(--gray);
+            font-size: 1.25rem;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: var(--secondary);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 1rem;
+            border: 2px solid var(--primary-light);
+        }
+        
+        /* Dashboard Content */
+        .content-wrapper {
+            padding: 1.5rem;
+        }
+        
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 0;
+        }
+        
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary);
+        }
+        
+        /* Report Card */
+        .report-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.03);
+            margin-bottom: 1.5rem;
+        }
+        
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .report-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .report-subtitle {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .report-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card.blue { border-left-color: #3498db; }
+        .stat-card.green { border-left-color: #2ecc71; }
+        .stat-card.orange { border-left-color: #e67e22; }
+        .stat-card.purple { border-left-color: #9b59b6; }
+        
+        .stat-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stat-title i {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .stat-change {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stat-change.up {
+            color: #2ecc71;
+        }
+        
+        .stat-change.down {
+            color: #e74c3c;
+        }
+        
+        /* Doctor Stats */
+        .doctor-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.03);
+            display: flex;
+            transition: all 0.3s;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .doctor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid var(--light-gray);
+        }
+        
+        .doctor-info {
+            flex-grow: 1;
+        }
+        
+        .doctor-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--secondary);
+        }
+        
+        .doctor-specialty {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .doctor-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        
+        .doctor-stat {
+            font-size: 0.85rem;
+        }
+        
+        .doctor-stat-label {
+            color: var(--gray);
+            margin-bottom: 0.1rem;
+        }
+        
+        .doctor-stat-value {
+            font-weight: 600;
+        }
+        
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.03);
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Report Footer */
+        .report-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .report-actions {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+      
+            <span>Dentacan</span>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="menu-title">Ana Menü</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="menu-title">Yönetim</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Randevular</span>
+                <span class="menu-badge">15</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-injured"></i>
+                <span>Hastalar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-md"></i>
+                <span>Doktorlar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-procedures"></i>
+                <span>Hizmetler</span>
+            </a>
+            
+            <div class="menu-title">Finans</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span>Faturalar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Ödemeler</span>
+            </a>
+            
+            <div class="menu-title">Raporlar</div>
+            <a href="#" class="menu-item active">
+                <i class="fas fa-chart-pie"></i>
+                <span>İstatistikler</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Finansal Raporlar</span>
+            </a>
+            
+            <div class="menu-title">Sistem</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-users-cog"></i>
+                <span>Kullanıcılar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Ayarlar</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <button class="toggle-btn" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Ara...">
+            </div>
+            
+            <div class="topbar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                
+                <button class="user-menu-btn">
+                    <i class="fas fa-envelope"></i>
+                </button>
+                
+             
+            </div>
+        </div>
+        
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Klinik İstatistikleri</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a href="#">Raporlar</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">İstatistikler</li>
+                    </ol>
+                </nav>
+            </div>
+            
+            <!-- Report Content -->
+            <div class="report-card">
+                <div class="report-header">
+                    <div>
+                        <h2 class="report-title">Klinik Performans Raporu</h2>
+                        <p class="report-subtitle">1 Haziran - 30 Haziran 2023 tarihleri arası istatistikler</p>
+                    </div>
+                    <div class="report-actions">
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-download me-2"></i>PDF Olarak İndir
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-print me-2"></i>Yazdır
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label class="form-label">Tarih Aralığı</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" value="2023-06-01">
+                            <span class="input-group-text">-</span>
+                            <input type="date" class="form-control" value="2023-06-30">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label class="form-label">Doktor</label>
+                        <select class="form-select">
+                            <option selected>Tüm Doktorlar</option>
+                            <option>Uzm. Dr. Dt. Ahmet CAN</option>
+                            <option>Uzm. Dr. Dt. Ayşe DEMİR</option>
+                            <option>Uzm. Dr. Dt. Mehmet YILMAZ</option>
+                            <option>Uzm. Dr. Dt. Zeynep KAYA</option>
+                            <option>Uzm. Dr. Dt. Ali ŞAHİN</option>
+                            <option>Uzm. Dr. Dt. Fatma ARSLAN</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="form-label">Hizmet Türü</label>
+                        <select class="form-select">
+                            <option selected>Tüm Hizmetler</option>
+                            <option>Kontrol Muayenesi</option>
+                            <option>Diş Temizliği</option>
+                            <option>Dolgu</option>
+                            <option>Kanal Tedavisi</option>
+                            <option>İmplant</option>
+                            <option>Ortodonti</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">
+                            <i class="fas fa-calendar-check"></i>
+                            Toplam Randevu
+                        </div>
+                        <div class="stat-value">287</div>
+                        <div class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 12% geçen aya göre
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card blue">
+                        <div class="stat-title">
+                            <i class="fas fa-user-plus"></i>
+                            Yeni Hasta
+                        </div>
+                        <div class="stat-value">42</div>
+                        <div class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 8% geçen aya göre
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card green">
+                        <div class="stat-title">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Toplam Gelir
+                        </div>
+                        <div class="stat-value">₺124,850</div>
+                        <div class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 15% geçen aya göre
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card orange">
+                        <div class="stat-title">
+                            <i class="fas fa-star"></i>
+                            Ort. Memnuniyet
+                        </div>
+                        <div class="stat-value">4.8/5</div>
+                        <div class="stat-change down">
+                            <i class="fas fa-arrow-down"></i> 0.1 geçen aya göre
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Doctor Statistics -->
+                <h4 class="chart-title mb-3">Doktor Performansları</h4>
+                <div class="doctor-stats">
+                    <!-- Doctor 1 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/AhmetCan.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Ahmet CAN</h5>
+                            <p class="doctor-specialty">Çene Cerrahisi Uzmanı</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">68</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺38,500</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">82%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.7 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor 2 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/AyşeDemir.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Ayşe DEMİR</h5>
+                            <p class="doctor-specialty">Ortodonti Uzmanı</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">72</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺45,200</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">78%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.9 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor 3 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/MehmetYılmaz.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Mehmet YILMAZ</h5>
+                            <p class="doctor-specialty">İmplantoloji Uzmanı</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">54</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺62,300</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">65%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.8 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor 4 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/ZeynepKaya.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Zeynep KAYA</h5>
+                            <p class="doctor-specialty">Pedodonti Uzmanı</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">48</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺28,750</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">70%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.9 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor 5 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/AliŞahin.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Ali ŞAHİN</h5>
+                            <p class="doctor-specialty">Periodontoloji Uzmanı</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">36</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺19,400</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">58%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.6 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor 6 -->
+                    <div class="doctor-card">
+                        <img src="images/Anasayfa/FatmaArslan.jpg" alt="Doctor" class="doctor-avatar">
+                        <div class="doctor-info">
+                            <h5 class="doctor-name">Uzm. Dr. Dt. Fatma ARSLAN</h5>
+                            <p class="doctor-specialty">Estetik Diş Hekimi</p>
+                            <div class="doctor-stats-grid">
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Randevu</div>
+                                    <div class="doctor-stat-value">29</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Gelir</div>
+                                    <div class="doctor-stat-value">₺41,200</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Doluluk</div>
+                                    <div class="doctor-stat-value">45%</div>
+                                </div>
+                                <div class="doctor-stat">
+                                    <div class="doctor-stat-label">Puan</div>
+                                    <div class="doctor-stat-value">4.8 ★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h4 class="chart-title">Randevu Dağılımı (Doktorlara Göre)</h4>
+                        <div id="appointmentsChart" style="height: 300px;"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h4 class="chart-title">Gelir Dağılımı (Hizmetlere Göre)</h4>
+                        <div id="revenueChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+                
+                <!-- Report Footer -->
+                <div class="report-footer">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-file-export me-2"></i>Detaylı Rapor Oluştur
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        // Sidebar Toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        
+        // Appointments Chart
+        var appointmentsOptions = {
+            series: [{
+                name: 'Randevu Sayısı',
+                data: [68, 72, 54, 48, 36, 29]
+            }],
+            chart: {
+                height: '100%',
+                type: 'bar',
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#2a9d8f'],
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: false,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['Ahmet CAN', 'Ayşe DEMİR', 'Mehmet YILMAZ', 'Zeynep KAYA', 'Ali ŞAHİN', 'Fatma ARSLAN'],
+            }
+        };
+        
+        var appointmentsChart = new ApexCharts(document.querySelector("#appointmentsChart"), appointmentsOptions);
+        appointmentsChart.render();
+        
+        // Revenue Chart
+        var revenueOptions = {
+            series: [44, 55, 41, 17, 15, 12],
+            labels: ['İmplant', 'Ortodonti', 'Estetik', 'Diş Temizliği', 'Kanal Tedavisi', 'Diğer'],
+            chart: {
+                height: '100%',
+                type: 'donut',
+            },
+            colors: ['#2a9d8f', '#3498db', '#e9c46a', '#e67e22', '#e74c3c', '#9b59b6'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        
+        var revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
+        revenueChart.render();
+    </script>
+</body>
+</html>

@@ -997,16 +997,6 @@ const handleRecaptchaChange = (token) => {
                   />
                 </FormGroup>
 
-
-                <FormGroup>
-                  <Label>Güvenlik Doğrulama</Label>
-                  <ReCAPTCHA
-                    sitekey="6LeexkgrAAAAABcc_wvTMJ85AXQD2Dp0-UVbPVRo" // Google'dan aldığınız key
-                    onChange={(token) => setFormStateField("recaptchaToken", token)}
-                    onExpired={() => setFormStateField("recaptchaToken", "")}
-                  />
-                </FormGroup>
-
                 <KVKKConsent>
                   <ConsentText>
                     Kişisel verileriniz, 6698 sayılı Kişisel Verilerin Korunması
@@ -1025,6 +1015,16 @@ const handleRecaptchaChange = (token) => {
                     <Label>KVKK aydınlatma metnini okudum ve onaylıyorum</Label>
                   </ConsentCheckbox>
                 </KVKKConsent>
+
+                  <FormGroup>
+                  <Label>Güvenlik Doğrulama</Label>
+                  <ReCAPTCHA
+                    sitekey="6LeexkgrAAAAABcc_wvTMJ85AXQD2Dp0-UVbPVRo" // Google'dan aldığınız key
+                    onChange={(token) => setFormStateField("recaptchaToken", token)}
+                    onExpired={() => setFormStateField("recaptchaToken", "")}
+                  />
+                </FormGroup>
+
 
                 <SubmitButton type="submit">
                   Randevu Talebi Oluştur

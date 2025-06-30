@@ -58,11 +58,11 @@ const DoctorModal = ({handleCloseDoctorModal,currentDoctor}) => {
       <Fragment>
       <GenericModal
         closeModal={handleCloseDoctorModal}
-        title={currentDoctor ? "Edit Doctor" : "Add Doctor"}
-        description="Use a permanent address where you can receive mail."
+        title={currentDoctor ? "Doktoru Güncelle" : "Doktor Ekle"}
+        description="Lütfen doktor bilgilerini doldurunuz."
         widthClassName="w-1/3 py-2 px-2  bg-neutral-50 border border-neutral-100 rounded-xl"
          onSave={currentDoctor ? handleUpdateDoctor : handleSaveDoctor}
-        saveLabel={"Save"}
+        saveLabel={"Kaydet"}
       >
     
           <Row gutter={[16, 16]} justify="center">

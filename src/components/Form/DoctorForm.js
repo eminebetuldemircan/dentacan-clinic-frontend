@@ -13,7 +13,7 @@ const DoctorForm = ({ formState, setFormStateField }) => {
             <input
               type="text"
               className="mt-1 block w-full px-2 py-1.5 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-              placeholder="Enter first name"
+              placeholder="Adınızı giriniz"
               value={formState.firstname}
               onChange={(e) => setFormStateField('firstname', e.target.value)}
             />
@@ -27,7 +27,7 @@ const DoctorForm = ({ formState, setFormStateField }) => {
             <input
               type="text"
               className="mt-1 block w-full px-2 py-1.5 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-              placeholder="Enter last name"
+              placeholder="Soyadınızı giriniz"
               value={formState.lastname}
               onChange={(e) => setFormStateField('lastname', e.target.value)}
             />
@@ -55,7 +55,7 @@ const DoctorForm = ({ formState, setFormStateField }) => {
             <input
               type="text"
               className="mt-1 block w-full px-2 py-1.5 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-              placeholder="e.g., Cardiology, Dermatology"
+              placeholder="Uzmanlık alanınızı giriniz"
               value={formState.specialization}
               onChange={(e) => setFormStateField('specialization', e.target.value)}
             />
@@ -69,7 +69,7 @@ const DoctorForm = ({ formState, setFormStateField }) => {
             <input
               type="text"
               className="mt-1 block w-full px-2 py-1.5 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500 sm:text-sm"
-              placeholder="+90 5xx xxx xx xx"
+              placeholder="5xx xxx xx xx"
               value={formState.phoneNumber}
               onChange={(e) => setFormStateField('phoneNumber', e.target.value)}
             />

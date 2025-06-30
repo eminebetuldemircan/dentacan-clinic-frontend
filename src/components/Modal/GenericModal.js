@@ -7,7 +7,7 @@ const GenericModal = ({
   children,
   onSave,
   saveLabel,
-  cancelLabel = "Cancel",
+  cancelLabel = "İptal",
   widthClassName,
 }) => {
   return (

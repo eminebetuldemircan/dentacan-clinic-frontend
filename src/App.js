@@ -1,8 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Layout
 import MainHeader from './components/MainHeader/MainHeader';
 import MainFooter from './components/MainFooter/MainFooter';
+import ScrollToTop from './components/ScrollToTop';
+
+// Sayfalar
 import HomePage from './pages/HomePage/HomePage';
 import Iletisim from './pages/Iletisim/Iletisim';
 import Gizlilik from './pages/Gizlilik/Gizlilik';
@@ -12,14 +18,11 @@ import Cerez from './pages/Cerez/Cerez';
 import RandevuAl from './pages/RandevuAl/RandevuAl';
 import DisBeyazlatma from './pages/DisBeyazlatma/DisBeyazlatma';
 import EstetikDis from './pages/EstetikDis/EstetikDis';
-import { createGlobalStyle } from 'styled-components';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
 import ContactUsMessagesPage from './pages/ContactUsMessages/ContactUsMessagesPage';
 import DoctorPage from './pages/Doctor/DoctorPage';
-import { ToastContainer } from 'react-toastify';
 import AppointmentPage from './pages/Appointments/AppointmentPage';
 import ImplantTedavisi from './pages/ImplantTedavisi/ImplantTedavisi';
-
 import OrtodontiTedavisi from './pages/Ortodonti/OrtodontiTedavisi';
 import VerifyCodePage from './pages/VerifyCode/VerifyCodePage';
 import CancelCodePage from './pages/CancelCode/CancelCodePage';
@@ -32,17 +35,9 @@ import KonservatifDisTedavisi from './pages/KonservatifDisTedavisi/KonservatifDi
 import OralDiagnozRadyoloji from './pages/OralDiagnozveRadyoloji/OralDiagnozveRadyoloji';
 import GenelAnesteziSedasyon from './pages/GenelAnesteziSedayon/GenelAnesteziSedayon';
 import AcilTedavi from './pages/AcilTedavi/AcilTedavi';
-import DentacanChatBot from './components/ChatBot/DentacanChatBot'; 
+import DentacanChatBot from './components/ChatBot/DentacanChatBot';
 import DentacanAdminPanel from './pages/DentacanAdminPanel/DentacanAdminPanel';
 import Login from './pages/Login/LoginPageCode';
-
-
-
-
-
-
-
-
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -75,18 +70,28 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const hideHeaderRoutes = ['/login', '/admin'];
+
+  const hideHeader = hideHeaderRoutes.includes(location.pathname);
+
   return (
-    <Router>
+    <>
+      <ScrollToTop />
       <GlobalStyle />
-       <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={3000} />
+      {!hideHeader && <MainHeader />}
+
       <Routes>
+        <Route path="/admin" element={<DentacanAdminPanel />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/chatBot" element={<DentacanChatBot />} />
-         <Route path="/randevular" element={<AppointmentPage />} />
+        <Route path="/randevular" element={<AppointmentPage />} />
         <Route path="/iletisim" element={<Iletisim />} />
         <Route path="/iletisim-mesajları" element={<ContactUsMessagesPage />} />
-          <Route path="/doktorlar" element={<DoctorPage />} />
+        <Route path="/doktorlar" element={<DoctorPage />} />
         <Route path="/gizlilik" element={<Gizlilik />} />
         <Route path="/etik" element={<Etik />} />
         <Route path="/kvkk" element={<KVKK />} />
@@ -107,13 +112,16 @@ function App() {
         <Route path="/radyoloji" element={<OralDiagnozRadyoloji />} />
         <Route path="/genel-anestezi" element={<GenelAnesteziSedasyon />} />
         <Route path="/acil-tedavi" element={<AcilTedavi />} />
-        <Route path="/admin" element={<DentacanAdminPanel />} />
-        <Route path="/login" element={<Login />} />
-      
-
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+    </>
+  );
+}
 
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

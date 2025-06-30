@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Diagnoz ve Radyoloji | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --warning-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/radyaloji-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Uyarı Kutusu */
+        .warning-box {
+            background: #e3f2fd;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Oral Diagnoz ve Radyoloji</h1>
+            <p>Modern görüntüleme teknolojileriyle ağız ve diş sağlığınızı en doğru şekilde teşhis ediyor, tedavi planlamanızı güvenle yapıyoruz.</p>
+            <a href="radyolojiRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/hizmetler/OralDiagnozveRadyoloji.jpg" alt="Oral diagnoz ve radyoloji ekipmanları">
+                <div class="service-intro-text">
+                    <h2>Kesin Teşhis, Doğru Tedavi</h2>
+                    <p>Oral diagnoz ve radyoloji, diş hekimliğinde hastalıkların teşhis ve tedavi planlamasında en önemli basamaklardan biridir. Kliniğimizde dijital panoramik röntgen, periapikal röntgen, sefalometrik röntgen ve 3 boyutlu dental tomografi (CBCT) gibi modern görüntüleme yöntemleri kullanılmaktadır.</p>
+                    <p>Bu teknolojiler sayesinde gözle görülemeyen çürükler, kemik kayıpları, gömülü dişler, tümörler ve diğer patolojik oluşumlar erken dönemde tespit edilebilmektedir.</p>
+                  
+                </div>
+            </section>
+
+            <!-- Uyarı Kutusu -->
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Radyolojik Muayene Neden Önemli?</h3>
+                <p>Diş hekimliğinde birçok hastalık klinik olarak belirti vermeden önce radyografik olarak tespit edilebilir. Düzenli radyolojik kontroller, olası problemleri erken evrede yakalayarak tedavi sürecini kolaylaştırır ve maliyetleri düşürür.</p>
+            </div>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Radyolojik Görüntüleme Yöntemlerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+                
+                    <h3>Periapikal Röntgen</h3>
+                    <p>Tek diş ve çevresindeki dokuların detaylı görüntülenmesi için kullanılan yöntem. Kök ucu lezyonlarının teşhisinde altın standarttır.</p>
+                </div>
+                
+                <div class="info-box">
+                 
+                    <h3>Panoramik Röntgen</h3>
+                    <p>Tüm dişlerin, çene kemiklerinin ve çene ekleminin tek bir filmde görüntülenmesini sağlayan geniş açılı yöntem.</p>
+                </div>
+                
+                <div class="info-box">
+              
+                    <h3>Sefalometrik Röntgen</h3>
+                    <p>Ortodontik tedavi planlamasında kullanılan, yüz profili ve kemik ilişkilerini gösteren özel bir görüntüleme tekniği.</p>
+                </div>
+                
+                <div class="info-box">
+              
+                    <h3>3D Dental Tomografi (CBCT)</h3>
+                    <p>Çenelerin üç boyutlu olarak görüntülenmesini sağlayan, implant planlaması ve karmaşık cerrahi işlemler öncesi vazgeçilmez yöntem.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Intraoral Kamera</h3>
+                    <p>Yüksek çözünürlüklü intraoral kameralarla dişlerin ve ağız dokularının detaylı görüntülenmesi ve hasta eğitimi.</p>
+                </div>
+                
+                <div class="info-box">
+                 
+                    <h3>Diascope</h3>
+                    <p>Diş çürüklerinin erken teşhisinde kullanılan özel bir transilluminasyon cihazı.</p>
+                </div>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Oral Diagnoz Sürecimiz</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Klinik Muayene</h3>
+                        <p>Hastanın şikayetleri dinlenir, ağız içi ve dışı detaylı klinik muayene yapılır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Görüntüleme Yöntemi Seçimi</h3>
+                        <p>Şüpheli duruma göre en uygun radyolojik yöntem belirlenir (panoramik, periapikal, CBCT vb.).</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Dijital Görüntüleme</h3>
+                        <p>Düşük radyasyon dozuyla dijital ortamda yüksek kaliteli görüntüler elde edilir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Teşhis ve Tedavi Planlaması</h3>
+                        <p>Görüntüler uzman radyolog ve diş hekimleri tarafından değerlendirilerek kesin teşhis konur ve tedavi planı oluşturulur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Dental röntgenlerin radyasyon riski var mıdır?</span>
+                            
+                        </div>
+                        <div class="faq-answer">
+                            <p>Modern dijital radyografi sistemlerinde radyasyon dozu son derece düşüktür. Bir panoramik röntgenle alınan radyasyon miktarı, doğal çevreden bir günde alınan radyasyona eşdeğerdir. Hamilelerde ve çocuklarda gerekli önlemler alınarak güvenle çekim yapılabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>3D tomografi (CBCT) ne zaman gereklidir?</span>
+                          
+                        </div>
+                        <div class="faq-answer">
+                            <p>İmplant planlaması, gömülü diş cerrahisi, çene kisti/tümörleri, karmaşık kök kanal tedavileri, temporomandibular eklem (TME) problemleri ve ortodontik vakalarda 3 boyutlu görüntüleme gerekebilir. Hekiminiz ihtiyaç duyduğunda bu yöntemi önerecektir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Radyolojik görüntüleme öncesi hazırlık gerekir mi?</span>
+                     
+                        </div>
+                        <div class="faq-answer">
+                            <p>Çoğu dental radyografik görüntüleme için özel bir hazırlık gerekmez. Ancak çekim sırasında hareket etmemek ve hekimin talimatlarına uymak önemlidir. Takma diş, piercing, gözlük, küpe gibi metal objeler çekim öncesi çıkarılmalıdır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuklarda dental radyografi güvenli midir?</span>
+                  
+                        </div>
+                        <div class="faq-answer">
+                            <p>Evet, çocuklarda da güvenle uygulanabilir. Çocuklarda kullanılan radyasyon dozu yetişkinlere göre daha da düşürülmüştür. Ayrıca kurşun önlük ve boyun koruyucular kullanılarak ek önlemler alınır. Çocuk diş hekimliğinde özellikle süt dişlerinin ve daimi diş germlerinin durumunu görmek için radyografik görüntüleme çok değerlidir.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Doğru Teşhis İçin Modern Teknoloji</h2>
+                <p>Oral diagnoz ve radyoloji ünitemizde, ağız ve diş sağlığınızla ilgili en doğru teşhisi koymak için tüm modern görüntüleme yöntemlerini sunuyoruz. Erken teşhis, başarılı tedavinin ilk adımıdır.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

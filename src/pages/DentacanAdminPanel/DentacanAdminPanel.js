@@ -211,11 +211,7 @@ const DashboardContent = () => (
     </div>
     
     <div className="dashboard-grid">
-      <div>
-        <ChartCard title="Son Randevular">
-          <RecentAppointments />
-        </ChartCard>
-      </div>
+      
       
     </div>
   </>
@@ -832,82 +828,8 @@ const QuickAction = ({ icon, label }) => {
   );
 };
 
-const RecentAppointments = () => {
-  const appointments = [
-    {
-      patient: "Ahmet Yılmaz",
-      doctor: "Dr. Ayşe Demir",
-      time: "15:00 - 15:30",
-      date: "15 Haz 2023",
-      status: "completed"
-    },
-    {
-      patient: "Mehmet Kaya",
-            doctor: "Dr. Ahmet Can",
-      time: "16:00 - 16:45",
-      date: "15 Haz 2023",
-      status: "upcoming"
-    },
-    {
-      patient: "Zeynep Şahin",
-      doctor: "Dr. Mehmet Yılmaz",
-      time: "10:30 - 11:15",
-      date: "16 Haz 2023",
-      status: "upcoming"
-    },
-    {
-      patient: "Elif Korkmaz",
-      doctor: "Dr. Ayşe Demir",
-      time: "14:00 - 14:30",
-      date: "14 Haz 2023",
-      status: "completed"
-    },
-    {
-      patient: "Can Demir",
-      doctor: "Dr. Ahmet Can",
-      time: "09:00 - 10:00",
-      date: "17 Haz 2023",
-      status: "upcoming"
-    }
-  ];
 
-  return (
-    <div className="recent-appointments">
-      <table>
-        <thead>
-          <tr>
-            <th>Hasta</th>
-            <th>Doktor</th>
-            <th>Tarih/Saat</th>
-            <th>Durum</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment, index) => (
-            <tr key={index}>
-              <td>{appointment.patient}</td>
-              <td>{appointment.doctor}</td>
-              <td>
-                <div className="appointment-time">
-                  <span>{appointment.date}</span>
-                  <span>{appointment.time}</span>
-                </div>
-              </td>
-              <td>
-                <span className={`status-badge ${appointment.status}`}>
-                  {appointment.status === 'completed' ? 'Tamamlandı' : 'Yaklaşan'}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="view-all">
-        <a href="#">Tümünü Görüntüle</a>
-      </div>
-    </div>
-  );
-};
+ 
 
 // Styles (CSS-in-JS example - you might want to move this to a separate CSS file)
 const styles = `

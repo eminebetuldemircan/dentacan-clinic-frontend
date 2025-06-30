@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Anestezi ve Sedasyon | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --warning-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/anestezi-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Uyarı Kutusu */
+        .warning-box {
+            background: #e3f2fd;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin: 40px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Endikasyon Tablosu */
+        .indication-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .indication-table th, .indication-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .indication-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .indication-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .indication-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        /* Kontrendikasyon Listesi */
+        .contraindication-list {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .contraindication-list h3 {
+            color: #ff6d00;
+            margin-top: 0;
+        }
+        
+        .contraindication-list ul {
+            padding-left: 20px;
+        }
+        
+        .contraindication-list li {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .indication-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Genel Anestezi ve Sedasyon Hizmetleri</h1>
+            <p>Diş tedavisi korkusu olanlar, engelli bireyler ve çocuklar için güvenli ve konforlu tedavi deneyimi. Uzman anestezi ekibimiz ve tam donanımlı ameliyathanemizle hizmetinizdeyiz.</p>
+            <a href="genelAnesteziRandevu.html" class="btn">Randevu ve Bilgi Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Hizmetler/GenelAnestezi.jpg" alt="Genel anestezi uygulaması">
+                <div class="service-intro-text">
+                    <h2>Ağrısız ve Stressiz Diş Tedavisi Deneyimi</h2>
+                    <p>Dentacan Kliniği olarak, diş tedavisi korkusu (dentofobi) olan hastalarımız, engelli bireyler ve çocuklar için genel anestezi ve sedasyon altında diş tedavisi hizmeti sunmaktayız. Tam donanımlı ameliyathanemiz ve uzman anestezi ekibimizle güvenli ve konforlu bir tedavi deneyimi sağlıyoruz.</p>
+                    <p>Genel anestezi altında tek seansta tüm diş tedavilerinizi yaptırabilir, uyandığınızda tüm işlemlerin bitmiş olduğunu görebilirsiniz. Böylece uzun süreli tedavi seansları ve stres yaşamadan sağlıklı dişlere kavuşabilirsiniz.</p>
+                   
+                </div>
+            </section>
+
+            <!-- Uyarı Kutusu -->
+            <div class="warning-box">
+                <h3><i class="fas fa-exclamation-triangle"></i> Kimler İçin Uygundur?</h3>
+                <p>Genel anestezi ve sedasyon; şiddetli diş hekimi korkusu olanlar, mental retardasyon veya fiziksel engeli nedeniyle tedaviye uyum sağlayamayan bireyler, küçük yaştaki çocuklar, bulantı refleksi çok güçlü olan hastalar ve tek seansta çok sayıda diş tedavisi gereken durumlarda ideal bir çözümdür.</p>
+            </div>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Anestezi ve Sedasyon Çeşitlerimiz</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+                   
+                    <h3>Genel Anestezi</h3>
+                    <p>Tam bilinç kaybı sağlayan yöntem. Hastalar tüm işlemler boyunca derin uykudadır. Kompleks ve uzun süreli tedaviler için idealdir.</p>
+                </div>
+                
+                <div class="info-box">
+               
+                    <h3>Bilinçli Sedasyon</h3>
+                    <p>Damar yoluyla verilen ilaçlarla hastanın rahatlaması sağlanır. Hasta uyanıktır ancak tedaviye tepki vermez ve sonrasında hiçbir şey hatırlamaz.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Azot Protoksit Sedasyonu (Gül Gazı)</h3>
+                    <p>Maske yoluyla verilen gazla hastanın rahatlaması sağlanır. Özellikle çocuklarda ve hafif anksiyetesi olan yetişkinlerde kullanılır.</p>
+                </div>
+                
+                <div class="info-box">
+                
+                    <h3>Pediatrik Sedasyon</h3>
+                    <p>Çocuklara özel olarak ayarlanmış sedasyon protokolleri. Çocuk diş hekimi korkusunu yenerek tedavilerini tamamlayabilir.</p>
+                </div>
+                
+                <div class="info-box">
+                    
+                    <h3>Kardiyak Stabilizasyon</h3>
+                    <p>Kalp hastaları için özel olarak planlanan anestezi protokolleri. Anestezi uzmanı eşliğinde güvenle uygulanır.</p>
+                </div>
+                
+                <div class="info-box">
+                 
+                    <h3>Anestezi Uzmanı Eşliğinde</h3>
+                    <p>Tüm işlemler anestezi ve reanimasyon uzmanı doktor kontrolünde gerçekleştirilir. Güvenlik en üst düzeydedir.</p>
+                </div>
+            </div>
+
+            <!-- Endikasyon Tablosu -->
+            <h2 class="section-title">Genel Anestezi/Sedasyon Endikasyonları</h2>
+            <table class="indication-table">
+                <thead>
+                    <tr>
+                        <th>Hasta Grubu</th>
+                        <th>Uygulama Türü</th>
+                        <th>Avantajlar</th>
+                        <th>Ortalama Süre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Şiddetli Diş Hekimi Korkusu</td>
+                        <td>Genel Anestezi veya Bilinçli Sedasyon</td>
+                        <td>Stres ve korku olmadan tedavi</td>
+                        <td>1-3 saat</td>
+                    </tr>
+                    <tr>
+                        <td>Mental Engelli Bireyler</td>
+                        <td>Genel Anestezi</td>
+                        <td>Hastanın hareket etmeden tedavisi</td>
+                        <td>İşlem süresine göre</td>
+                    </tr>
+                    <tr>
+                        <td>0-6 Yaş Çocuklar</td>
+                        <td>Genel Anestezi veya Gül Gazı</td>
+                        <td>Psikolojik travma önleme</td>
+                        <td>30 dk-2 saat</td>
+                    </tr>
+                    <tr>
+                        <td>Bulantı Refleksi Yüksek Hastalar</td>
+                        <td>Bilinçli Sedasyon</td>
+                        <td>Rahat ağız açma ve tedavi</td>
+                        <td>1-2 saat</td>
+                    </tr>
+                    <tr>
+                        <td>Kompleks Cerrahi İşlemler</td>
+                        <td>Genel Anestezi</td>
+                        <td>Uzun süreli konfor</td>
+                        <td>2-4 saat</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Kontrendikasyon Listesi -->
+            <div class="contraindication-list">
+                <h3><i class="fas fa-ban"></i> Genel Anestezi/Sedasyon Kontrendikasyonları</h3>
+                <ul>
+                    <li>Kontrolsüz sistemik hastalıklar (kalp, akciğer, böbrek yetmezliği vb.)</li>
+                    <li>Son 6 ay içinde geçirilmiş miyokard infarktüsü</li>
+                    <li>Kontrolsüz hipertansiyon</li>
+                    <li>Ağır solunum yetmezliği</li>
+                    <li>İlaç alerjisi öyküsü</li>
+                    <li>Gebelik (özellikle ilk trimester)</li>
+                    <li>Yakın zamanda geçirilmiş inme</li>
+                    <li>Aç karnına gelmeme (anestezi öncesi 6 saat açlık gerekir)</li>
+                </ul>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Genel Anestezi ile Diş Tedavisi Süreci</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Ön Değerlendirme ve Muayene</h3>
+                        <p>Anestezi uzmanı ve diş hekimi tarafından detaylı muayene yapılır. Hastanın genel sağlık durumu değerlendirilir, gerekli tetkikler istenir. Tedavi planı oluşturulur.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Anestezi Öncesi Hazırlık</h3>
+                        <p>Hastaya anestezi öncesi 6 saat açlık talimatı verilir. Kullanılan ilaçlar gözden geçirilir. Anestezi ekibi son kontrolleri yapar.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Anestezi Uygulaması</h3>
+                        <p>Damar yolu açılır, monitörize edilir. Anestezi ilaçları verilerek hasta uyutulur. Solunum yolu güvenliği sağlanır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Diş Tedavilerinin Yapılması</h3>
+                        <p>Hasta uyurken tüm planlanan diş tedavileri (dolgu, çekim, kanal tedavisi vb.) tek seansta tamamlanır. İşlemler sırasında hasta vital bulguları sürekli izlenir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Uyandırma ve Gözlem</h3>
+                        <p>İşlemler bitince anestezi kesilir, hasta uyandırılır. 1-2 saat gözlem altında tutulur. Tamamen ayılınca ve yeme-içme becerisi geri gelince taburcu edilir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Son Kontrol ve Taburculuk</h3>
+                        <p>Hastaya ve yakınına sonrasında yapılması gerekenler anlatılır. Gerekirse ağrı kesici reçete edilir. Kontrol randevusu verilir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Genel anestezi riskli midir?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Modern anestezi teknikleri ve ekipmanlarla genel anestezi oldukça güvenlidir. Kliniğimizde tüm anestezi işlemleri anestezi uzmanı doktorlar tarafından yapılmaktadır. İşlem öncesi detaylı değerlendirme ve gerekli tetkiklerle risk minimuma indirilir. Ancak her tıbbi işlemde olduğu gibi küçük de olsa bazı riskler mevcuttur.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Anestezi sonrası nelere dikkat etmeliyim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Anestezi sonrası ilk 24 saat araba kullanmayın, önemli kararlar almayın. Hafif ve yumuşak gıdalarla beslenin. Alkol kullanmayın. Hekiminizin verdiği ilaçları düzenli kullanın. Ağrı, kanama, bulantı-kusma gibi olağandışı durumlarda kliniğimizi arayın.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Çocuğum için genel anestezi güvenli mi?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Çocuklarda genel anestezi, özellikle çok sayıda diş tedavisi gereken veya işbirliği yapamayan çocuklarda güvenle uygulanabilir. Pediatrik anestezi konusunda deneyimli ekibimiz ve çocuklara özel anestezi protokollerimizle güvenli bir tedavi sağlıyoruz. Çocuğunuzun yaşı ve kilosuna göre en uygun anestezi yöntemi belirlenecektir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Sedasyon ile genel anestezi arasındaki fark nedir?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sedasyonda hasta uyku halindedir ancak kendi solunumunu yapar, uyaranlara sınırlı yanıt verir. Genel anestezide ise tam bilinç kaybı ve solunum desteği vardır. Sedasyon daha hafif işlemlerde, genel anestezi ise daha uzun ve kompleks işlemlerde tercih edilir. Hekiminiz sizin için en uygun yöntemi belirleyecektir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Anestezi ücretleri ne kadar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Anestezi ücretleri uygulanacak yönteme, süreye ve hastanın özel durumlarına göre değişiklik gösterir. Genel anestezi ücretleri SGK anlaşmalı hastanelerde belirli oranlarda geri ödeme kapsamındadır. Detaylı bilgi ve fiyatlandırma için kliniğimizle iletişime geçebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Diş Tedavisi Korkunuz Artık Engel Değil!</h2>
+                <p>Genel anestezi ve sedasyon ile ağrısız, stressiz ve konforlu bir diş tedavisi deneyimi yaşayabilirsiniz. Uzman ekibimiz ve tam donanımlı ameliyathanemizle güvenle hizmetinizdeyiz.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

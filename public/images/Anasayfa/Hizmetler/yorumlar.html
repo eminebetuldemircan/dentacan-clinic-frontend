@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasta Yorumları | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary: #00b4d8;
+            --primary-dark: #0096c7;
+            --secondary: #ff9e00;
+            --accent: #ef476f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text: #495057;
+            --text-light: #6c757d;
+            --border: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .reviews-header {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.9) 0%, rgba(0, 156, 199, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .reviews-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .reviews-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Yorumlar Bölümü */
+        .reviews-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .review-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .treatment-type {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .review-stars {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .review-text {
+            margin-bottom: 15px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-align: right;
+        }
+        
+        /* Yorum Formu */
+        .review-form-section {
+            background: var(--light);
+            padding: 80px 0;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .rating-select {
+            display: flex;
+            align-items: center;
+        }
+        
+        .rating-select select {
+            width: auto;
+            margin-left: 10px;
+            padding: 8px 15px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            font-size: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* İletişim Bilgileri */
+        .contact-info {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .contact-message {
+            max-width: 600px;
+            margin: 30px auto 0;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .reviews-header {
+                padding: 80px 0;
+            }
+            
+            .reviews-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .contact-items {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="reviews-header">
+        <div class="container">
+            <h1>Hasta Yorumları</h1>
+            <p>Hastalarımızın Dentacan Kliniği deneyimlerini keşfedin</p>
+        </div>
+    </header>
+
+    <!-- Yorumlar Bölümü -->
+    <main class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Hastalarımızın Deneyimleri</h2>
+            
+            <div class="reviews-grid">
+                <!-- Yorum 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">E</div>
+                        <div class="user-info">
+                            <div class="user-name">Elif K.</div>
+                            <div class="treatment-type">Implant Tedavisi</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Yaptırdığım implant tedavisinden çok memnun kaldım. Mehmet Bey'in ilgisi ve titiz çalışması sayesinde hiç ağrı hissetmeden tedavimi tamamladım. Kliniğin hijyen standartları çok yüksek, personel ise son derece güler yüzlü. Kesinlikle tavsiye ederim.</p>
+                    </div>
+                    <div class="review-date">1 Eylül 2023</div>
+                </div>
+                
+                <!-- Yorum 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">B</div>
+                        <div class="user-info">
+                            <div class="user-name">Burak E.</div>
+                            <div class="treatment-type">Ortodonti Tedavisi</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>2 yıldır devam eden ortodonti tedavim Dentacan'da mükemmel sonuçlandı. Başlangıçta diş teli taktırmaya çekiniyordum ancak doktorumun sabırlı ve bilgilendirici yaklaşımı sayesinde tüm süreci rahat atlattım. Kliniğin modern teknolojileri sayesinde tedavim planlandığı gibi ilerledi.</p>
+                    </div>
+                    <div class="review-date">3 Ağustos 2024</div>
+                </div>
+                
+                <!-- Yorum 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">K</div>
+                        <div class="user-info">
+                            <div class="user-name">Kaya T.</div>
+                            <div class="treatment-type">Çocuk Diş Hekimliği</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>5 yaşındaki oğlum diş hekiminden çok korkuyordu ancak Zeynep Hanım sayesinde bu korkusunu yendi. Renkli ve oyun odası gibi tasarlanmış muayene odası, sevimli aletler ve sabırlı yaklaşım için çok teşekkür ederiz. Artık diş kontrolüne severek geliyor!</p>
+                    </div>
+                    <div class="review-date">22 Temmuz 2024</div>
+                </div>
+                
+                <!-- Yorum 4 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="user-name">Ayşe G.</div>
+                            <div class="treatment-type">Zirkonyum Kaplama</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Ön dişlerim için yaptırdığım zirkonyum kaplamalar doğal dişlerimden ayırt edilemeyecek kadar güzel oldu. Doktorumun estetik anlayışı ve titiz çalışması sayesinde artık çok daha özgüvenli gülümsüyorum. Randevu sisteminin düzeni ve zaman yönetimi de çok başarılı.</p>
+                    </div>
+                    <div class="review-date">15 Haziran 2024</div>
+                </div>
+                
+                <!-- Yorum 5 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">M</div>
+                        <div class="user-info">
+                            <div class="user-name">Mehmet S.</div>
+                            <div class="treatment-type">Diş Beyazlatma</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Yıllardır kahve tüketiminden dolayı sararan dişlerim için beyazlatma tedavisi yaptırdım. Sadece 2 seans sonunda inanılmaz bir fark oluştu. İşlem sırasında hiç hassasiyet yaşamadım ve doktorum her aşamada beni bilgilendirdi. Sonuçtan çok memnun kaldım.</p>
+                    </div>
+                    <div class="review-date">8 Mayıs 2024</div>
+                </div>
+                
+                <!-- Yorum 6 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">S</div>
+                        <div class="user-info">
+                            <div class="user-name">Selin Y.</div>
+                            <div class="treatment-type">20'lik Diş Çekimi</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>20'lik dişim çok kötü pozisyondaydı ve çekilmesi gerekiyordu. Diş hekimi korkum olduğu için çok endişeliydim ancak doktorumun sakin ve profesyonel yaklaşımı sayesinde hiç ağrı hissetmeden işlem tamamlandı. Sonrasındaki takip ve bilgilendirme de çok iyiydi.</p>
+                    </div>
+                    <div class="review-date">29 Nisan 2024</div>
+                </div>
+                
+                <!-- Yorum 7 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">D</div>
+                        <div class="user-info">
+                            <div class="user-name">Deniz A.</div>
+                            <div class="treatment-type">Periodontoloji</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Diş eti problemlerim nedeniyle tedavi görüyordum. Dentacan'da uygulanan tedavi sayesinde diş etlerimdeki çekilme durdu ve sağlığına kavuştu. Hijyen konusundaki titizlikleri ve detaylı açıklamaları için teşekkür ederim. Artık ailecek bu kliniği tercih ediyoruz.</p>
+                    </div>
+                    <div class="review-date">12 Mart 2024</div>
+                </div>
+                
+                <!-- Yorum 8 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">T</div>
+                        <div class="user-info">
+                            <div class="user-name">Tuğba K.</div>
+                            <div class="treatment-type">Lamina Veneer</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>Ön dişlerimdeki şekil bozuklukları için lamina veneer yaptırdım. Sonuç harika! Doktorum beni süreçle ilgili çok iyi bilgilendirdi ve beklentilerimi tam olarak karşılayan bir gülüş tasarımı yaptı. Kliniğin sterilizasyon ve hijyen standartları da çok yüksek.</p>
+                    </div>
+                    <div class="review-date">3 Şubat 2024</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Yorum Formu -->
+    <section class="review-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h3 class="form-title">Deneyiminizi Paylaşın</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-posta Adresi</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefon Numarası</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="treatment">Tedavi Türü</label>
+                        <select id="treatment" name="treatment">
+                            <option value="">Seçiniz</option>
+                            <option value="implant">İmplant Tedavisi</option>
+                            <option value="ortodonti">Ortodonti Tedavisi</option>
+                            <option value="pedodonti">Çocuk Diş Hekimliği</option>
+                            <option value="dolgu">Dolgu Tedavisi</option>
+                            <option value="kanal">Kanal Tedavisi</option>
+                            <option value="protez">Protez Diş</option>
+                            <option value="cerrahi">Diş Cerrahisi</option>
+                            <option value="periodontoloji">Periodontoloji</option>
+                            <option value="beyazlatma">Diş Beyazlatma</option>
+                            <option value="lamina">Lamina Veneer</option>
+                            <option value="zirkonyum">Zirkonyum Kaplama</option>
+                            <option value="diger">Diğer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group rating-select">
+                        <label for="rating">Değerlendirme:</label>
+                        <select id="rating" name="rating">
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="1">★☆☆☆☆</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Yorumunuz</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Yorumu Gönder</button>
+                </form>
+                
+                <div class="form-footer">
+                    <p>Yorumunuz gönderildikten sonra kontrol edilerek yayınlanacaktır. En kısa sürede sizlere geri dönüş yapacağız. Sağlıklı günler dileriz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Bilgileri -->
+    <section class="contact-info">
+        <div class="container">
+            <h3>Bize Ulaşın</h3>
+            
+            <div class="contact-items">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>1234. Sokak, No:5, Şişli/İstanbul</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0 (212) 123 45 67</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@dentacan.com</span>
+                </div>
+            </div>
+            
+            <div class="contact-message">
+                <p>En kısa sürede sizlere geri dönüş yapacağımızı bildirmek ister, sağlıklı günler dileriz.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form gönderim işlemi
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Burada form verilerini işleyebilir veya AJAX ile sunucuya gönderebilirsiniz
+            alert('Yorumunuz için teşekkür ederiz! Kontrol edildikten sonra yayınlanacaktır.');
+            this.reset();
+        });
+        
+        // Yıldız değerlendirme seçimi
+        const ratingSelect = document.getElementById('rating');
+        ratingSelect.addEventListener('change', function() {
+            const stars = '★'.repeat(this.value) + '☆'.repeat(5 - this.value);
+            this.innerHTML = `
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            `;
+            this.value = this.value;
+        });
+    </script>
+</body>
+</html>

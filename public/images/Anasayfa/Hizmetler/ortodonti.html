@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ortodonti Tedavisi | Dentacan Ağız ve Diş Sağlığı Kliniği</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Genel Stiller */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hizmetler/ortodonti-header.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .service-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* İçerik Bölümü */
+        .service-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-intro {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .service-intro img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-intro-text {
+            width: 50%;
+        }
+        
+        .service-intro-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-intro-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        /* Bilgi Kutuları */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Süreç Adımları */
+        .process-steps {
+            counter-reset: step;
+            margin-bottom: 60px;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 100px;
+        }
+        
+        .process-step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+        
+        .process-step h3 {
+            margin-top: 0;
+            color: var(--dark-color);
+        }
+        
+        /* SSS */
+        .faq-section {
+            background: var(--light-color);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        /* CTA */
+        .service-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .service-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Tedavi Türleri */
+        .treatment-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        .treatment-card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .treatment-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .treatment-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .treatment-card-content {
+            padding: 20px;
+        }
+        
+        .treatment-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-intro {
+                flex-direction: column;
+            }
+            
+            .service-intro img,
+            .service-intro-text {
+                width: 100%;
+            }
+            
+            .process-step {
+                padding-left: 80px;
+            }
+            
+            .process-step:before {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="service-header">
+        <div class="container">
+            <h1>Ortodonti Tedavisi</h1>
+            <p>Çapraşık dişler ve çene bozuklukları için profesyonel çözümler. Görünmeyen braketler ve şeffaf plaklarla sağlıklı ve düzgün dişlere kavuşun.</p>
+            <a href="ortodontiRandevu.html" class="btn">Hemen Randevu Al</a>
+        </div>
+    </header>
+
+    <!-- İçerik -->
+    <main class="service-content">
+        <div class="container">
+            <!-- Giriş Bölümü -->
+            <section class="service-intro">
+                <img src="images/Anasayfa/Ortodonti.jpg" alt="Ortodonti tedavisi">
+                <div class="service-intro-text">
+                    <h2>Sağlıklı ve Düzgün Dişler</h2>
+                    <p>Ortodonti, dişlerdeki çapraşıklıkların ve çene kemiklerindeki uyumsuzlukların teşhis, önleme ve tedavisi ile ilgilenen diş hekimliği dalıdır. Hem estetik hem de fonksiyonel iyileşme sağlayarak daha sağlıklı bir ağız yapısı sunar.</p>
+                    <p>Kliniğimizde geleneksel metal braketlerden şeffaf plaklara kadar geniş bir yelpazede ortodontik tedavi seçenekleri sunuyor, her yaştan hastamıza özel tedavi planları oluşturuyoruz.</p>
+ 
+                </div>
+            </section>
+
+            <!-- Bilgi Kutuları -->
+            <h2 class="section-title">Ortodonti Tedavisi Hakkında</h2>
+            <div class="info-boxes">
+                <div class="info-box">
+               
+                    <h3>Estetik Görünüm</h3>
+                    <p>Düzgün sıralanmış dişler özgüveninizi artırır ve daha çekici bir gülümseme sağlar.</p>
+                </div>
+                
+                <div class="info-box">
+         
+                    <h3>Çiğneme Fonksiyonu</h3>
+                    <p>Doğru kapanış, besinlerin daha iyi çiğnenmesini ve sindirimin kolaylaşmasını sağlar.</p>
+                </div>
+                
+                <div class="info-box">
+       
+                    <h3>Ağız Sağlığı</h3>
+                    <p>Düzgün sıralanmış dişler temizlenmesi daha kolay dişler demektir, çürük ve diş eti hastalığı riskini azaltır.</p>
+                </div>
+            </div>
+
+            <!-- Tedavi Türleri -->
+            <h2 class="section-title">Ortodonti Tedavi Yöntemleri</h2>
+            <div class="treatment-types">
+                <div class="treatment-card">
+              
+                    <div class="treatment-card-content">
+                        <h3>Metal Braketler</h3>
+                        <p>Geleneksel ve en ekonomik ortodonti tedavisi. Yüksek dayanıklılık ve etkinlik sunar.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                  
+                    <div class="treatment-card-content">
+                        <h3>Seramik Braketler</h3>
+                        <p>Diş renginde braketlerle daha estetik bir görünüm. Metal braketlere göre daha az farkedilir.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                  
+                    <div class="treatment-card-content">
+                        <h3>Lingual Braketler</h3>
+                        <p>Dişlerin arka yüzeyine uygulanan tamamen gizli braket sistemleri.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                  
+                    <div class="treatment-card-content">
+                        <h3>Invisalign</h3>
+                        <p>Çıkarılabilir şeffaf plaklarla neredeyse görünmeyen ortodontik tedavi.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                    
+                    <div class="treatment-card-content">
+                        <h3>Ortognatik Cerrahi</h3>
+                        <p>Ciddi çene uyumsuzluklarında ortodonti ve cerrahi iş birliği ile tedavi.</p>
+                    </div>
+                </div>
+                
+                <div class="treatment-card">
+                    
+                    <div class="treatment-card-content">
+                        <h3>Erken Ortodonti</h3>
+                        <p>7-12 yaş arası çocuklarda çene gelişimini yönlendiren koruyucu tedaviler.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Süreç Adımları -->
+            <h2 class="section-title">Ortodonti Tedavi Süreci</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>İlk Muayene ve Teşhis</h3>
+                        <p>Detaylı klinik muayene, fotoğraflar, ölçüler ve radyografik incelemelerle tedavi planı oluşturulur.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Hazırlık Aşaması</h3>
+                        <p>Gerekirse diş çekimi, dolgu veya diş taşı temizliği gibi ön tedaviler uygulanır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Braket Yerleştirme</h3>
+                        <p>Seçilen braket sistemi dişlere özel tekniklerle yerleştirilir. İşlem ağrısızdır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Düzenli Kontroller</h3>
+                        <p>4-6 haftada bir yapılan kontrollerde teller ayarlanır ve tedavi ilerlemesi değerlendirilir.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Braketlerin Çıkarılması</h3>
+                        <p>Dişler istenen konuma geldiğinde braketler çıkarılır ve son düzenlemeler yapılır.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-content">
+                        <h3>Pekiştirme Tedavisi</h3>
+                        <p>Dişlerin yeni konumlarında kalması için pekiştirme apareyleri kullanılır.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSS -->
+            <section class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">Sık Sorulan Sorular</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Ortodonti tedavisi ne kadar sürer?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tedavi süresi problemin şiddetine ve hastanın yaşına göre 6 ay ile 3 yıl arasında değişir. Ortalama tedavi süresi 18-24 aydır. Düzenli kontrollere gitmek ve hekimin önerilerine uymak tedavi süresini kısaltır.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Ortodonti tedavisi ağrılı mıdır?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Braket takılması ağrısız bir işlemdir. İlk birkaç gün dişlerde hassasiyet ve hafif ağrı olabilir, bu normaldir ve ağrı kesicilerle kontrol altına alınabilir. Her kontrolden sonra 1-2 gün hafif sızı olabilir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Yetişkinlerde ortodonti tedavisi mümkün müdür?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Evet, dişler kemik içinde her yaşta hareket edebilir. Yetişkinlerde tedavi süresi biraz daha uzun olabilir ancak başarı oranları çocuklarla benzerdir. Günümüzde yetişkin hastalar için estetik braketler ve Invisalign gibi seçenekler mevcuttur.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Ortodonti tedavisi sırasında nelere dikkat etmeliyim?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yapışkan, sert ve kabuklu gıdalardan kaçınmalı, dişlerinizi her yemekten sonra fırçalamalısınız. Özel diş arası fırçaları ve diş ipi kullanımı önemlidir. Kontrol randevularınızı aksatmayın ve lastiklerinizi düzenli takın.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="service-cta">
+                <h2>Düzgün Dişlerle Özgürce Gülümseyin</h2>
+                <p>Uzman ortodontistlerimiz ve kişiye özel tedavi planlarımızla sağlıklı bir gülüşe kavuşun.</p>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // SSS Açma/Kapama
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

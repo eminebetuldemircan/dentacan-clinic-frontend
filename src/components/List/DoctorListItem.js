@@ -36,7 +36,7 @@ const DoctorListItem = ({ doctor, handleDelete, handleEdit }) => {
                     className="text-gray-700 flex items-center px-4 py-2 text-sm w-full text-left hover:bg-gray-50 transition-colors duration-150"
                   >
                     <FiEdit2 className="w-4 h-4 mr-2 text-blue-500" />
-                    Edit
+                    Düzenle
                   </button>
                 </div>
                 <div className="py-1">
@@ -48,7 +48,7 @@ const DoctorListItem = ({ doctor, handleDelete, handleEdit }) => {
                     className="text-gray-700 flex items-center px-4 py-2 text-sm w-full text-left hover:bg-gray-50 transition-colors duration-150"
                   >
                     <FiTrash2 className="w-4 h-4 mr-2 text-red-500" />
-                    Delete
+                    Sil
                   </button>
                 </div>
               </div>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentacan Klinik - Fatura Oluştur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --primary-light: rgba(42, 157, 143, 0.1);
+            --primary-dark: #23857a;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            position: fixed;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .sidebar-brand {
+            padding: 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--light-gray);
+            background: var(--primary);
+        }
+        
+        .sidebar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .sidebar-brand span {
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-title {
+            padding: 0.5rem 1.5rem;
+            color: var(--gray);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .menu-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .menu-item.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .menu-item i {
+            width: 24px;
+            margin-right: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .menu-badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            transition: all 0.3s;
+        }
+        
+        /* Topbar */
+        .topbar {
+            height: 70px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-right: 1rem;
+        }
+        
+        .search-bar {
+            position: relative;
+            flex-grow: 1;
+            max-width: 500px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        
+        .notification-btn, .user-menu-btn {
+            background: none;
+            border: none;
+            position: relative;
+            color: var(--gray);
+            font-size: 1.25rem;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: var(--secondary);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 1rem;
+            border: 2px solid var(--primary-light);
+        }
+        
+        /* Dashboard Content */
+        .content-wrapper {
+            padding: 1.5rem;
+        }
+        
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 0;
+        }
+        
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary);
+        }
+        
+        /* Invoice Card */
+        .invoice-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.03);
+            margin-bottom: 1.5rem;
+        }
+        
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .invoice-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .invoice-subtitle {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .invoice-number {
+            text-align: right;
+        }
+        
+        .invoice-number span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .invoice-number h3 {
+            font-weight: 600;
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .invoice-details {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .invoice-from, .invoice-to {
+            flex: 1;
+        }
+        
+        .invoice-detail-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--secondary);
+        }
+        
+        .invoice-detail-text {
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Invoice Items */
+        .invoice-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        .invoice-items th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--light);
+            color: var(--gray);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .invoice-items td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+            vertical-align: top;
+        }
+        
+        .invoice-items tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .item-description {
+            width: 50%;
+        }
+        
+        .item-quantity, .item-price, .item-total {
+            width: 15%;
+        }
+        
+        .item-actions {
+            width: 5%;
+            text-align: center;
+        }
+        
+        .item-remove {
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .item-remove:hover {
+            color: #e74c3c;
+        }
+        
+        /* Invoice Summary */
+        .invoice-summary {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+        
+        .invoice-totals {
+            width: 300px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .invoice-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .invoice-total-label {
+            font-weight: 500;
+        }
+        
+        .invoice-total-value {
+            font-weight: 600;
+        }
+        
+        .invoice-grand-total {
+            border-top: 1px solid var(--light-gray);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        /* Invoice Footer */
+        .invoice-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .invoice-notes {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        
+        .invoice-notes-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .invoice-details {
+                flex-direction: column;
+            }
+            
+            .invoice-from, .invoice-to {
+                margin-bottom: 1.5rem;
+            }
+            
+            .invoice-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .invoice-notes {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+                width: 100%;
+            }
+            
+            .invoice-items th, 
+            .invoice-items td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+        
+            <span>Dentacan</span>
+        </div>
+        
+        <div class="sidebar-menu">
+            <div class="menu-title">Ana Menü</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="menu-title">Yönetim</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Randevular</span>
+                <span class="menu-badge">15</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-injured"></i>
+                <span>Hastalar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-md"></i>
+                <span>Doktorlar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-procedures"></i>
+                <span>Hizmetler</span>
+            </a>
+            
+            <div class="menu-title">Finans</div>
+            <a href="#" class="menu-item active">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span>Faturalar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Ödemeler</span>
+            </a>
+            
+            <div class="menu-title">Raporlar</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Finansal Raporlar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-pie"></i>
+                <span>İstatistikler</span>
+            </a>
+            
+            <div class="menu-title">Sistem</div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-users-cog"></i>
+                <span>Kullanıcılar</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Ayarlar</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <button class="toggle-btn" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Ara...">
+            </div>
+            
+            <div class="topbar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                
+                <button class="user-menu-btn">
+                    <i class="fas fa-envelope"></i>
+                </button>
+                
+               
+            </div>
+        </div>
+        
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Yeni Fatura Oluştur</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a href="#">Finans</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Yeni Fatura</li>
+                    </ol>
+                </nav>
+            </div>
+            
+            <!-- Invoice Form -->
+            <div class="invoice-card">
+                <div class="invoice-header">
+                    <div>
+                        <h2 class="invoice-title">Yeni Fatura</h2>
+                        <p class="invoice-subtitle">Hasta için yeni fatura oluştur</p>
+                    </div>
+                    <div class="invoice-number">
+                        <span>Fatura No</span>
+                        <h3>F-2023-1246</h3>
+                    </div>
+                </div>
+                
+                <div class="invoice-details">
+                    <div class="invoice-from">
+                        <h4 class="invoice-detail-title">Dentacan Ağız ve Diş Sağlığı Kliniği</h4>
+                        <p class="invoice-detail-text">1234. Sokak, No:5</p>
+                        <p class="invoice-detail-text">Şişli, İstanbul</p>
+                        <p class="invoice-detail-text">Vergi No: 1234567890</p>
+                    </div>
+                    <div class="invoice-to">
+                        <h4 class="invoice-detail-title">Fatura Bilgileri</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="patientSelect" class="form-label">Hasta*</label>
+                                <select class="form-select" id="patientSelect" required>
+                                    <option selected disabled value="">Hasta seçin...</option>
+                                    <option>Ahmet Yılmaz (H-2457)</option>
+                                    <option>Zeynep Şahin (H-2456)</option>
+                                    <option>Mehmet Kaya (H-2455)</option>
+                                    <option>Fatma Korkmaz (H-2454)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="invoiceDate" class="form-label">Fatura Tarihi*</label>
+                                <input type="date" class="form-control" id="invoiceDate" value="2023-06-15" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="dueDate" class="form-label">Son Ödeme Tarihi</label>
+                                <input type="date" class="form-control" id="dueDate" value="2023-06-30">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="paymentStatus" class="form-label">Ödeme Durumu</label>
+                                <select class="form-select" id="paymentStatus">
+                                    <option selected>Ödenmedi</option>
+                                    <option>Kısmen Ödendi</option>
+                                    <option>Ödendi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="invoice-items">
+                    <thead>
+                        <tr>
+                            <th class="item-description">Hizmet Açıklaması</th>
+                            <th class="item-quantity">Adet</th>
+                            <th class="item-price">Birim Fiyat</th>
+                            <th class="item-total">Tutar</th>
+                            <th class="item-actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="item-description">
+                                <input type="text" class="form-control" value="İmplant Tedavisi">
+                            </td>
+                            <td class="item-quantity">
+                                <input type="number" class="form-control" value="1" min="1">
+                            </td>
+                            <td class="item-price">
+                                <input type="number" class="form-control" value="8500.00" step="0.01" min="0">
+                            </td>
+                            <td class="item-total">₺8,500.00</td>
+                            <td class="item-actions">
+                                <i class="fas fa-times item-remove"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item-description">
+                                <input type="text" class="form-control" value="Diş Temizliği">
+                            </td>
+                            <td class="item-quantity">
+                                <input type="number" class="form-control" value="1" min="1">
+                            </td>
+                            <td class="item-price">
+                                <input type="number" class="form-control" value="500.00" step="0.01" min="0">
+                            </td>
+                            <td class="item-total">₺500.00</td>
+                            <td class="item-actions">
+                                <i class="fas fa-times item-remove"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item-description">
+                                <input type="text" class="form-control" placeholder="Yeni hizmet ekle">
+                            </td>
+                            <td class="item-quantity">
+                                <input type="number" class="form-control" value="1" min="1">
+                            </td>
+                            <td class="item-price">
+                                <input type="number" class="form-control" value="0.00" step="0.01" min="0">
+                            </td>
+                            <td class="item-total">₺0.00</td>
+                            <td class="item-actions">
+                                <i class="fas fa-plus text-success"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="invoice-summary">
+                    <div class="invoice-totals">
+                        <div class="invoice-total-row">
+                            <span class="invoice-total-label">Ara Toplam:</span>
+                            <span class="invoice-total-value">₺9,000.00</span>
+                        </div>
+                        <div class="invoice-total-row">
+                            <span class="invoice-total-label">KDV (%18):</span>
+                            <span class="invoice-total-value">₺1,620.00</span>
+                        </div>
+                        <div class="invoice-total-row">
+                            <span class="invoice-total-label">İndirim:</span>
+                            <span class="invoice-total-value">-₺0.00</span>
+                        </div>
+                        <div class="invoice-total-row invoice-grand-total">
+                            <span class="invoice-total-label">GENEL TOPLAM:</span>
+                            <span class="invoice-total-value">₺10,620.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="invoice-footer">
+                    <div class="invoice-notes">
+                        <label for="invoiceNotes" class="invoice-notes-label">Notlar</label>
+                        <textarea class="form-control" id="invoiceNotes" rows="2" placeholder="Fatura ile ilgili notlar..."></textarea>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary me-2">Taslak Kaydet</button>
+                        <button type="button" class="btn btn-primary me-2">Fatura Oluştur</button>
+                        <button type="button" class="btn btn-success">Fatura Oluştur ve Yazdır</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sidebar Toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        
+        // Remove Invoice Item
+        document.querySelectorAll('.item-remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('tr').remove();
+                calculateTotals();
+            });
+        });
+        
+        // Calculate Invoice Totals
+        function calculateTotals() {
+            // Burada fatura toplamlarını hesaplayacak kodlar olacak
+            console.log('Toplamlar yeniden hesaplanıyor...');
+        }
+        
+        // Initialize calculations
+        calculateTotals();
+    </script>
+</body>
+</html>
